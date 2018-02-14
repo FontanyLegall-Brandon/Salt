@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Chasse aux pommes</string>
+    <string name="identifiants">Identifiants</string>
+    <string name="pseudo">Pseudo</string>
+</resources>
