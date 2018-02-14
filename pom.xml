@@ -1,0 +1,19 @@
+<!--entête xml, balise projectet modelVersion-->
+<groupId>serveuretcommun</groupId>
+<artifactId>serveuretcommun</artifactId>
+<version>1.0</version>
+<modules>
+<module>commun</module>
+<module>serveur</module>
+</modules>
+<packaging>pom</packaging>
+<properties>
+<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+<compiler.source>1.8</compiler.source>
+<compiler.target>1.8</compiler.target>
+</properties><
+build>
+<plugins><!--par exemple compilation, java doc, etc. --></plugins>
+</build>
+<dependencies><!--par exemple junit, mokito, etc. --></dependencies>
+        </project>
