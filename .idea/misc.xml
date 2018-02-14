@@ -4,7 +4,9 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/LPEPD/pom.xml" />
-        <option value="$PROJECT_DIR$/serveur/pom.xml" />
+        <option value="$PROJECT_DIR$/Projet/pom.xml" />
+        <option value="$PROJECT_DIR$/Serveur/pom.xml" />
+        <option value="$PROJECT_DIR$/commun/pom.xml" />
       </list>
     </option>
   </component>

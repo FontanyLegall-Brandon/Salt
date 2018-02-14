@@ -6,11 +6,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="serveur" />
+        <module name="commun" />
+        <module name="Projet" />
+        <module name="Serveur" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="commun" target="1.5" />
       <module name="LPEPD" target="1.5" />
+      <module name="Projet" target="1.5" />
+      <module name="Serveur" target="1.5" />
       <module name="serveur" target="1.5" />
     </bytecodeTargetLevel>
   </component>
