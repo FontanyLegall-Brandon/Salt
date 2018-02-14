@@ -10,6 +10,7 @@ PLEPD :
 - FONTANY--LEGALL Brandon
 - QUI Théo
 - Germerie Loic
+- RAMOUL Inès
 
 ## Evotions
     A venir ...
