@@ -12,7 +12,6 @@
     <artifactId>serveur</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>commun</module>
     </modules>
 
 
