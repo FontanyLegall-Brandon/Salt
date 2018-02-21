@@ -2,6 +2,7 @@ import com.corundumstudio.socketio.Configuration;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.listener.ConnectListener;
+import com.corundumstudio.socketio.listener.DataListener;
 import com.corundumstudio.socketio.listener.DisconnectListener;
 
 public class Server{
@@ -28,6 +29,7 @@ public class Server{
                 builder.append("Déconnexion du client ");
                 builder.append(client);
                 System.out.println(builder.toString());
+
             }
         };
     }
@@ -37,5 +39,6 @@ public class Server{
         server.start();
         server.addConnectListener(connectListener);
         server.addDisconnectListener(disconnectListener);
+        //server.addEventListener();
     }
 }
