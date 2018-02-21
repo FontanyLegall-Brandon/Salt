@@ -9,11 +9,16 @@ public class Server{
     private Configuration config;
     private ConnectListener connectListener;
     private DisconnectListener disconnectListener;
+    private boolean running;
+    private final SocketIOServer server;
 
     public Server(String hostname, int port) {
+        this.running = false;
         config = new Configuration();
         config.setHostname(hostname);
         config.setPort(port);
+        this.server = new SocketIOServer(config);
+
         connectListener = new ConnectListener() {
             public void onConnect(SocketIOClient client) {
                 StringBuilder builder = new StringBuilder();
@@ -32,13 +37,22 @@ public class Server{
 
             }
         };
-    }
-
-    public void run() {
-        final SocketIOServer server = new SocketIOServer(config);
-        server.start();
         server.addConnectListener(connectListener);
         server.addDisconnectListener(disconnectListener);
         //server.addEventListener();
+    }
+
+    public void run() {
+        server.start();
+        running = true;
+    }
+
+    public void stop() {
+        server.stop();
+        running = false;
+    }
+
+    public boolean isRunning() {
+        return running;
     }
 }
