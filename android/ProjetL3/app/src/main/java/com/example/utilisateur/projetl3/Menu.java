@@ -30,12 +30,16 @@ public class Menu extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        //à mettre dans un thread
         while (!connected) {
             try {
                 Socket mSocket = IO.socket("http://46.193.0.89:1345");
                 mSocket.connect();
-                Toast.makeText(getApplicationContext(), "Connexion réussie!", Toast.LENGTH_LONG).show();
-                connected = true;
+                if (mSocket.connected()) {
+                    Toast.makeText(getApplicationContext(), "Connexion réussie!", Toast.LENGTH_LONG).show();
+                    //connected = true;
+                }
+                connected = true;//en dehors du if pour ne pas bloquer l'application -- devra être supprimé quand la connexion fonctionnera
             } catch (URISyntaxException e) {
                 Toast.makeText(getApplicationContext(), "Errreur de connexion", Toast.LENGTH_LONG).show();
             }
