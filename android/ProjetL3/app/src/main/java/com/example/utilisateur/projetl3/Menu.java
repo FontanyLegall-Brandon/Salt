@@ -20,7 +20,7 @@ public class Menu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Menu.this, MenuPrincipal.class);
-                EditText pseudo = findViewById(R.id.textPseudo);
+                EditText pseudo = findViewById(R.id.textPseudo);//pseudo récupéré du champs de texte
                 intent.putExtra("login", pseudo.getText().toString());
                 startActivity(intent);
             }
