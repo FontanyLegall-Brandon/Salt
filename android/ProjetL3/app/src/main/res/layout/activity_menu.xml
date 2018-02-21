@@ -9,29 +9,30 @@
     android:weightSum="1">
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_gravity="center_horizontal"
         android:text="@string/identifiants"
-        android:id="@+id/textView"
-        android:layout_gravity="center_horizontal" />
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="@string/pseudo"
-        android:ems="10"
         android:id="@+id/textPseudo"
-        android:layout_gravity="center_horizontal" />
-
-    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
+        android:layout_gravity="center_horizontal"
         android:ems="10"
+        android:hint="login"
+        android:inputType="textPersonName" />
+
+    <EditText
         android:id="@+id/textMDP"
-        android:layout_gravity="center_horizontal" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:ems="10"
+        android:hint="password"
+        android:inputType="textPassword" />
 
     <Button
         android:layout_width="wrap_content"
@@ -39,4 +40,5 @@
         android:text="Entrer"
         android:id="@+id/buttonValid"
         android:layout_gravity="center_horizontal" />
+
 </LinearLayout>

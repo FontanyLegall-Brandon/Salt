@@ -8,6 +8,7 @@ import android.widget.TextView;
  * Created by Utilisateur on 14/02/2018.
  */
 public class MenuPrincipal extends Activity {
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
