@@ -15,7 +15,7 @@ public class MenuPrincipal extends Activity {
         setContentView(R.layout.activity_menu_principal);
         String login = getIntent().getStringExtra("login");
 
-        TextView view = findViewById(R.id.textPseudo);
+        TextView view = findViewById(R.id.etPseudo);
         view.setText(login);
     }
 }
