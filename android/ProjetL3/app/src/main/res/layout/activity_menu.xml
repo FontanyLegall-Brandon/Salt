@@ -50,6 +50,8 @@
         android:layout_height="wrap_content"
         android:text="S'inscrire ici"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20sp"
         android:visibility="visible" />
 
 </LinearLayout>
