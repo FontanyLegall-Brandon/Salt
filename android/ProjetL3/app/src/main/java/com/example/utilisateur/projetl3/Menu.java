@@ -29,9 +29,8 @@ public class Menu extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent registerIntent = new Intent(Menu.this,RegisterActivity.class);
-                Menu.this.startActivity(registerIntent);
-
+                //Intent registerIntent = new Intent(Menu.this,RegisterActivity.class);
+                //Menu.this.startActivity(registerIntent);
             }
         });
         loginButton.setOnClickListener(new View.OnClickListener() {
