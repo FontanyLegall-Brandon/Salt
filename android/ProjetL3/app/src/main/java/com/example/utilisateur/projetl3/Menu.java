@@ -10,9 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.net.URISyntaxException;
-
-import io.socket.client.IO;
-import io.socket.client.Socket;
+import com.example.utilisateur.projetl3.network.Client;
 
 public class Menu extends AppCompatActivity {
 
@@ -42,19 +40,8 @@ public class Menu extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        //à mettre dans un thread
-        while (!connected) {
-            try {
-                Socket mSocket = IO.socket("http://46.193.0.89:1345");
-                mSocket.connect();
-                if (mSocket.connected()) {
-                    Toast.makeText(getApplicationContext(), "Connexion réussie!", Toast.LENGTH_LONG).show();
-                    //connected = true;
-                }
-                connected = true;//en dehors du if pour ne pas bloquer l'application -- devra être supprimé quand la connexion fonctionnera
-            } catch (URISyntaxException e) {
-                Toast.makeText(getApplicationContext(), "Errreur de connexion", Toast.LENGTH_LONG).show();
-            }
-        }
+
+        Toast.makeText(getApplicationContext(), "Non connecté", Toast.LENGTH_LONG).show();
+
     }
 }
