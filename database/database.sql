@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le :  mer. 28 fév. 2018 à 09:57
+-- Généré le :  mer. 28 fév. 2018 à 10:51
 -- Version du serveur :  10.1.30-MariaDB
 -- Version de PHP :  7.0.27
 
@@ -31,6 +31,21 @@ SET time_zone = "+00:00";
 CREATE TABLE `exercice` (
   `id` int(11) NOT NULL,
   `nom` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `exerciceAvancement`
+--
+
+CREATE TABLE `exerciceAvancement` (
+  `id` int(11) NOT NULL,
+  `pseudoId` int(11) NOT NULL,
+  `exerciceId` int(11) NOT NULL,
+  `fait` tinyint(1) NOT NULL COMMENT 'boolean',
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `note` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -65,6 +80,7 @@ CREATE TABLE `joueurAvancement` (
 --
 
 CREATE TABLE `membre` (
+  `id` int(11) NOT NULL,
   `pseudo` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `prenom` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `nom` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -95,24 +111,35 @@ ALTER TABLE `exercice`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `exerciceAvancement`
+--
+ALTER TABLE `exerciceAvancement`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pseudo` (`pseudoId`),
+  ADD KEY `exercice` (`exerciceId`);
+
+--
 -- Index pour la table `exerciceNiveau`
 --
 ALTER TABLE `exerciceNiveau`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `niveauId` (`niveauId`),
-  ADD KEY `exerciceId` (`exerciceId`);
+  ADD KEY `niveau` (`niveauId`),
+  ADD KEY `exercice2` (`exerciceId`);
 
 --
 -- Index pour la table `joueurAvancement`
 --
 ALTER TABLE `joueurAvancement`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pseudo2` (`pseudoId`),
+  ADD KEY `niveau2` (`niveauId`);
 
 --
 -- Index pour la table `membre`
 --
 ALTER TABLE `membre`
-  ADD PRIMARY KEY (`pseudo`),
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `pseudo` (`pseudo`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
@@ -132,6 +159,12 @@ ALTER TABLE `exercice`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT pour la table `exerciceAvancement`
+--
+ALTER TABLE `exerciceAvancement`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT pour la table `exerciceNiveau`
 --
 ALTER TABLE `exerciceNiveau`
@@ -141,6 +174,12 @@ ALTER TABLE `exerciceNiveau`
 -- AUTO_INCREMENT pour la table `joueurAvancement`
 --
 ALTER TABLE `joueurAvancement`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `membre`
+--
+ALTER TABLE `membre`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -154,16 +193,25 @@ ALTER TABLE `niveau`
 --
 
 --
--- Contraintes pour la table `exercice`
+-- Contraintes pour la table `exerciceAvancement`
 --
-ALTER TABLE `exercice`
-  ADD CONSTRAINT `exercice` FOREIGN KEY (`id`) REFERENCES `exerciceNiveau` (`exerciceId`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `exerciceAvancement`
+  ADD CONSTRAINT `exercice` FOREIGN KEY (`exerciceId`) REFERENCES `exercice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pseudo` FOREIGN KEY (`pseudoId`) REFERENCES `membre` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `niveau`
+-- Contraintes pour la table `exerciceNiveau`
 --
-ALTER TABLE `niveau`
-  ADD CONSTRAINT `niveau` FOREIGN KEY (`id`) REFERENCES `exerciceNiveau` (`niveauId`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `exerciceNiveau`
+  ADD CONSTRAINT `exercice2` FOREIGN KEY (`exerciceId`) REFERENCES `exercice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `niveau` FOREIGN KEY (`niveauId`) REFERENCES `niveau` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `joueurAvancement`
+--
+ALTER TABLE `joueurAvancement`
+  ADD CONSTRAINT `niveau2` FOREIGN KEY (`niveauId`) REFERENCES `niveau` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pseudo2` FOREIGN KEY (`pseudoId`) REFERENCES `membre` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
