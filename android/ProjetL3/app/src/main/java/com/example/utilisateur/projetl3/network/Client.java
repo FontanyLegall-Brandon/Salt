@@ -13,10 +13,6 @@ import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 
-/**
- * Created by Philippe on 21/02/2018.
- */
-
 public class Client {
     Socket mSocket;
 
@@ -35,8 +31,8 @@ public class Client {
     public void connect() {
 
         try {
-            Log.d("connexion", "http://10.188.235.194:1345");
-            mSocket = IO.socket("http://10.188.235.194:1345");
+            Log.d("connexion", "http://192.168.43.244:1345");
+            mSocket = IO.socket("http://192.168.43.244:1345");
 
             mSocket.on("connect", new Emitter.Listener() {
                 @Override
