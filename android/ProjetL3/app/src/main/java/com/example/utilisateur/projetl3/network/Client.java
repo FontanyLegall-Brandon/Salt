@@ -28,11 +28,22 @@ public class Client {
         if (mSocket != null) mSocket.disconnect();
     }
 
+    public boolean is_connected() {
+        return mSocket.connected();
+    }
+
     public void connect() {
 
         try {
-            Log.d("connexion", "http://77.136.82.173:1345");
-            mSocket = IO.socket("http://77.136.82.173:1345");
+            Log.d("connexion", "http://10.188.235.194:1345");
+            mSocket = IO.socket("http://10.188.235.194:1345");
+
+            mSocket.on("connect", new Emitter.Listener() {
+                @Override
+                public void call(Object... args) {
+                    Log.d("connexion", "message recu ");
+                }
+            });
 
             mSocket.on("couleur", new Emitter.Listener() {
                 @Override

@@ -30,10 +30,17 @@ public class Menu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         this.getClient().connect();
-        while (!client.is_connected()) {
+        int connecting = 0;
 
+        while (!client.is_connected() && connecting < Integer.MAX_VALUE / 2) {//solution provisoire, envisager un écran de chargement
+            connecting++;
         }
-        Toast.makeText(getApplicationContext(), "Connecté", Toast.LENGTH_SHORT).show();
+
+        if (client.is_connected()) {
+            Toast.makeText(getApplicationContext(), "Connecté", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "Échec possible de la connexion", Toast.LENGTH_LONG).show();
+        }
         final EditText pseudo = (EditText) findViewById(R.id.etPseudo);
         final EditText password = (EditText) findViewById(R.id.etMDP);
         final Button loginButton = (Button) findViewById(R.id.buttonValid);
