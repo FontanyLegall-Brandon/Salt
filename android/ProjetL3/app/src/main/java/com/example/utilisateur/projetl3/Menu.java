@@ -10,16 +10,30 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.net.URISyntaxException;
+import java.util.concurrent.TimeUnit;
+
 import com.example.utilisateur.projetl3.network.Client;
 
 public class Menu extends AppCompatActivity {
+    private Client client;
+    public Client getClient() {
+        if (client == null) client = new Client();
+            return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        boolean connected = false;
+        this.getClient().connect();
+        while (!client.is_connected()) {
 
+        }
+        Toast.makeText(getApplicationContext(), "Connecté", Toast.LENGTH_SHORT).show();
         final EditText pseudo = (EditText) findViewById(R.id.etPseudo);
         final EditText password = (EditText) findViewById(R.id.etMDP);
         final Button loginButton = (Button) findViewById(R.id.buttonValid);
@@ -40,8 +54,5 @@ public class Menu extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        Toast.makeText(getApplicationContext(), "Non connecté", Toast.LENGTH_LONG).show();
-
     }
 }

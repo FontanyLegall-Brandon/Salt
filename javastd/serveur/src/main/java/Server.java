@@ -5,6 +5,8 @@ import com.corundumstudio.socketio.listener.ConnectListener;
 import com.corundumstudio.socketio.listener.DataListener;
 import com.corundumstudio.socketio.listener.DisconnectListener;
 
+import java.util.concurrent.TimeUnit;
+
 public class Server{
     private Configuration config;
     private ConnectListener connectListener;
@@ -45,6 +47,13 @@ public class Server{
     public void run() {
         server.start();
         running = true;
+
+
+        try {
+            TimeUnit.SECONDS.sleep(Integer.MAX_VALUE);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void stop() {
