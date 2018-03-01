@@ -32,7 +32,9 @@ public class Menu extends AppCompatActivity {
         this.getClient().connect();
         int connecting = 0;
 
-        while (!client.is_connected() && connecting < Integer.MAX_VALUE / 2) {//solution provisoire, envisager un écran de chargement
+        //solution provisoire, envisager un écran de chargement
+        //On pourra faire ça via un thread ou un autre moyen de se connecter en paralléle, sinon la vue est bloquée durant le while.
+        while (!client.is_connected() && connecting < Integer.MAX_VALUE / 2) {
             connecting++;
         }
 
