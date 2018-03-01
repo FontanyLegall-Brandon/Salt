@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../javastd/commun/commun.iml" filepath="$PROJECT_DIR$/../javastd/commun/commun.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../javastd/lpepd.iml" filepath="$PROJECT_DIR$/../javastd/lpepd.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../javastd/serveur/serveur.iml" filepath="$PROJECT_DIR$/../javastd/serveur/serveur.iml" />
+    </modules>
+  </component>
+</project>
