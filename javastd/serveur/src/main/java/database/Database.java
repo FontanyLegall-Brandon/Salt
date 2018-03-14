@@ -16,8 +16,9 @@ import serveur.Session;
 public interface Database {
   //TODO Identifier et coder les methodes d'une database
 
-  public Boolean addUser (String pseudo,String nom,String prenom, String email,String password,int age);
+  public Boolean addUser(String pseudo,String nom,String prenom, String email,String password,int age);
   public Session connection(String email, String password);
   public Boolean editPassword(int id,String old,String password,String passwordVerification);
+  public Boolean existUser(String pseudo);
   
 }

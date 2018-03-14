@@ -1,10 +1,11 @@
 package database.mysql;
-import serveur.Server;
 import serveur.Session;
 
 import java.sql.* ;
-import java.io.* ;
 
+/**
+ * La classe Database implemente l'interface database avec toutes les commandes mysql necessaires
+ */
 public class Database implements database.Database {
   
   //TODO Implementer cette classe qui permet de faire l'interface entre la  database et le serveur
@@ -148,5 +149,41 @@ public class Database implements database.Database {
         }
 
         return bool;
+    }
+
+
+    /**
+     * ExistUser permet de savoir si un utilisateur existe
+     *
+     * @param pseudo son pseudo
+     * @return un boolean permettant de savoir si oui ou non l'utilisateur existe
+     */
+    @Override
+    public Boolean existUser(String pseudo) {
+        Connection con = Connect.connection();
+        Boolean bool = false;
+        int nb = Integer.parseInt(null);
+
+
+    try{
+        Statement stmt = con.createStatement();
+
+        String sql = "SELECT COUNT(*) AS nb FROM membre WHERE pseudo="+pseudo;
+        ResultSet rs = stmt.executeQuery(sql);
+        //STEP 5: Extract data from result set
+        while(rs.next()){
+            //Retrieve by column name
+            nb  = rs.getInt("nb");
+
+        }
+        rs.close();
+        bool = (nb > 0); // Si il y a plus de 0 membres
+
+    }catch(SQLException se){
+        //Handle errors for JDBC
+        se.printStackTrace();
+    }
+    return bool;
+
     }
 }
