@@ -1,5 +1,8 @@
 package database;
 
+
+import serveur.Session;
+
 /**
  * la database sous forme d'interface va nous permettre d'interragir entre le serveur et la database.
  * Notamment avec les fonctions de :
@@ -13,6 +16,7 @@ package database;
 public interface Database {
   //TODO Identifier et coder les methodes d'une database
 
-  public void addUser (String nom);
+  public void addUser (String pseudo,String nom,String prenom, String email,String password,int age);
+  public Session connection(String email, String password);
   
 }
