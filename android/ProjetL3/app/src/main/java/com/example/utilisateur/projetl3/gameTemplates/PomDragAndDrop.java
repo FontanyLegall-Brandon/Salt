@@ -28,6 +28,7 @@ public class PomDragAndDrop extends AppCompatActivity {
 
     public void majCmpt(ViewGroup container){
         int count = container.getChildCount();
+        //Cherche un endroit pour afficher le nombre de poms' contenues.
         TextView cmpt = container.findViewWithTag("cmpt");
         if(cmpt !=null) {
             //On prend "count-1" car le TextView est considéré comme un enfant.

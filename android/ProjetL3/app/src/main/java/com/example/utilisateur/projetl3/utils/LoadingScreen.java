@@ -13,7 +13,7 @@ public class LoadingScreen {
 
     private ImageView loading;
 
-    LoadingScreen(ImageView loading) {
+    public LoadingScreen(ImageView loading) {
         this.loading = loading;
     }
 
