@@ -1,15 +1,15 @@
-import com.corundumstudio.socketio.AckRequest;
 import com.corundumstudio.socketio.Configuration;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.listener.ConnectListener;
-import com.corundumstudio.socketio.listener.DataListener;
 import com.corundumstudio.socketio.listener.DisconnectListener;
+import listeners.NewUserListener;
+import listeners.mappers.UserInfo;
 
 
 import java.util.concurrent.TimeUnit;
 
-public class Server implements DataListener {
+public class Server {
     private Configuration config;
     private ConnectListener connectListener;
     private DisconnectListener disconnectListener;
@@ -43,10 +43,7 @@ public class Server implements DataListener {
         };
         server.addConnectListener(connectListener);
         server.addDisconnectListener(disconnectListener);
-    }
-
-    public void onData(SocketIOClient arg0,  Object arg1, AckRequest arg2) {
-        System.out.println("Incoming");
+        server.addEventListener("newUser", UserInfo.class, new NewUserListener());
     }
 
     public void run() {
