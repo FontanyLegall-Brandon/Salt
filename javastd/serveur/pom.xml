@@ -72,7 +72,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>TestGit</mainClass>  <!-- à changer : classe avec point d'entrée pour votre projet -->
+                    <mainClass>StartServer</mainClass>  <!-- à changer : classe avec point d'entrée pour votre projet -->
                     <!-- argument de la commande java (en plus du nom de la classe et du classpath -->
 
                     <!-- arguments récupérés dans le main -->
@@ -80,8 +80,8 @@
 
                     -->
                     <arguments>
-                        <argument>127.0.0.1</argument>
-                        <argument>10101</argument>
+                        <argument>192.168.43.244</argument>
+                        <argument>1345</argument>
                     </arguments>
                     <!-- arguments de configuration système -->
                     <!--

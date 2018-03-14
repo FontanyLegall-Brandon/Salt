@@ -1,5 +1,8 @@
 package com.example.utilisateur.projetl3;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.app.AlertDialog.Builder;
 
 import java.net.URISyntaxException;
 import java.util.concurrent.TimeUnit;
@@ -18,7 +22,11 @@ import com.example.utilisateur.projetl3.utils.LoadingScreen;
 
 public class Menu extends AppCompatActivity {
     private Client client;
+    //Pass est true si on veut passer en mode hors connexion.
+    private boolean pass =false;
     private Thread attenteConnexion = null;
+    //Constructeur pour les boites de dialogue.
+    AlertDialog.Builder builder;
 
     public Client getClient() {
         if (client == null) client = new Client();
@@ -34,6 +42,22 @@ public class Menu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loading_screen);
         LoadingScreen loadingscreen = new LoadingScreen((ImageView) findViewById(R.id.animatedLoading));
+
+        //Bouton pour passer en hors connexion
+        TextView passer = (TextView) findViewById(R.id.buttonNoCo);
+
+        //Choix pour le "hors connexion" (sert principalement pour les tests et pouvoir se passer de serveur et de son attente pour les vérifications qui n'en ont pas besoin.)
+        builder = new AlertDialog.Builder(this, R.style.MyAlertDialogStyle);
+        builder.setTitle("/!\\ Attention /!\\ ");
+        builder.setMessage("En entrant en mode \"Hors connexion\" votre progression ne pourra pas être sauvegardée... \n Continuer quand même?");
+        builder.setPositiveButton("Oui",new OkOnClickListener());
+        builder.setNegativeButton("Annuler", new CancelOnClickListener());
+        passer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                builder.show();
+            }
+        });
         loadingscreen.setLoadScreen();
         this.getClient().connect();
 
@@ -43,7 +67,7 @@ public class Menu extends AppCompatActivity {
         attenteConnexion = new Thread(new Runnable() {
             public void run() {
                 int connecting = 0;
-                while (!client.is_connected() && connecting < Integer.MAX_VALUE / 2) {
+                while (!client.is_connected() && connecting < Integer.MAX_VALUE / 2 && !pass) {
                     connecting++;
                 }
                 runOnUiThread(new Runnable() {
@@ -81,5 +105,20 @@ public class Menu extends AppCompatActivity {
             }
         });
         attenteConnexion.start();
+    }
+
+    private final class CancelOnClickListener implements
+            DialogInterface.OnClickListener {
+        public void onClick(DialogInterface dialog, int which) {
+            Toast.makeText(getApplicationContext(), "Connexion en cours...",
+                    Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private final class OkOnClickListener implements
+            DialogInterface.OnClickListener {
+        public void onClick(DialogInterface dialog, int which) {
+            pass=true;
+        }
     }
 }

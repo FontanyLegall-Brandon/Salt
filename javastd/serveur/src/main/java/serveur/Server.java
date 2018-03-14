@@ -1,5 +1,4 @@
-package serveur;
-
+import com.corundumstudio.socketio.AckRequest;
 import com.corundumstudio.socketio.Configuration;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
@@ -7,9 +6,10 @@ import com.corundumstudio.socketio.listener.ConnectListener;
 import com.corundumstudio.socketio.listener.DataListener;
 import com.corundumstudio.socketio.listener.DisconnectListener;
 
+
 import java.util.concurrent.TimeUnit;
 
-public class Server{
+public class Server implements DataListener {
     private Configuration config;
     private ConnectListener connectListener;
     private DisconnectListener disconnectListener;
@@ -43,13 +43,15 @@ public class Server{
         };
         server.addConnectListener(connectListener);
         server.addDisconnectListener(disconnectListener);
-        //server.addEventListener();
+    }
+
+    public void onData(SocketIOClient arg0,  Object arg1, AckRequest arg2) {
+        System.out.println("Incoming");
     }
 
     public void run() {
         server.start();
         running = true;
-
 
         try {
             TimeUnit.SECONDS.sleep(Integer.MAX_VALUE);

@@ -41,12 +41,6 @@ public class Client {
                 }
             });
 
-            mSocket.on("couleur", new Emitter.Listener() {
-                @Override
-                public void call(Object... args) {
-                    Log.d("connexion", "message recu "+args[0]);
-                }
-            });
             Log.d("connexion", ""+mSocket);
             mSocket.connect();
 

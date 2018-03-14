@@ -21,9 +21,19 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/animatedLoading"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="34dp"
+        android:layout_marginBottom="12dp"
         android:text="Veuillez patienter"
         tools:layout_editor_absoluteX="138dp"
         tools:layout_editor_absoluteY="313dp" />
+
+    <TextView
+        android:id="@+id/buttonNoCo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:text='Mode "Hors connexion"' />
 </RelativeLayout>
