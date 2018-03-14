@@ -7,6 +7,7 @@
 
     <RelativeLayout
         android:id="@+id/zoneJeu"
+        android:tag="container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
@@ -35,6 +36,7 @@
 
     <RelativeLayout
         android:id="@+id/panier"
+        android:tag="container"
         android:background="@drawable/shape"
         android:layout_width="match_parent"
         android:layout_height="200dp"

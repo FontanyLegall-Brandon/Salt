@@ -70,18 +70,23 @@ public class PomDragAndDrop extends AppCompatActivity {
                     //Se déclenche quand l'objet est laché.
                     View pom = (View) event.getLocalState();
                     ViewGroup emplacementActu = (ViewGroup) pom.getParent();
-                    emplacementActu.removeView(pom);
-                    ViewGroup container = (ViewGroup) v;
-                    container.addView(pom);
+
+                    if(v.getTag().equals("container")) {
+                        ViewGroup container = (ViewGroup) v;
+                        emplacementActu.removeView(pom);
+                        container.addView(pom);
+                        //On met à jour l'ancien emplacement de l'objet droppé ainsi que le nouveau.
+                        majCmpt(emplacementActu);
+                        majCmpt(container);
+                    }
                     pom.setVisibility(View.VISIBLE);
-                    //On met à jour l'ancien emplacement de l'objet droppé ainsi que le nouveau.
-                    majCmpt(emplacementActu);
-                    majCmpt(container);
 
                     break;
-                /*case DragEvent.ACTION_DRAG_ENDED:
+                case DragEvent.ACTION_DRAG_ENDED:
                     //Se déclenche quand on termine le drop (n'est pas semblable au précédent, il se déclenche une fois toutes les opérations du drop terminées.)
-                    break;*/
+                    View pomf = (View) event.getLocalState();
+                    pomf.setVisibility(View.VISIBLE);
+                    break;
                 default:
                     break;
             }
