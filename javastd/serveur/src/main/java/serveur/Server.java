@@ -1,4 +1,7 @@
 import com.corundumstudio.socketio.Configuration;
+package serveur;
+
+import com.corundumstudio.socketio.AckRequest;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.listener.ConnectListener;

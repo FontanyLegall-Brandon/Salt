@@ -1,12 +1,152 @@
 package database.mysql;
+import serveur.Server;
+import serveur.Session;
+
+import java.sql.* ;
+import java.io.* ;
 
 public class Database implements database.Database {
   
   //TODO Implementer cette classe qui permet de faire l'interface entre la  database et le serveur
-  
-    public void addUser(String nom) {
 
+
+
+    /**
+     * AddUser permet d'ajouter un nouvel utilisateur avec notamment :
+     * <ul>
+     *     <li>son identifiant(id) <strong>unique</strong></li>
+     *     <li>son pseudo <strong>unique</strong></li>
+     *     <li>son nom</li>
+     *     <li>son prenom</li>
+     *     <li>son email <strong>unique</strong></li>
+     *     <li>son age</li>
+     * </ul>
+     *
+     * @param pseudo le pseudo du compte
+     * @param nom le nom de la personne ayant créé le compte
+     * @param prenom le prenom de la personne ayant créé le compte
+     * @param email l'email du compte
+     * @param age l'age de la personne ayant créé le compte
+     * @return un Boolean qui permet de savoir si l'ajout a bien été fait
+     */
+    @Override
+    public Boolean addUser(String pseudo, String nom, String prenom, String email, String password, int age) {
+        Connection con = Connect.connection();
+        Boolean bool = false;
+
+        try{
+            // create our java preparedstatement using a sql update query
+            PreparedStatement ps = con.prepareStatement("INSERT INTO membre(pseudo,prenom,nom,email,password,age) VALUES(?,?,?,?,?,?)");
+
+            // set the preparedstatement parameters
+            ps.setString(1,pseudo);
+            ps.setString(2,nom);
+            ps.setString(3,prenom);
+            ps.setString(4,email);
+            ps.setString(5,password);
+            ps.setInt(6,age);
+
+            // call executeUpdate to execute our sql update statement
+            int exec = ps.executeUpdate();
+            ps.close();
+
+            bool = (exec == 1);
+        }
+        catch (SQLException se){
+            System.exit(1);
+        }
+        return bool;
     }
 
-  
+    /**
+     * connection permet à un utilisateur de se connecter
+     *
+     * @param email son email
+     * @param password son mot de passe en sha1
+     * @return un objet du type Session
+     */
+    @Override
+    public Session connection(String email, String password) {
+        Connection con = Connect.connection();
+
+        int id= Integer.parseInt(null);
+        String pseudo = null;
+        String prenom = null;
+        String nom = null;
+        int age = Integer.parseInt(null);
+
+        try {
+            // Envoi d’un requête générique
+            String sql =  "select * from membre WHERE email=" + email;
+            Statement smt = con.createStatement() ;
+            ResultSet rs = smt.executeQuery(sql) ;
+
+            while (rs.next()) {
+                id = rs.getInt("id");
+                pseudo = rs.getString("pseudo");
+                prenom = rs.getString("prenom");
+                nom = rs.getString("nom");
+                age = rs.getInt("age");
+            }
+        }  catch (Exception e) {
+            System.exit(1);
+        }
+        return new Session(id,pseudo,prenom,nom,email,age);
+    }
+
+
+    /**
+     * editPassword permet à un utilisateur de changer son password
+     *
+     * @param id l'id de l'utilisateur
+     * @param old son ancien mot de passe
+     * @param password le nouveau mot de passe
+     * @param passwordVerification la verification du nouveau mot de passe
+     * @return un boolean qui permet de dire si le mot de passe a bien été modifié
+     */
+    @Override
+    public Boolean editPassword(int id, String old, String password,String passwordVerification) {
+        Connection con = Connect.connection();
+        String oldpassword = null;
+        Boolean bool = false;
+
+        try {
+            // Envoi d’un requête générique
+            String sql =  "select * from membre WHERE id=" + id;
+            Statement smt = con.createStatement() ;
+            ResultSet rs = smt.executeQuery(sql) ;
+
+            while (rs.next()) {
+                oldpassword = rs.getString("password");
+            }
+        }  catch (Exception e) {
+            System.exit(1);
+        }
+
+        if(oldpassword == old && password == passwordVerification){
+
+            try{
+                // create our java preparedstatement using a sql update query
+                PreparedStatement ps = con.prepareStatement("UPDATE membre SET password = ? WHERE id = ?");
+
+                // set the preparedstatement parameters
+                ps.setString(1,passwordVerification);
+                ps.setInt(2,id);
+
+                // call executeUpdate to execute our sql update statement
+                int exec = ps.executeUpdate();
+                ps.close();
+
+                bool = (exec == 1);
+            }
+            catch (SQLException se){
+                System.exit(1);
+            }
+
+        }else {
+            return false;
+        }
+
+        return bool;
+    }
 }
