@@ -5,6 +5,7 @@ import com.corundumstudio.socketio.AckRequest;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.listener.ConnectListener;
+import com.corundumstudio.socketio.listener.DataListener;
 import com.corundumstudio.socketio.listener.DisconnectListener;
 import listeners.NewUserListener;
 import listeners.mappers.UserInfo;
@@ -18,13 +19,21 @@ import java.util.concurrent.TimeUnit;
 public class Server {
 
     /*
-    Description des attributs
+    Déclaration des attributs
      */
+
+    private final SocketIOServer server;
+
     private Configuration config;
+
+    private boolean running;
+
+    // Les listenenrs
     private ConnectListener connectListener;
     private DisconnectListener disconnectListener;
-    private boolean running;
-    private final SocketIOServer server;
+
+    private NewUserListener newUserListener;
+    private DataListener<UserInfo> localNewUserListener;
 
     /**
      * Constructeur du Server
@@ -77,6 +86,19 @@ public class Server {
 
         };
 
+        // Ici le listener est implémenté dans une classe spécifique
+        newUserListener = new NewUserListener(this);
+
+        // Peut être une solution ?? À voir
+        localNewUserListener = new DataListener<UserInfo>() {
+            // Grâce au type entre < > on peut faire autant de data listener qu'on veut comme ça…
+
+            public void onData(SocketIOClient client, UserInfo info, AckRequest requete) {
+                //TODO
+            }
+
+        };
+
         /*
             Ajout des listeners au server
         */
@@ -84,8 +106,8 @@ public class Server {
         this.server.addDisconnectListener(disconnectListener);
 
 
-        // Ajout d'un NewUserListener défini ailleur
-        this.server.addEventListener("newUser", UserInfo.class, new NewUserListener());
+        // Ajout du NewUserListener défini ailleur
+        this.server.addEventListener("newUser", UserInfo.class, newUserListener);
     }
 
     /**
