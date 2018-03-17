@@ -7,6 +7,7 @@ import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.listener.ConnectListener;
 import com.corundumstudio.socketio.listener.DataListener;
 import com.corundumstudio.socketio.listener.DisconnectListener;
+import database.Database;
 import listeners.NewUserListener;
 import listeners.mappers.UserInfo;
 import java.util.concurrent.TimeUnit;
@@ -27,6 +28,8 @@ public class Server {
     private Configuration config;
 
     private boolean running;
+
+    private Database database;
 
     // Les listenenrs
     private ConnectListener connectListener;
@@ -110,6 +113,10 @@ public class Server {
         this.server.addEventListener("newUser", UserInfo.class, newUserListener);
     }
 
+    public Database getDatabase() {
+        return database;
+    }
+
     /**
      * Lance le serveur
      */
@@ -144,4 +151,6 @@ public class Server {
     public boolean isRunning() {
         return running;
     }
+
+
 }
