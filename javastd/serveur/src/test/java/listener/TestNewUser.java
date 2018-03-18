@@ -53,8 +53,8 @@ public class TestNewUser {
         when(serveur.getDatabase()).thenReturn(bdd);    // Permet d'injecter la mock db dans le mock server…
 
         // Messages JSon touts faits pour tester le comportement de onData dessus
-        infos1 = new UserInfo("toto", "toto@titi.fr");
-        infos2 = new UserInfo("tata", "tata@titi.fr");
+        infos1 = new UserInfo("toto", "toto@titi.fr", "Toto", "Charles-Henri", "mdpcomplique", 47);
+        infos2 = new UserInfo("tata", "tata@titi.fr", "Tata", "Marie-Henriette", "mdpcomplique2", 74);
 
         listenerTest = new NewUserListener(serveur);
 
