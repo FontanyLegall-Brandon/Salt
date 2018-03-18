@@ -27,6 +27,7 @@ public class TestServer {
 
     @Mock private NewUserListener newUserListener;  // Création d'un faux NewUserListener
 
+    // ATTENTION  L'injection ne marche pas comme ça… il faudrait un setter éventuellement
     @InjectMocks Server server = new Server("localhost", 10101);   // qu'on injecte dans un faux serveur
 
     @Mock UserInfo info;
@@ -37,10 +38,11 @@ public class TestServer {
     public void setUp() {
         try {
             mSocket = IO.socket("localhost:10101");
-        } catch (URISyntaxException e) {
+        }
+        catch (URISyntaxException e) {
             e.printStackTrace();
         }
-        info = new UserInfo();
+        info = new UserInfo("toto", "titi"); // Attention, modification de la signature du contructeur UserInfo…
     }
 
     /*@Test
@@ -57,6 +59,7 @@ public class TestServer {
         mSocket.connect();
         mSocket.emit("newUser", info);
 
+        // Ne passe pas puisque l'injection n'a pas marché, le newUserListener n'est pas implanté sur le serveur
         //verify(newUserListener, timeout(1000)).onData(any(), eq(info), any());
 
     }
