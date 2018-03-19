@@ -7,6 +7,7 @@ import java.sql.* ;
 
 public class Connect {
 
+    /*
     // JDBC driver name and database URL
     private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     private static final String DB_URL = "jdbc:mysql://mysql.hostinger.fr/u606391292_lpepd";
@@ -14,6 +15,15 @@ public class Connect {
     //  Database credentials
     private static final String USER = "u606391292_root0";
     private static final String PASS = "tauub>=WkhAUG3S~h";
+    */
+
+    // JDBC driver name and database URL
+    private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+    private static final String DB_URL = "jdbc:mysql://mysql-lpepd.alwaysdata.net";
+
+    //  Database credentials
+    private static final String USER = "lpepd";
+    private static final String PASS = "qt8i244AZUsA";
 
 
     public static Connection connection(){
