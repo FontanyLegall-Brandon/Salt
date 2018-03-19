@@ -1,6 +1,0 @@
-https://auth-db153.hostinger.fr/
-
-nom : u606391292_lpepd
-utilisateur : u606391292_root0
-hôte : mysql.hostinger.fr
-mdp : ptauub>=WkhAUG3S~h
