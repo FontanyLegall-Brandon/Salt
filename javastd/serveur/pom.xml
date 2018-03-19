@@ -15,15 +15,18 @@
     </modules>
 
     <build>
+
         <sourceDirectory>src/main/java</sourceDirectory>  <!-- éventuellement à changer : localisation des fichiers sources -->
         <testSourceDirectory>src/test/java</testSourceDirectory> <!-- éventuellement à changer changer : localisation des fichiers sources des tests -->
         <plugins>
 
 
             <plugin>
+
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.0.0</version>
+
                 <configuration>
                     <show>package</show>
                     <nohelp>true</nohelp>
@@ -34,26 +37,38 @@
 
                 <executions>
                     <execution>
+
                         <id>javadoc</id>
+
                         <goals>
                             <goal>javadoc</goal>
                         </goals>
+
                         <phase>site</phase>
+
                         <configuration>
                             <outputDirectory>${basedir}/src/main/</outputDirectory>
                             <reportOutputDirectory>${basedir}/src/main/</reportOutputDirectory>
                         </configuration>
+
                     </execution>
+
                     <execution>
+
                         <id>test-javadoc</id>
+
                         <goals>
                             <goal>test-javadoc</goal>
                         </goals>
+
                         <phase>site</phase>
+
                         <configuration>
                             <reportOutputDirectory>${basedir}/src/test/</reportOutputDirectory>
                         </configuration>
+
                     </execution>
+
                 </executions>
 
             </plugin>
@@ -61,9 +76,11 @@
 
 
             <plugin>
+
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.6.0</version> <!-- à ne pas changer : c'est la version du plugin (et pas de java) -->
+
                 <executions>
                     <execution>
                         <goals>
@@ -71,30 +88,19 @@
                         </goals>
                     </execution>
                 </executions>
+
                 <configuration>
-                    <mainClass>StartServer</mainClass>  <!-- à changer : classe avec point d'entrée pour votre projet -->
-                    <!-- argument de la commande java (en plus du nom de la classe et du classpath -->
 
-                    <!-- arguments récupérés dans le main -->
-                    <!--
+                    <mainClass>StartServer</mainClass>
 
-                    -->
                     <arguments>
-                        <argument>192.168.43.244</argument>
-                        <argument>1345</argument>
+                        <argument>localhost</argument>
+                        <argument>10000</argument>
                     </arguments>
-                    <!-- arguments de configuration système -->
-                    <!--
-                        <systemProperties>
-                                <systemProperty>
-                                    <key>myproperty</key>
-                                    <value>myvalue</value>
-                                </systemProperty>
-                        </systemProperties>
-                     -->
-                </configuration>
-            </plugin>
 
+                </configuration>
+
+            </plugin>
         </plugins>
     </build>
 
@@ -105,20 +111,29 @@
             <artifactId>netty-socketio</artifactId>
             <version>1.7.13</version>
         </dependency>
+
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-transport</artifactId>
             <version>4.1.15.Final</version>
         </dependency>
+
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <version>1.7.25</version>
         </dependency>
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.39</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.socket</groupId>
+            <artifactId>socket.io-client</artifactId>
+            <version>0.8.3</version>
         </dependency>
 
     </dependencies>

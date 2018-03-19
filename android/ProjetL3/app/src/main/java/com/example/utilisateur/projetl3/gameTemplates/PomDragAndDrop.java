@@ -4,12 +4,14 @@ import android.content.ClipData;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.DragEvent;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.utilisateur.projetl3.R;
+import com.example.utilisateur.projetl3.gameTemplates.MoteurJeux.DragAndDrop;
 
 /**
  * Created by Utilisateur on 01/03/2018.
@@ -17,13 +19,25 @@ import com.example.utilisateur.projetl3.R;
 
 public class PomDragAndDrop extends AppCompatActivity {
 
+    private DragAndDrop moteur;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pom_drag_and_drop);
-        findViewById(R.id.pomme).setOnTouchListener(new MyTouchListener());
         findViewById(R.id.panier).setOnDragListener(new MyDragListener());
-        findViewById(R.id.zoneJeu).setOnDragListener(new MyDragListener());
+        ViewGroup zoneJeu =findViewById(R.id.zoneJeu);
+        zoneJeu.setOnDragListener(new MyDragListener());
+        //Par la suite on pourra faire en sorte que ce soit DragAndDrop qui prenne un nombre au hasard en fonction du niveau du joueur.
+        moteur = new DragAndDrop(3);
+        //On ajoute dynamiquement le nombre de poms' présentes afin de pouvoir remplir le but.
+        for(int i=0; i<moteur.getStock(); i++){
+            View pom = LayoutInflater.from(this).inflate(R.layout.component_pom, null);
+            pom.setOnTouchListener(new MyTouchListener());
+            zoneJeu.addView(pom);
+        }
+        TextView intitule =findViewById(R.id.intitule);
+        intitule.setText("On veut "+moteur.getGoal()+" pom' dans le panier.");
     }
 
     public void majCmpt(ViewGroup container){
