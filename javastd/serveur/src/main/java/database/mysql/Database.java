@@ -54,6 +54,7 @@ public class Database implements database.Database {
             bool = (exec == 1);
         }
         catch (SQLException se){
+            se.printStackTrace();
             System.exit(1);
         }
         return bool;
@@ -162,28 +163,60 @@ public class Database implements database.Database {
     public Boolean existUser(String pseudo) {
         Connection con = Connect.connection();
         Boolean bool = false;
-        int nb = Integer.parseInt(null);
+        int nb = 0;
 
 
     try{
         Statement stmt = con.createStatement();
 
-        String sql = "SELECT COUNT(*) AS nb FROM membre WHERE pseudo="+pseudo;
+        String sql = "SELECT COUNT(*) AS nb FROM membre WHERE pseudo='"+pseudo+"'";
         ResultSet rs = stmt.executeQuery(sql);
         //STEP 5: Extract data from result set
         while(rs.next()){
             //Retrieve by column name
             nb  = rs.getInt("nb");
-
         }
         rs.close();
-        bool = (nb > 0); // Si il y a plus de 0 membres
+
+        bool = true; // Si il y a plus de 0 membres
 
     }catch(SQLException se){
         //Handle errors for JDBC
-        se.printStackTrace();
+        bool = false;
     }
     return bool;
 
     }
+
+    /**
+     * deleteUser permet de supprimer des utilisateurs
+     * @param pseudo le pseudo de l'utilisateur
+     * @return un boolean permettant de savoir si oui ou non l'utilisateur a bien été supprimé
+     */
+    @Override
+    public Boolean deleteUser(String pseudo) {
+        Connection con = Connect.connection();
+        Boolean bool = false;
+
+        try{
+            // create our java preparedstatement using a sql update query
+            PreparedStatement ps = con.prepareStatement("DELETE FROM membre WHERE pseudo = ?");
+
+            // set the preparedstatement parameters
+            ps.setString(1,pseudo);
+
+            // call executeUpdate to execute our sql update statement
+            int exec = ps.executeUpdate();
+            ps.close();
+
+            bool = (exec == 1);
+        }
+        catch (SQLException se){
+            se.printStackTrace();
+            System.exit(1);
+        }
+        return bool;
+
+    }
+
 }

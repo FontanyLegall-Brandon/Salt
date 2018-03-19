@@ -20,5 +20,6 @@ public interface Database {
   public Session connection(String email, String password);
   public Boolean editPassword(int id,String old,String password,String passwordVerification);
   public Boolean existUser(String pseudo);
+  public Boolean deleteUser(String pseudo);
   
 }

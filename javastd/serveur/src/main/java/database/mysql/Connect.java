@@ -14,7 +14,7 @@ public class Connect {
 
     // JDBC driver name and database URL
     private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    private static final String DB_URL = "jdbc:mysql://mysql-lpepd.alwaysdata.net";
+    private static final String DB_URL = "jdbc:mysql://mysql-lpepd.alwaysdata.net/lpepd_database";
 
     //  Database credentials
     private static final String USER = "lpepd";
