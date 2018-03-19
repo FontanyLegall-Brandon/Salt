@@ -98,7 +98,8 @@ public class Database implements database.Database {
 
 
     /**
-     * editPassword permet à un utilisateur de changer son password
+     * editPassword permet à un utilisateur de changer son password.
+     * Rappel : C'est le client qui doit l'envoyé en sha1
      *
      * @param id l'id de l'utilisateur
      * @param old son ancien mot de passe
@@ -121,19 +122,21 @@ public class Database implements database.Database {
             while (rs.next()) {
                 oldpassword = rs.getString("password");
             }
+
+            System.out.println(oldpassword);
         }  catch (Exception e) {
             System.exit(1);
         }
 
-        if(oldpassword == old && password == passwordVerification){
+        if(oldpassword.compareTo(old)==0 && password.compareTo(passwordVerification)==0){
 
             try{
                 // create our java preparedstatement using a sql update query
-                PreparedStatement ps = con.prepareStatement("UPDATE membre SET password = ? WHERE id = ?");
+                PreparedStatement ps = con.prepareStatement("UPDATE membre SET password ='"+passwordVerification+"' WHERE id ="+id);
 
                 // set the preparedstatement parameters
-                ps.setString(1,passwordVerification);
-                ps.setInt(2,id);
+                //ps.setString(1,passwordVerification);
+                //ps.setInt(2,id);
 
                 // call executeUpdate to execute our sql update statement
                 int exec = ps.executeUpdate();
@@ -218,5 +221,6 @@ public class Database implements database.Database {
         return bool;
 
     }
+
 
 }
