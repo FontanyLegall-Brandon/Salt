@@ -219,18 +219,4 @@ public class Database implements database.Database {
 
     }
 
-    public static void main(String[] args) {
-        Database database = new Database();
-
-        //database.addUser("test","test","test","test@test.fr","test",11);
-
-        Session session;
-        session = database.connection("test@test.fr","test");
-
-
-        System.out.println(session.getPseudo());
-
-
-    }
-
 }
