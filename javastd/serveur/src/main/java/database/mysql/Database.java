@@ -71,15 +71,15 @@ public class Database implements database.Database {
     public Session connection(String email, String password) {
         Connection con = Connect.connection();
 
-        int id= Integer.parseInt(null);
+        int id= 0;
         String pseudo = null;
         String prenom = null;
         String nom = null;
-        int age = Integer.parseInt(null);
+        int age = 0;
 
         try {
             // Envoi d’un requête générique
-            String sql =  "select * from membre WHERE email=" + email;
+            String sql =  "select * from membre WHERE email='"+email+"'";
             Statement smt = con.createStatement() ;
             ResultSet rs = smt.executeQuery(sql) ;
 
@@ -178,7 +178,7 @@ public class Database implements database.Database {
         }
         rs.close();
 
-        bool = true; // Si il y a plus de 0 membres
+        bool = (nb > 0); // Si il y a plus de 0 membres
 
     }catch(SQLException se){
         //Handle errors for JDBC
@@ -216,6 +216,20 @@ public class Database implements database.Database {
             System.exit(1);
         }
         return bool;
+
+    }
+
+    public static void main(String[] args) {
+        Database database = new Database();
+
+        //database.addUser("test","test","test","test@test.fr","test",11);
+
+        Session session;
+        session = database.connection("test@test.fr","test");
+
+
+        System.out.println(session.getPseudo());
+
 
     }
 
