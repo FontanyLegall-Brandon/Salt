@@ -2,6 +2,8 @@ package database;
 
 
 import database.mysql.Database;
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -39,6 +41,16 @@ public class TestUnitDatabase {
         System.out.println(bool2);
 
         assertEquals(bool1,bool2);
+    }
+
+
+    @AfterClass public static void end(){
+        database.mysql.Database database = new Database();
+        String pseudo = "test";
+
+        if(database.existUser(pseudo)){
+            database.deleteUser(pseudo);
+        }
     }
 
 
