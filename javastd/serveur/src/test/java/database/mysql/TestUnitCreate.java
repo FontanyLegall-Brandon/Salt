@@ -1,4 +1,4 @@
-package database;
+package database.mysql;
 
 
 import database.mysql.Database;
@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class TestUnitDatabase {
+public class TestUnitCreate {
 
     @Before public void begin(){
         database.mysql.Database database = new Database();
