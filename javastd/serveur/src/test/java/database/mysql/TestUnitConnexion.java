@@ -3,6 +3,8 @@ package database.mysql;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import database.Database;
 import serveur.Session;
 
 import static org.junit.Assert.assertEquals;
@@ -18,7 +20,7 @@ public class TestUnitConnexion {
 
 
     @BeforeClass public static void begin(){
-        database.mysql.Database database = new Database();
+        Database database = new MySQLDatabase();
 
         if(database.existUser(pseudo)==false){
             database.addUser(pseudo,nom,prenom,email,password,age);
@@ -26,7 +28,7 @@ public class TestUnitConnexion {
     }
 
     @Test public void testConnection(){
-        Database database = new Database();
+        Database database = new MySQLDatabase();
 
         Session session;
 
@@ -42,7 +44,7 @@ public class TestUnitConnexion {
 
 
     @AfterClass public static void end(){
-        database.mysql.Database database = new Database();
+        Database database = new MySQLDatabase();
 
         if(database.existUser(pseudo)){
             database.deleteUser(pseudo);
