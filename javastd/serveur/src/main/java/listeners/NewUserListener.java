@@ -39,23 +39,24 @@ public class NewUserListener implements DataListener<UserInfo> {
         Database database = server.getDatabase();
 
         if (database.existUser(user.getPseudo())) {//si le joueur existe déjà
-            socket.sendEvent("userAlreadyExists", new Reply("userAlreadyExists"));
+            socket.sendEvent("signUpReply", new Reply("userAlreadyExists"));
         }
+        /*
+        Peut être faudrait-il vérifier l'unicité de l'adresse e-mail également, ainsi que d'autres
+        attributs…
+         */
+        
         else { // Si le joueur n'existe pas encore
-            /*
-            Peut être faudrait-il vérifier l'unicité de l'adresse e-mail également, ainsi que d'autres
-            attributs…
-             */
 
             // On inscrit le joueur dans la BDD
             if(database.addUser(user.getPseudo(), user.getNom(), user.getPrenom(), user.getEmail(), user.getPassword(), user.getAge())) {
                 // Dans le cas ou l'inscrition a marché
                 System.out.println("Sign up successful");
-                socket.sendEvent("signedUp", new Reply("signedUp"));
+                socket.sendEvent("signUpReply", new Reply("signedUp"));
             }
             else {  // Cas d'une iscription qui n'a pas marché, mais pas à cause d'un nom d'utilisateur utilisé
                 System.out.println("Sign up failed");
-                socket.sendEvent("signUpFailure", new Reply("signUpFailure"));
+                socket.sendEvent("signUpReply", new Reply("signUpFailure"));
             }
         }
 
