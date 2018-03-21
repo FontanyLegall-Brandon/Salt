@@ -28,7 +28,7 @@ public class TestServer {
     @Mock private NewUserListener newUserListener;  // Création d'un faux NewUserListener
 
     // ATTENTION  L'injection ne marche pas comme ça… il faudrait un setter éventuellement
-    @InjectMocks Server server = new Server("localhost", 10101);   // qu'on injecte dans un faux serveur
+    //@InjectMocks Server server = new Server("localhost", 10101);   // qu'on injecte dans un faux serveur
 
     @Mock UserInfo info;
 
