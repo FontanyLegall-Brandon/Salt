@@ -1,13 +1,21 @@
 package listeners.mappers;
 
 public class Reply {
-    private final String message;
+    private String message;
 
     public Reply(String message) {
         this.message = message;
     }
 
+    public Reply() {
+
+    }
+
     public String getMessage() {
         return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

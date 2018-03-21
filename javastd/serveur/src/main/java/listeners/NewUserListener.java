@@ -4,6 +4,7 @@ import com.corundumstudio.socketio.AckRequest;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.listener.DataListener;
 import database.Database;
+import listeners.mappers.Reply;
 import listeners.mappers.UserInfo;
 import serveur.Server;
 
@@ -37,8 +38,8 @@ public class NewUserListener implements DataListener<UserInfo> {
 
         Database database = server.getDatabase();
 
-        if (database.existUser(user.getPseudo())) {
-            // Préparer le message de retour indiquant l'impossibilité d'ajouter le joueur
+        if (database.existUser(user.getPseudo())) {//si le joueur existe déjà
+            socket.sendEvent("userAlreadyExists", new Reply("userAlreadyExists"));
         }
         else { // Si le joueur n'existe pas encore
             /*
@@ -49,12 +50,12 @@ public class NewUserListener implements DataListener<UserInfo> {
             // On inscrit le joueur dans la BDD
             if(database.addUser(user.getPseudo(), user.getNom(), user.getPrenom(), user.getEmail(), user.getPassword(), user.getAge())) {
                 // Dans le cas ou l'inscrition a marché
-                System.out.println("Sign in successful");
-                //TODO Emettre message succès
+                System.out.println("Sign up successful");
+                socket.sendEvent("signedUp", new Reply("signedUp"));
             }
             else {  // Cas d'une iscription qui n'a pas marché, mais pas à cause d'un nom d'utilisateur utilisé
-                System.out.println("Sign in failed");
-                //TODO Emettre message echec
+                System.out.println("Sign up failed");
+                socket.sendEvent("signUpFailure", new Reply("signUpFailure"));
             }
         }
 
