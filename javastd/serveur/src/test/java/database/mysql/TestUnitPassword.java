@@ -25,7 +25,7 @@ public class TestUnitPassword {
 
     @BeforeClass
     public static void begin(){
-        database.mysql.Database database = new Database();
+        database.mysql.MySQLDatabase database = new MySQLDatabase();
 
         if(database.existUser(pseudo)==false){
             database.addUser(pseudo,nom,prenom,email,password,age);
@@ -33,7 +33,7 @@ public class TestUnitPassword {
     }
 
     @Test public void testConnection(){
-        Database database = new Database();
+        MySQLDatabase database = new MySQLDatabase();
 
         Session session;
 
@@ -50,7 +50,7 @@ public class TestUnitPassword {
     }
 
     @Test public void editPassword(){
-        Database database = new Database();
+        MySQLDatabase database = new MySQLDatabase();
 
         boolean bool;
 
@@ -60,7 +60,7 @@ public class TestUnitPassword {
     }
 
     @Test public void nextConnection(){
-        Database database = new Database();
+        MySQLDatabase database = new MySQLDatabase();
 
         Session session;
 
@@ -76,7 +76,7 @@ public class TestUnitPassword {
 
 
     @AfterClass public static void end(){
-        database.mysql.Database database = new Database();
+        database.mysql.MySQLDatabase database = new MySQLDatabase();
 
         if(database.existUser(pseudo)){
             database.deleteUser(pseudo);

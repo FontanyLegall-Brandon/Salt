@@ -23,44 +23,34 @@ public class Server {
     Déclaration des attributs
      */
 
-    private final SocketIOServer server;
-
-    private Configuration config;
+    private final SocketIOServer socketServer;
+    private Database database;
 
     private boolean running;
 
-    private Database database;
-
-    // Les listenenrs
+    // Les listeners
     private ConnectListener connectListener;
     private DisconnectListener disconnectListener;
-
-    private NewUserListener newUserListener;
     private DataListener<UserInfo> localNewUserListener;
 
     /**
-     * Constructeur du Server
-     *
-     * @param hostname
-     * L'addresse à laquelle le serveur sera joignable
-     *
-     * @param port
-     * Le port sur lequel le serveur sera joignable
+     * Retourne le serveur du jeu
+     * @param socketServer
+     * Le web-socket serveur sur lequel sont ajoutés les listeners et qui est le point d'écoute du serveur
+     * @param database
+     * La base de donnée avec laquelle le serveur interragira pour stocker les informations utilisateur
      */
-    public Server(String hostname, int port) {
+    public Server(SocketIOServer socketServer, Database database) {
 
         this.running = false;
-        config = new Configuration();   // Instanciation de la configuration
-        config.setHostname(hostname);   // Puis réglage de ses attributs
-        config.setPort(port);
+        this.socketServer = socketServer;
+        this.database = database;
+        
 
-        /* Notre Server est en réalité un objet qui contient un attribut qui est un serveur
-        (Un SocketIOServer) qu'on instancie ici, à l'aide la configuration réglée plus tôt
-         */
-        this.server = new SocketIOServer(config);
-
-        /* On défini le connectListner, en implémentant de
-            manière anonyme l'interface ConnectListener
+        /* 
+         * ******************************************************************
+         * *	Définition des listeners de connexion et de déconnexion		*
+         * ******************************************************************
          */
         connectListener = new ConnectListener() {
             /* La seule chose qu'on défini est la méthode
@@ -89,18 +79,15 @@ public class Server {
 
         };
 
-        // Ici le listener est implémenté dans une classe spécifique
-        newUserListener = new NewUserListener(this);
 
         /*
-            Ajout des listeners au server
+         * **************************************************
+         * *	Ajout des listeners au socket serveur		*
+         * **************************************************
         */
-        this.server.addConnectListener(connectListener);
-        this.server.addDisconnectListener(disconnectListener);
-
-
-        // Ajout du NewUserListener défini ailleurs
-        this.server.addEventListener("newUser", UserInfo.class, newUserListener);
+        this.socketServer.addConnectListener(connectListener);
+        this.socketServer.addDisconnectListener(disconnectListener);
+        this.socketServer.addEventListener("newUser", UserInfo.class, new NewUserListener(this));
     }
 
     public Database getDatabase() {
@@ -112,7 +99,7 @@ public class Server {
      */
     public void run() {
 
-        this.server.start();    // Lancement du serveur
+        this.socketServer.start();    // Le socket ecoute
 
         this.running = true;    // Mise à jour de l'état
 
@@ -124,13 +111,14 @@ public class Server {
             e.printStackTrace();
         }
     }
-
+    
+    
     /**
      * Arrête le serveur
      */
     public void stop() {
 
-        server.stop();
+        socketServer.stop();	// Le socket arrête d'écouter
         running = false;
 
     }

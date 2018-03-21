@@ -1,3 +1,8 @@
+import com.corundumstudio.socketio.Configuration;
+import com.corundumstudio.socketio.SocketIOServer;
+import database.Database;
+import database.mysql.MySQLDatabase;
+
 import serveur.Server;
 
 /**
@@ -9,7 +14,13 @@ public class StartServer {
         Fonction main
      */
     public static void main(String[] args) {
-
+    	
+    	/*
+    	 * **************************************************************************************
+    	 * *	Parssing des arguments, on vérifie qu'on en a le bon nombre et du bon type		*
+    	 * **************************************************************************************
+    	 */
+    	
         if (args.length != 2) { // Si on a pas le bon nombre d'argument
 
             // On affiche une erreur
@@ -36,9 +47,29 @@ public class StartServer {
                 System.err.println("Mauvais numéro de port, utilisation du port 10101");
                 port = 10101;
             }
+            
+            String hostname = args[0]; // Le nom d'hote est le premier argument
+            /*
+             * **************************************************
+             * *	Fin du parsing, on a les bonnes valeurs		*
+             * **************************************************
+             */
 
-            // Instanciation et lancement du serveur
-            Server serveur = new Server(args[0], port);
+            // Création de la configuration
+            Configuration config = new Configuration();   
+            config.setHostname(hostname);
+            config.setPort(port);
+
+            // Instanciation du webSocket server
+            SocketIOServer socketServer = new SocketIOServer(config);
+            
+            // Instanciation d'une base de données, ici MySQL
+            Database bd = new MySQLDatabase();
+            
+            // Finalement, instanciation du serveur
+            Server serveur = new Server(socketServer, bd);
+            
+            // Et lancement
             serveur.run();
         }
     }

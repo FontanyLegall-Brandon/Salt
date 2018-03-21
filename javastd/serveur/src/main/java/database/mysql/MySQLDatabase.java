@@ -6,7 +6,7 @@ import java.sql.* ;
 /**
  * La classe Database implemente l'interface database avec toutes les commandes mysql necessaires
  */
-public class Database implements database.Database {
+public class MySQLDatabase implements database.Database {
   
   //TODO Implementer cette classe qui permet de faire l'interface entre la  database et le serveur
 

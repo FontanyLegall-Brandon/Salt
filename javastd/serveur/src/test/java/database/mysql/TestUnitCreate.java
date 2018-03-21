@@ -15,7 +15,7 @@ public class TestUnitCreate {
     private static final int age = 11;
 
     @BeforeClass public static void begin(){
-        database.mysql.Database database = new Database();
+        database.mysql.MySQLDatabase database = new MySQLDatabase();
 
         if(database.existUser(pseudo)){
             database.deleteUser(pseudo);
@@ -23,7 +23,7 @@ public class TestUnitCreate {
     }
 
     @Test public void creationUtilisateur(){
-        database.mysql.Database database = new Database();
+        database.mysql.MySQLDatabase database = new MySQLDatabase();
 
 
         boolean bool1;
@@ -41,7 +41,7 @@ public class TestUnitCreate {
 
 
     @AfterClass public static void end(){
-        database.mysql.Database database = new Database();
+        database.mysql.MySQLDatabase database = new MySQLDatabase();
 
         if(database.existUser(pseudo)){
             database.deleteUser(pseudo);
