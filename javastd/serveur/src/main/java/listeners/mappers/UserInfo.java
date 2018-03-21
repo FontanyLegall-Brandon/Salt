@@ -22,9 +22,8 @@ public class UserInfo {
     }
 
 
-    /* Setter probablement inutiles,
-        le mapping se fait automatiquement et on
-        a pas à modifier le message par la suite
+    /*  le mapping se fait automatiquement et on
+        n'a pas à modifier le message par la suite
      */
 
     public String getPseudo() {

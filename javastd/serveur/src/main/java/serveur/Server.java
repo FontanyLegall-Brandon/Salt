@@ -92,16 +92,6 @@ public class Server {
         // Ici le listener est implémenté dans une classe spécifique
         newUserListener = new NewUserListener(this);
 
-        // Peut être une solution ?? À voir
-        localNewUserListener = new DataListener<UserInfo>() {
-            // Grâce au type entre < > on peut faire autant de data listener qu'on veut comme ça…
-
-            public void onData(SocketIOClient client, UserInfo info, AckRequest requete) {
-                //TODO
-            }
-
-        };
-
         /*
             Ajout des listeners au server
         */
@@ -109,7 +99,7 @@ public class Server {
         this.server.addDisconnectListener(disconnectListener);
 
 
-        // Ajout du NewUserListener défini ailleur
+        // Ajout du NewUserListener défini ailleurs
         this.server.addEventListener("newUser", UserInfo.class, newUserListener);
     }
 
