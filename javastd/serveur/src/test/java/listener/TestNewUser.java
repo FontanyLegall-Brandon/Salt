@@ -5,22 +5,18 @@ import database.Database;
 import listeners.NewUserListener;
 import listeners.mappers.Reply;
 import listeners.mappers.UserInfo;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import serveur.Server;
-import serveur.Session;
 
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.mockito.AdditionalMatchers.or;
 
 @RunWith(MockitoJUnitRunner.class)
 public class TestNewUser {
@@ -57,7 +53,7 @@ public class TestNewUser {
     	
     	// Base de donnée
         when(bdd.addUser(any(), any(), any(), any(), any(), anyInt())).thenReturn(true);		// L'ajout marche toujours
-        when(bdd.addUser(eq("toto"), any(), any(), any(), any(), anyInt())).thenReturn(false);	// Sauf pour le pseudo toto
+        //when(bdd.addUser(eq("titi"), any(), any(), any(), any(), anyInt())).thenReturn(false);	// Sauf pour le pseudo toto
         when(bdd.existUser(anyString())).thenReturn(false);
         when(bdd.existUser("toto")).thenReturn(true);			// Encore une fois ici toto est un pseudo existant
         
@@ -88,7 +84,7 @@ public class TestNewUser {
         verify(bdd).addUser(eq(infos2.getPseudo()), anyString(), anyString(), eq(infos2.getEmail()), anyString(), anyInt());
         
         // vérifie qu'on envoi un retour au client, avec une réponse positive
-        verify(socketClient).sendEvent(eq("signUpReply"), eq(reponseOk)); // PB : eq NE COMPARE PAS LES CHAMPS !!
+        verify(socketClient).sendEvent(eq("signUpReply"), refEq(reponseOk));
 
 
     }
@@ -103,8 +99,6 @@ public class TestNewUser {
         verify(bdd, never()).addUser(any(), any(), any(), any(), any(), anyInt());
 
         // Vérifie qu'on a bien un message de retour au client
-        verify(socketClient).sendEvent(eq("signUpReply"), any());
-        //TODO Vérifier ici aussi la nature du retour
-
+        verify(socketClient).sendEvent(eq("signUpReply"), refEq(reponseExiste));
     }
 }
