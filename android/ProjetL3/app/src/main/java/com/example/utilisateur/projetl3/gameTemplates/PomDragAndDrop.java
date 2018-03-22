@@ -9,9 +9,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.utilisateur.projetl3.R;
 import com.example.utilisateur.projetl3.gameTemplates.MoteurJeux.DragAndDrop;
+import com.example.utilisateur.projetl3.utils.GameUI;
+import com.example.utilisateur.projetl3.utils.UIInteractionsListener;
 
 /**
  * Created by Utilisateur on 01/03/2018.
@@ -25,7 +28,8 @@ public class PomDragAndDrop extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pom_drag_and_drop);
-        findViewById(R.id.panier).setOnDragListener(new MyDragListener());
+        ViewGroup panier = findViewById(R.id.panier);
+        panier.setOnDragListener(new MyDragListener());
         ViewGroup zoneJeu =findViewById(R.id.zoneJeu);
         zoneJeu.setOnDragListener(new MyDragListener());
         //Par la suite on pourra faire en sorte que ce soit DragAndDrop qui prenne un nombre au hasard en fonction du niveau du joueur.
@@ -38,6 +42,34 @@ public class PomDragAndDrop extends AppCompatActivity {
         }
         TextView intitule =findViewById(R.id.intitule);
         intitule.setText("On veut "+moteur.getGoal()+" pom' dans le panier.");
+
+        //Le listener pour le menu de bas d'activité.
+        GameUI gameUi =findViewById(R.id.gameUi);
+        gameUi.setUiListener(new UIInteractionsListener() {
+            @Override
+            public void onUIInteraction(String type) {
+                if(type.equals("valid")){
+                    //On vérifie que la réponse est juste.
+                    ViewGroup panier = findViewById(R.id.panier);
+                    int res =moteur.verifWin(panier.getChildCount()-1);
+                    if(res==1){
+                        Toast.makeText(getApplicationContext(), "Victoire!",
+                                Toast.LENGTH_SHORT).show();
+                        finish();
+                    }else{
+                        if(res==-1){
+                            Toast.makeText(getApplicationContext(), "Perdu, il n'y avait pas assez de poms.",
+                                    Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(getApplicationContext(), "Perdu, il y avait trop de poms.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }else{
+                    //Remettre le jeu à 0
+                }
+            }
+        });
     }
 
     public void majCmpt(ViewGroup container){
