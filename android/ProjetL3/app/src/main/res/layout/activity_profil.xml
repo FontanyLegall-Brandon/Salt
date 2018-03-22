@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/saltfond">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/tvDate"
+                    android:layout_width="193dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sfcomicscriptnormal"
+                    android:padding="10dp"
+                    android:text="Date d'inscription"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                    android:textColor="@android:color/white" />
+
+                <EditText
+                    android:id="@+id/etDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="**/**/****"
+                    android:inputType="date"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/textViewId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="1"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/tvPseudo"
+                    android:layout_width="181dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sfcomicscriptnormal"
+                    android:padding="10dp"
+                    android:text="Pseudo"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                    android:textColor="@android:color/white" />
+
+                <EditText
+                    android:id="@+id/etPseudo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Ton Pseudo"
+
+                    android:fontFamily="@font/sfcomicscriptnormal"
+                    android:inputType="textPersonName" />
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/tvEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sfcomicscriptnormal"
+                    android:padding="10dp"
+                    android:text="Email"
+
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                    android:textColor="@android:color/white" />
+
+                <EditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Ton email"
+                    android:fontFamily="@font/sfcomicscriptnormal"
+                    android:inputType="textEmailAddress" />
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/tvAge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sfcomicscriptnormal"
+                    android:padding="10dp"
+                    android:text="Age"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                    android:textColor="@android:color/white" />
+
+                <EditText
+                    android:id="@+id/etAge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sfcomicscriptnormal"
+                    android:hint="Ton âge"
+                    android:padding="10dp"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+
+            </TableRow>
+
+
+        </TableLayout>
+
+        <Button
+            android:id="@+id/buttonLogout"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/white"
+            android:fontFamily="@font/sfcomicscriptnormal"
+            android:text="Se déconnecter"
+            android:textColor="@android:color/holo_red_dark" />
+    </LinearLayout>
+</RelativeLayout>

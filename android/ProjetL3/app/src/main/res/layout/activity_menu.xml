@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,32 +10,39 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:weightSum="1"
-    tools:context=".Menu">
+    tools:context=".Menu"
+
+    android:background="@drawable/saltfond">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/sfcomicscriptnormal"
         android:text="@string/identifiants"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@android:color/white"
+        android:textSize="28sp" />
 
     <EditText
         android:id="@+id/etPseudo"
-        android:layout_width="match_parent"
+        android:layout_width="327dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:ems="10"
-        android:hint="login"
+        android:fontFamily="@font/sfcomicscriptnormal"
+        android:hint="Pseudo"
         android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/etMDP"
-        android:layout_width="match_parent"
+        android:layout_width="326dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:ems="10"
-        android:hint="password"
+        android:fontFamily="@font/sfcomicscriptnormal"
+        android:hint="Mot de pass"
         android:inputType="textPassword" />
 
     <Button
@@ -42,16 +50,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Se connecter" />
+        android:backgroundTint="@android:color/white"
+        android:fontFamily="@font/sfcomicscriptnormal"
+        android:text="Se connecter"
+        android:textColor="@android:color/holo_red_dark" />
 
     <TextView
         android:id="@+id/tvSinscrireici"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="S'inscrire ici"
+        android:fontFamily="@font/sfcomicscriptnormal"
+        android:text="S'inscrire ici!"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="20sp"
+        android:textSize="25sp"
+        android:textStyle="bold"
         android:visibility="visible" />
 
 </LinearLayout>
