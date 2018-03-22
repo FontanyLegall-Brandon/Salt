@@ -48,4 +48,11 @@
         android:orientation="horizontal">
     </LinearLayout>
 
+    <com.example.utilisateur.projetl3.utils.GameUI
+        android:id="@+id/gameUi"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/gameui_height"
+        android:layout_alignParentBottom="true">
+    </com.example.utilisateur.projetl3.utils.GameUI>
+
 </RelativeLayout>

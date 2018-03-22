@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/gameui_height">
+
+        <ImageView
+            android:id="@+id/validButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="17dp"
+            android:layout_marginRight="17dp"
+            android:clickable="true"
+            android:src="@mipmap/check" />
+
+        <ImageView
+            android:id="@+id/resetButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="17dp"
+            android:layout_marginStart="17dp"
+            android:clickable="true"
+            android:src="@mipmap/loading_frame_3" />
+    </RelativeLayout>
+
+</merge>
