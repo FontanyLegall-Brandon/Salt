@@ -36,7 +36,7 @@ public class PomDragAndDrop extends AppCompatActivity {
         moteur = new DragAndDrop(3);
         //On ajoute dynamiquement le nombre de poms' présentes afin de pouvoir remplir le but.
         for(int i=0; i<moteur.getStock(); i++){
-            View pom = LayoutInflater.from(this).inflate(R.layout.component_pom, null);
+            View pom = LayoutInflater.from(this).inflate(R.layout.component_pom, zoneJeu, false);
             pom.setOnTouchListener(new MyTouchListener());
             zoneJeu.addView(pom);
         }

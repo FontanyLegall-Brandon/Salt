@@ -7,20 +7,20 @@
 
         <ImageView
             android:id="@+id/validButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="17dp"
             android:layout_marginRight="17dp"
             android:clickable="true"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/check" />
 
         <ImageView
             android:id="@+id/resetButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
