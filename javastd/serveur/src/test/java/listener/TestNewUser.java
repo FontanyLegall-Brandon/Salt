@@ -21,20 +21,20 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class TestNewUser {
 
-    UserInfo infos1, infos2;
-    
+    private UserInfo infos1, infos2, infos3;
+
     Reply reponseOk, reponsePb, reponseExiste;
 
-    NewUserListener listenerTest;
+    private NewUserListener listenerTest;
 
     @Mock
-    Database bdd;
+    private Database bdd;
 
     @Mock
-    Server serveur;
+    private Server serveur;
 
     @Mock
-    SocketIOClient socketClient;
+    private SocketIOClient socketClient;
     
     @BeforeClass
     public static void setUpClass() {
@@ -53,7 +53,7 @@ public class TestNewUser {
     	
     	// Base de donnée
         when(bdd.addUser(any(), any(), any(), any(), any(), anyInt())).thenReturn(true);		// L'ajout marche toujours
-        //when(bdd.addUser(eq("titi"), any(), any(), any(), any(), anyInt())).thenReturn(false);	// Sauf pour le pseudo toto
+        when(bdd.addUser(eq("titi"), any(), any(), any(), any(), anyInt())).thenReturn(false);	// Sauf pour le pseudo titi
         when(bdd.existUser(anyString())).thenReturn(false);
         when(bdd.existUser("toto")).thenReturn(true);			// Encore une fois ici toto est un pseudo existant
         
@@ -63,6 +63,7 @@ public class TestNewUser {
         // Messages JSon touts faits pour tester le comportement de onData dessus
         infos1 = new UserInfo("toto", "toto@titi.fr", "Toto", "Charles-Henri", "mdpcomplique", 47);
         infos2 = new UserInfo("tata", "tata@titi.fr", "Tata", "Marie-Henriette", "mdpcomplique2", 74);
+        infos3 = new UserInfo("titi", null, null, null, null, 0);
         
         //	Réponses attendues 
         reponseOk = new Reply("signedUp");
@@ -100,5 +101,20 @@ public class TestNewUser {
 
         // Vérifie qu'on a bien un message de retour au client
         verify(socketClient).sendEvent(eq("signUpReply"), refEq(reponseExiste));
+    }
+
+    @Test
+    public void testOnDataFailure() {
+
+        // Appel de onData, sur un UserInfo avec le pseudo "titi", la BDD doit renvoyer false pour une raison inconnue
+        listenerTest.onData(socketClient, infos3, null);
+
+        // On vérifie qu'on a bien demandé à la BDD d'ajouter l'utilisateur
+        // (cette fois on ne vérifie pas le détail du type de ce qu'on
+        verify(bdd).addUser(eq(infos3.getPseudo()), any(), any(), eq(infos3.getEmail()), any(), anyInt());
+
+        // Vérifie qu'on a bien un message de retour avec une erreur  au client
+        verify(socketClient).sendEvent(eq("signUpReply"), refEq(reponsePb));
+
     }
 }
