@@ -1,7 +1,9 @@
 package database.mysql;
+import database.Database;
 import serveur.Session;
 
 import java.sql.* ;
+import java.util.Hashtable;
 
 /**
  * La classe Database implemente l'interface database avec toutes les commandes mysql necessaires
@@ -222,5 +224,38 @@ public class MySQLDatabase implements database.Database {
 
     }
 
+
+    @Override
+    public Hashtable<Integer, String> getExerciceList() {
+        Connection con = Connect.connection();
+        Hashtable hashtable = new Hashtable<Integer, String>();
+
+        try {
+            // Envoi d’un requête générique
+            String sql =  "select * from exercice";
+            Statement smt = con.createStatement() ;
+            ResultSet rs = smt.executeQuery(sql) ;
+
+            while (rs.next()) {
+                Integer id = rs.getInt("id");
+                String exercice = rs.getString("exercice");
+
+                hashtable.put(id,exercice);
+            }
+        }  catch (Exception e) {
+            System.exit(1);
+        }
+        return hashtable;
+    }
+
+    public static void main(String[] args) {
+        Hashtable hashtable = new Hashtable<Integer, String>();
+
+        Database database = new MySQLDatabase();
+
+        hashtable = database.getExerciceList();
+        System.out.println(hashtable.toString());
+
+    }
 
 }
