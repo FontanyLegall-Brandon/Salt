@@ -31,8 +31,8 @@ public class Client {
     public void connect() {
 
         try {
-            Log.d("connexion", "http://192.168.43.244:1345");
-            mSocket = IO.socket("http://192.168.43.244:1345");
+            Log.d("connexion", "http://192.168.124.1:10000");
+            mSocket = IO.socket("http://192.168.124.1:10000");
 
             mSocket.on("connect", new Emitter.Listener() {
                 @Override

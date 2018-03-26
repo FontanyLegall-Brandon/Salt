@@ -94,7 +94,7 @@
                     <mainClass>StartServer</mainClass>
 
                     <arguments>
-                        <argument>localhost</argument>
+                        <argument>192.168.124.1</argument>
                         <argument>10000</argument>
                     </arguments>
 

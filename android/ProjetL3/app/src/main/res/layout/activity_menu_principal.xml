@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/saltfond">
+    android:background="@drawable/saltfond"
+    tools:ignore="MissingPrefix">
 
     <ProgressBar
         style="?android:attr/progressBarStyleHorizontal"
@@ -18,8 +20,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Pseudo"
-
-        android:fontFamily="@font/sfcomicscriptnormal"
+        fontPath="fonts/sfcomicscriptnormal.ttf"
         android:id="@+id/etPseudo" />
 
     <TextView
@@ -28,8 +29,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Bienvenue!"
         android:id="@+id/Bienvenue"
-
-        android:fontFamily="@font/sfcomicscriptnormal"
+        fontPath="fonts/sfcomicscriptnormal.ttf"
         android:layout_gravity="center_horizontal" />
 
     <Button
@@ -37,9 +37,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-
         android:backgroundTint="@android:color/white"
-        android:fontFamily="@font/sfcomicscriptnormal"
+        fontPath="fonts/sfcomicscriptnormal.ttf"
         android:text="Jouer"
         android:textColor="@android:color/holo_red_dark" />
 
@@ -48,9 +47,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-
         android:backgroundTint="@android:color/white"
-        android:fontFamily="@font/sfcomicscriptnormal"
+        fontPath="fonts/sfcomicscriptnormal.ttf"
         android:text="Aides"
         android:textColor="@android:color/holo_red_dark" />
 
@@ -59,9 +57,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-
         android:backgroundTint="@android:color/white"
-        android:fontFamily="@font/sfcomicscriptnormal"
+        fontPath="fonts/sfcomicscriptnormal.ttf"
         android:text="Scores"
         android:textColor="@android:color/holo_red_dark" />
 </LinearLayout>

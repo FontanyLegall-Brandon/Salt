@@ -20,6 +20,8 @@ import java.util.concurrent.TimeUnit;
 import com.example.utilisateur.projetl3.network.Client;
 import com.example.utilisateur.projetl3.utils.LoadingScreen;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+
 public class Menu extends AppCompatActivity {
     private Client client;
     //Pass est true si on veut passer en mode hors connexion.
@@ -30,7 +32,7 @@ public class Menu extends AppCompatActivity {
 
     public Client getClient() {
         if (client == null) client = new Client();
-            return client;
+        return client;
     }
 
     public void setClient(Client client) {
@@ -40,6 +42,11 @@ public class Menu extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/Roboto-RobotoRegular.ttf")
+                .setFontAttrId(R.attr.fontPath)
+                .build()
+        );
         setContentView(R.layout.loading_screen);
         LoadingScreen loadingscreen = new LoadingScreen((ImageView) findViewById(R.id.animatedLoading));
 
@@ -60,9 +67,6 @@ public class Menu extends AppCompatActivity {
         });
         loadingscreen.setLoadScreen();
         this.getClient().connect();
-
-        //solution provisoire, envisager un écran de chargement
-        //On pourra faire ça via un thread ou un autre moyen de se connecter en paralléle, sinon la vue est bloquée durant le while.
 
         attenteConnexion = new Thread(new Runnable() {
             public void run() {

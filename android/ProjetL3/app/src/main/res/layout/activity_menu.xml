@@ -11,6 +11,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:weightSum="1"
     tools:context=".Menu"
+    tools:ignore="MissingPrefix"
 
     android:background="@drawable/saltfond">
 
@@ -19,11 +20,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:fontFamily="@font/sfcomicscriptnormal"
         android:text="@string/identifiants"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@android:color/white"
-        android:textSize="28sp" />
+        android:textSize="28sp"
+        fontPath="fonts/sfcomicscriptnormal.tt"/>
 
     <EditText
         android:id="@+id/etPseudo"
@@ -31,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:ems="10"
-        android:fontFamily="@font/sfcomicscriptnormal"
+        fontPath="fonts/sfcomicscriptnormal.tt"
         android:hint="Pseudo"
         android:inputType="textPersonName" />
 
@@ -41,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:ems="10"
-        android:fontFamily="@font/sfcomicscriptnormal"
+        fontPath="fonts/sfcomicscriptnormal.tt"
         android:hint="Mot de pass"
         android:inputType="textPassword" />
 
@@ -51,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="@android:color/white"
-        android:fontFamily="@font/sfcomicscriptnormal"
+        fontPath="fonts/sfcomicscriptnormal.tt"
         android:text="Se connecter"
         android:textColor="@android:color/holo_red_dark" />
 
@@ -59,13 +60,13 @@
         android:id="@+id/tvSinscrireici"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/sfcomicscriptnormal"
+        fontPath="fonts/sfcomicscriptnormal.tt"
         android:text="S'inscrire ici!"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="25sp"
         android:textStyle="bold"
-        android:visibility="visible" />
+        android:visibility="visible"/>
 
 </LinearLayout>
