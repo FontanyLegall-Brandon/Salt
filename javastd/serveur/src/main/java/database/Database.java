@@ -28,8 +28,8 @@ public interface Database {
   HashSet<Avancement> getUserAvancement(int userID);
   HashSet<Avancement> getUserAvancementOf(int UserID,int ExerciceID);
   int getUserAvancementOfAt(int UserID,int ExerciceID,int niveau);
-  //Boolean setUserAvancement(int UserID,int ExerciceID,int pourcentage);
-  //Boolean setMaxUserAvancement(int UserID,int ExerciceID,int pourcentage);
+  Boolean setUserAvancement(int UserID,int ExerciceID,int niveau,int pourcentage);
+  Boolean setMaxUserAvancement(int UserID,int ExerciceID,int niveau,int pourcentage);
 
   //Fonctions liés aux données :
   Hashtable<Integer,String> getExerciceList();

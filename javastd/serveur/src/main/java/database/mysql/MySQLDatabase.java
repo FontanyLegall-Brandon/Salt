@@ -1,5 +1,6 @@
 package database.mysql;
 import database.Database;
+import listeners.mappers.UserInfo;
 import serveur.Avancement;
 import serveur.Session;
 import sun.security.x509.AVA;
@@ -344,52 +345,163 @@ public class MySQLDatabase implements database.Database {
         return pourcentage;
     }
 
-    public static void main(String[] args) {
+    /**
+     * Permet de définir l'avancement d'un joueur
+     * @param UserID l'id de l'utilisateur
+     * @param ExerciceID l'id de l'exercice
+     * @param pourcentage le pourcentage voulu
+     * @return un boolean permettant de savoir si oui ou non l'avancement a été définie
+     */
+    @Override
+    public Boolean setUserAvancement(int UserID,int ExerciceID,int niveau,int pourcentage) {
+        Connection con = Connect.connection();
+        int nb = 0;
 
+        try {
+            // Envoi d’un requête générique
+            String sql =  "select COUNT(*) AS nb from avancement WHERE pseudoId="+UserID+" AND exerciceId="+ExerciceID+" AND niveau="+niveau;
+            Statement smt = con.createStatement() ;
+            ResultSet rs = smt.executeQuery(sql) ;
 
-        Database database = new MySQLDatabase();
-
-        /*
-        Hashtable hashtable = new Hashtable<Integer, String>();
-        hashtable = database.getExerciceList();
-        System.out.println(hashtable.toString());
-        */
-
-        /*
-        HashSet hashSet = new HashSet<Avancement>();
-        hashSet = database.getUserAvancement(100);
-        Iterator it = hashSet.iterator();
-        while (it.hasNext()){
-            Avancement avancement = Avancement.class.cast(it.next());
-            System.out.println(avancement.getExerciceId());
-            System.out.println(avancement.getLevelId());
-            System.out.println(avancement.getPourcentage());
-            System.out.println("\n");
+            while (rs.next()) {
+                nb = rs.getInt("nb");
+            }
+        }  catch (Exception e) {
+            System.exit(1);
         }
-        */
 
-        /*
-        HashSet hashSet = new HashSet<Avancement>();
-        hashSet = database.getUserAvancementOf(100,2);
-        Iterator it = hashSet.iterator();
-        while (it.hasNext()){
-            Avancement avancement = Avancement.class.cast(it.next());
-            System.out.println(avancement.getExerciceId());
-            System.out.println(avancement.getLevelId());
-            System.out.println(avancement.getPourcentage());
-            System.out.println("\n");
+        if(nb != 0){
+            return setMaxUserAvancement(UserID, ExerciceID, niveau, pourcentage);
+        }else{
+            Boolean bool = false;
+
+            try{
+                // create our java preparedstatement using a sql update query
+                PreparedStatement ps = con.prepareStatement("INSERT INTO avancement(exerciceId,niveau,pourcentage,pseudoId) VALUES(?,?,?,?)");
+
+                // set the preparedstatement parameters
+                ps.setInt(1,ExerciceID);
+                ps.setInt(2,niveau);
+                ps.setInt(3,pourcentage);
+                ps.setInt(4,UserID);
+
+                // call executeUpdate to execute our sql update statement
+                int exec = ps.executeUpdate();
+                ps.close();
+
+                bool = (exec == 1);
+            }
+            catch (SQLException se){
+                se.printStackTrace();
+                System.exit(1);
+            }
+            return bool;
+
         }
-        */
-
-
-        int pourcentage;
-        pourcentage = database.getUserAvancementOfAt(100,2,2);
-        System.out.println(pourcentage);
-        int pourcentage2;
-        pourcentage2 = database.getUserAvancementOfAt(100,2,3);
-        System.out.println(pourcentage2);
-
-
     }
+
+    /**
+     * Permet de définir l'avancement d'un joueur même si il l'a déjà, en mettant en avant le plus gros avancement present
+     * @param UserID l'id de l'utilisateur
+     * @param ExerciceID l'id de l'exercice
+     * @param pourcentage le pourcentage voulu
+     * @return un boolean permettant de savoir si oui ou non l'avancement a été définie
+     */
+    @Override
+    public Boolean setMaxUserAvancement(int UserID,int ExerciceID,int niveau,int pourcentage) {
+        Connection con = Connect.connection();
+
+        int nb = 0;
+
+        try {
+            // Envoi d’un requête générique
+            String sql =  "select pourcentage AS nb from avancement WHERE pseudoId="+UserID+" AND exerciceId="+ExerciceID+" AND niveau="+niveau;
+            Statement smt = con.createStatement() ;
+            ResultSet rs = smt.executeQuery(sql) ;
+
+            while (rs.next()) {
+                nb = rs.getInt("nb");
+            }
+        }  catch (Exception e) {
+            System.exit(1);
+        }
+
+        if(nb<pourcentage) {
+
+
+            Boolean bool = false;
+            try {
+                // create our java preparedstatement using a sql update query
+                PreparedStatement ps = con.prepareStatement("UPDATE avancement SET pourcentage=" + pourcentage + " WHERE pseudoId=" + UserID + " AND exerciceId=" + ExerciceID + " AND niveau=" + niveau);
+
+                // call executeUpdate to execute our sql update statement
+                int exec = ps.executeUpdate();
+                ps.close();
+
+                bool = (exec == 1);
+            } catch (SQLException se) {
+                System.exit(1);
+            }
+
+            return bool;
+        }else{
+            return true;
+        }
+    }
+
+
+//    public static void main(String[] args) {
+//
+//
+//        Database database = new MySQLDatabase();
+//
+//        /*
+//        Hashtable hashtable = new Hashtable<Integer, String>();
+//        hashtable = database.getExerciceList();
+//        System.out.println(hashtable.toString());
+//        */
+//
+//        /*
+//        HashSet hashSet = new HashSet<Avancement>();
+//        hashSet = database.getUserAvancement(100);
+//        Iterator it = hashSet.iterator();
+//        while (it.hasNext()){
+//            Avancement avancement = Avancement.class.cast(it.next());
+//            System.out.println(avancement.getExerciceId());
+//            System.out.println(avancement.getLevelId());
+//            System.out.println(avancement.getPourcentage());
+//            System.out.println("\n");
+//        }
+//        */
+//
+//        /*
+//        HashSet hashSet = new HashSet<Avancement>();
+//        hashSet = database.getUserAvancementOf(100,2);
+//        Iterator it = hashSet.iterator();
+//        while (it.hasNext()){
+//            Avancement avancement = Avancement.class.cast(it.next());
+//            System.out.println(avancement.getExerciceId());
+//            System.out.println(avancement.getLevelId());
+//            System.out.println(avancement.getPourcentage());
+//            System.out.println("\n");
+//        }
+//        */
+//
+//        /*
+//        int pourcentage;
+//        pourcentage = database.getUserAvancementOfAt(100,2,2);
+//        System.out.println(pourcentage);
+//        int pourcentage2;
+//        pourcentage2 = database.getUserAvancementOfAt(100,2,3);
+//        System.out.println(pourcentage2);
+//        */
+//
+//        /*
+//        Boolean bool;
+//        bool = database.setUserAvancement(100,2,3,65);
+//        System.out.println(bool);
+//        */
+//
+//    }
 
 }
