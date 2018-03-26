@@ -29,7 +29,7 @@ public interface Database {
   //Boolean setMaxUserAvancement(int UserID,int ExerciceID,int pourcentage);
 
   //Fonctions liés aux données :
-  //Hashtable<Integer,String> getExerciceList();
+  Hashtable<Integer,String> getExerciceList();
   //Hashtable<Integer,String> getLevelList();
   //int getLevelOfExercice(int exerciceID);
   //Hashtable<Integer,String> getExerciceOfLevel(int levelID);

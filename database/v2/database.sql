@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql-lpepd.alwaysdata.net
--- Generation Time: Mar 26, 2018 at 02:25 PM
+-- Generation Time: Mar 26, 2018 at 02:29 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.2
 
@@ -30,10 +30,21 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `avancement` (
   `id` int(11) NOT NULL,
-  `nomExercice` varchar(255) NOT NULL,
+  `exerciceId` int(255) NOT NULL,
   `niveau` int(11) NOT NULL,
   `pourcentage` int(11) NOT NULL,
   `pseudoId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `exercice`
+--
+
+CREATE TABLE `exercice` (
+  `id` int(11) NOT NULL,
+  `exercice` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -62,7 +73,14 @@ CREATE TABLE `membre` (
 --
 ALTER TABLE `avancement`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `membreID` (`pseudoId`);
+  ADD KEY `membreID` (`pseudoId`),
+  ADD KEY `exerciceID` (`exerciceId`);
+
+--
+-- Indexes for table `exercice`
+--
+ALTER TABLE `exercice`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `membre`
@@ -83,6 +101,12 @@ ALTER TABLE `avancement`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `exercice`
+--
+ALTER TABLE `exercice`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `membre`
 --
 ALTER TABLE `membre`
@@ -96,6 +120,7 @@ ALTER TABLE `membre`
 -- Constraints for table `avancement`
 --
 ALTER TABLE `avancement`
+  ADD CONSTRAINT `exerciceID` FOREIGN KEY (`exerciceId`) REFERENCES `exercice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `membreID` FOREIGN KEY (`pseudoId`) REFERENCES `membre` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
