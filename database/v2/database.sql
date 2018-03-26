@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql-lpepd.alwaysdata.net
--- Generation Time: Mar 26, 2018 at 02:19 PM
+-- Generation Time: Mar 26, 2018 at 02:25 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.2
 
@@ -50,7 +50,7 @@ CREATE TABLE `membre` (
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `age` int(11) NOT NULL,
-  `niveau` int(11) NOT NULL
+  `niveau` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -86,7 +86,7 @@ ALTER TABLE `avancement`
 -- AUTO_INCREMENT for table `membre`
 --
 ALTER TABLE `membre`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- Constraints for dumped tables
