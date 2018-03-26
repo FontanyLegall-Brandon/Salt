@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.7.9
 -- https://www.phpmyadmin.net/
 --
--- Hôte : localhost:3306
--- Généré le :  mer. 28 fév. 2018 à 10:51
--- Version du serveur :  10.1.30-MariaDB
--- Version de PHP :  7.0.27
+-- Host: mysql-lpepd.alwaysdata.net
+-- Generation Time: Mar 26, 2018 at 10:09 AM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.2.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,15 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `u606391292_lpepd`
+-- Database: `lpepd_database`
 --
+CREATE DATABASE IF NOT EXISTS `lpepd_database` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `lpepd_database`;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `exercice`
+-- Table structure for table `exercice`
 --
 
 CREATE TABLE `exercice` (
@@ -36,7 +38,7 @@ CREATE TABLE `exercice` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `exerciceAvancement`
+-- Table structure for table `exerciceAvancement`
 --
 
 CREATE TABLE `exerciceAvancement` (
@@ -51,7 +53,7 @@ CREATE TABLE `exerciceAvancement` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `exerciceNiveau`
+-- Table structure for table `exerciceNiveau`
 --
 
 CREATE TABLE `exerciceNiveau` (
@@ -63,7 +65,7 @@ CREATE TABLE `exerciceNiveau` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `joueurAvancement`
+-- Table structure for table `joueurAvancement`
 --
 
 CREATE TABLE `joueurAvancement` (
@@ -76,7 +78,7 @@ CREATE TABLE `joueurAvancement` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `membre`
+-- Table structure for table `membre`
 --
 
 CREATE TABLE `membre` (
@@ -86,13 +88,13 @@ CREATE TABLE `membre` (
   `nom` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `age` date NOT NULL
+  `age` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `niveau`
+-- Table structure for table `niveau`
 --
 
 CREATE TABLE `niveau` (
@@ -101,17 +103,17 @@ CREATE TABLE `niveau` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Index pour les tables déchargées
+-- Indexes for dumped tables
 --
 
 --
--- Index pour la table `exercice`
+-- Indexes for table `exercice`
 --
 ALTER TABLE `exercice`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `exerciceAvancement`
+-- Indexes for table `exerciceAvancement`
 --
 ALTER TABLE `exerciceAvancement`
   ADD PRIMARY KEY (`id`),
@@ -119,7 +121,7 @@ ALTER TABLE `exerciceAvancement`
   ADD KEY `exercice` (`exerciceId`);
 
 --
--- Index pour la table `exerciceNiveau`
+-- Indexes for table `exerciceNiveau`
 --
 ALTER TABLE `exerciceNiveau`
   ADD PRIMARY KEY (`id`),
@@ -127,7 +129,7 @@ ALTER TABLE `exerciceNiveau`
   ADD KEY `exercice2` (`exerciceId`);
 
 --
--- Index pour la table `joueurAvancement`
+-- Indexes for table `joueurAvancement`
 --
 ALTER TABLE `joueurAvancement`
   ADD PRIMARY KEY (`id`),
@@ -135,7 +137,7 @@ ALTER TABLE `joueurAvancement`
   ADD KEY `niveau2` (`niveauId`);
 
 --
--- Index pour la table `membre`
+-- Indexes for table `membre`
 --
 ALTER TABLE `membre`
   ADD PRIMARY KEY (`id`),
@@ -143,71 +145,71 @@ ALTER TABLE `membre`
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- Index pour la table `niveau`
+-- Indexes for table `niveau`
 --
 ALTER TABLE `niveau`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT pour les tables déchargées
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT pour la table `exercice`
+-- AUTO_INCREMENT for table `exercice`
 --
 ALTER TABLE `exercice`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `exerciceAvancement`
+-- AUTO_INCREMENT for table `exerciceAvancement`
 --
 ALTER TABLE `exerciceAvancement`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `exerciceNiveau`
+-- AUTO_INCREMENT for table `exerciceNiveau`
 --
 ALTER TABLE `exerciceNiveau`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `joueurAvancement`
+-- AUTO_INCREMENT for table `joueurAvancement`
 --
 ALTER TABLE `joueurAvancement`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `membre`
+-- AUTO_INCREMENT for table `membre`
 --
 ALTER TABLE `membre`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
--- AUTO_INCREMENT pour la table `niveau`
+-- AUTO_INCREMENT for table `niveau`
 --
 ALTER TABLE `niveau`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Contraintes pour les tables déchargées
+-- Constraints for dumped tables
 --
 
 --
--- Contraintes pour la table `exerciceAvancement`
+-- Constraints for table `exerciceAvancement`
 --
 ALTER TABLE `exerciceAvancement`
   ADD CONSTRAINT `exercice` FOREIGN KEY (`exerciceId`) REFERENCES `exercice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `pseudo` FOREIGN KEY (`pseudoId`) REFERENCES `membre` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `exerciceNiveau`
+-- Constraints for table `exerciceNiveau`
 --
 ALTER TABLE `exerciceNiveau`
   ADD CONSTRAINT `exercice2` FOREIGN KEY (`exerciceId`) REFERENCES `exercice` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `niveau` FOREIGN KEY (`niveauId`) REFERENCES `niveau` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `joueurAvancement`
+-- Constraints for table `joueurAvancement`
 --
 ALTER TABLE `joueurAvancement`
   ADD CONSTRAINT `niveau2` FOREIGN KEY (`niveauId`) REFERENCES `niveau` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
