@@ -1,8 +1,10 @@
 package database;
 
 
+import serveur.Avancement;
 import serveur.Session;
 
+import java.util.HashSet;
 import java.util.Hashtable;
 
 /**
@@ -23,16 +25,13 @@ public interface Database {
   Boolean editPassword(int id,String old,String password,String passwordVerification);
   Boolean existUser(String pseudo);
   Boolean deleteUser(String pseudo);
-  //Hashtable<Integer,Integer> getUserAvancement(int userID); //Hashtable<exerciceID,pourcentage>
+  HashSet<Avancement> getUserAvancement(int userID);
   //int getUserAvancementOf(int UserID,int ExerciceID);
   //Boolean setUserAvancement(int UserID,int ExerciceID,int pourcentage);
   //Boolean setMaxUserAvancement(int UserID,int ExerciceID,int pourcentage);
 
   //Fonctions liés aux données :
   Hashtable<Integer,String> getExerciceList();
-  //Hashtable<Integer,String> getLevelList();
-  //int getLevelOfExercice(int exerciceID);
-  //Hashtable<Integer,String> getExerciceOfLevel(int levelID);
 
   
 }

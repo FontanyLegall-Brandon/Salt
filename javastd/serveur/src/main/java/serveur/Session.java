@@ -6,12 +6,12 @@ package serveur;
  * Uniquement des Getters sont present dans cette classe pour éviter pour crack
  */
 public class Session {
-    private int id;
-    private String pseudo;
-    private String prenom;
-    private String nom;
-    private String email;
-    private int age;
+    private final int id;
+    private final String pseudo;
+    private final String prenom;
+    private final String nom;
+    private final String email;
+    private final int age;
 
     public Session(int id, String pseudo, String prenom, String nom, String email, int age) {
         /**

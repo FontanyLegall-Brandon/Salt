@@ -1,9 +1,13 @@
 package database.mysql;
 import database.Database;
+import serveur.Avancement;
 import serveur.Session;
+import sun.security.x509.AVA;
 
 import java.sql.* ;
+import java.util.HashSet;
 import java.util.Hashtable;
+import java.util.Iterator;
 
 /**
  * La classe Database implemente l'interface database avec toutes les commandes mysql necessaires
@@ -125,7 +129,6 @@ public class MySQLDatabase implements database.Database {
                 oldpassword = rs.getString("password");
             }
 
-            System.out.println(oldpassword);
         }  catch (Exception e) {
             System.exit(1);
         }
@@ -248,13 +251,54 @@ public class MySQLDatabase implements database.Database {
         return hashtable;
     }
 
+    @Override
+    public HashSet<Avancement> getUserAvancement(int userID) {
+        Connection con = Connect.connection();
+        HashSet hashSet = new HashSet<Avancement>();
+
+        try {
+            // Envoi d’un requête générique
+            String sql =  "select * from avancement WHERE pseudoId="+userID;
+            Statement smt = con.createStatement() ;
+            ResultSet rs = smt.executeQuery(sql) ;
+
+            while (rs.next()) {
+                Integer exerciceId = rs.getInt("exerciceId");
+                Integer niveau = rs.getInt("niveau");
+                Integer pourcentage = rs.getInt("pourcentage");
+
+                Avancement avancement = new Avancement(exerciceId,niveau,pourcentage);
+
+                hashSet.add(avancement);
+            }
+        }  catch (Exception e) {
+            System.exit(1);
+        }
+        return hashSet;
+    }
+
     public static void main(String[] args) {
-        Hashtable hashtable = new Hashtable<Integer, String>();
+
 
         Database database = new MySQLDatabase();
 
+        /*
+        Hashtable hashtable = new Hashtable<Integer, String>();
         hashtable = database.getExerciceList();
         System.out.println(hashtable.toString());
+        */
+
+        HashSet hashSet = new HashSet<Avancement>();
+        hashSet = database.getUserAvancement(100);
+        Iterator it = hashSet.iterator();
+        while (it.hasNext()){
+            Avancement avancement = Avancement.class.cast(it.next());
+            System.out.println(avancement.getExerciceId());
+            System.out.println(avancement.getLevelId());
+            System.out.println(avancement.getPourcentage());
+            System.out.println("\n");
+        }
+
 
     }
 
