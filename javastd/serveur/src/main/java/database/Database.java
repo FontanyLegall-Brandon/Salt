@@ -26,7 +26,8 @@ public interface Database {
   Boolean existUser(String pseudo);
   Boolean deleteUser(String pseudo);
   HashSet<Avancement> getUserAvancement(int userID);
-  //int getUserAvancementOf(int UserID,int ExerciceID);
+  HashSet<Avancement> getUserAvancementOf(int UserID,int ExerciceID);
+  int getUserAvancementOfAt(int UserID,int ExerciceID,int niveau);
   //Boolean setUserAvancement(int UserID,int ExerciceID,int pourcentage);
   //Boolean setMaxUserAvancement(int UserID,int ExerciceID,int pourcentage);
 

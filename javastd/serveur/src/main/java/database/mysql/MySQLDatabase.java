@@ -227,7 +227,10 @@ public class MySQLDatabase implements database.Database {
 
     }
 
-
+    /**
+     * Permet d'avoir la liste des exercices avec leurs id
+     * @return un dictionnaire associant l'id de l'exercice à son nom
+     */
     @Override
     public Hashtable<Integer, String> getExerciceList() {
         Connection con = Connect.connection();
@@ -251,6 +254,11 @@ public class MySQLDatabase implements database.Database {
         return hashtable;
     }
 
+    /**
+     * Permet d'avoir l'avancement de l'utilisateur
+     * @param userID L'id de l'utilisateur
+     * @return retourne la liste d'avancement avec notamment les id des exercice, leurs niveau et leurs pourcentage
+     */
     @Override
     public HashSet<Avancement> getUserAvancement(int userID) {
         Connection con = Connect.connection();
@@ -277,6 +285,65 @@ public class MySQLDatabase implements database.Database {
         return hashSet;
     }
 
+    /**
+     * Permet de savoir l'avancement pour un exercice donné
+     * @param UserID l'id de l'utilisateur
+     * @param ExerciceID l'id de l'exercice
+     * @return la liste d'avancement pour un exercice donné avec chaque niveau
+     */
+    @Override
+    public HashSet<Avancement> getUserAvancementOf(int UserID, int ExerciceID) {
+        Connection con = Connect.connection();
+        HashSet hashSet = new HashSet<Avancement>();
+
+        try {
+            // Envoi d’un requête générique
+            String sql =  "select * from avancement WHERE pseudoId="+UserID+" AND exerciceId="+ExerciceID;
+            Statement smt = con.createStatement() ;
+            ResultSet rs = smt.executeQuery(sql) ;
+
+            while (rs.next()) {
+                Integer exerciceId = rs.getInt("exerciceId");
+                Integer niveau = rs.getInt("niveau");
+                Integer pourcentage = rs.getInt("pourcentage");
+
+                Avancement avancement = new Avancement(exerciceId,niveau,pourcentage);
+
+                hashSet.add(avancement);
+            }
+        }  catch (Exception e) {
+            System.exit(1);
+        }
+        return hashSet;
+    }
+
+    /**
+     * Permet de savoir l'avancement pour un exercice et un niveau donné
+     * @param UserID l'id de l'utilisateur
+     * @param ExerciceID l'id de l'exercice
+     * @param niveau le niveau
+     * @return le pourcentage d'avancement
+     */
+    @Override
+    public int getUserAvancementOfAt(int UserID, int ExerciceID, int niveau) {
+        Connection con = Connect.connection();
+        int pourcentage = 0;
+
+        try {
+            // Envoi d’un requête générique
+            String sql =  "select * from avancement WHERE pseudoId="+UserID+" AND exerciceId="+ExerciceID+" AND niveau="+niveau;
+            Statement smt = con.createStatement() ;
+            ResultSet rs = smt.executeQuery(sql) ;
+
+            while (rs.next()) {
+                pourcentage = rs.getInt("pourcentage");
+            }
+        }  catch (Exception e) {
+            System.exit(1);
+        }
+        return pourcentage;
+    }
+
     public static void main(String[] args) {
 
 
@@ -288,6 +355,7 @@ public class MySQLDatabase implements database.Database {
         System.out.println(hashtable.toString());
         */
 
+        /*
         HashSet hashSet = new HashSet<Avancement>();
         hashSet = database.getUserAvancement(100);
         Iterator it = hashSet.iterator();
@@ -298,6 +366,28 @@ public class MySQLDatabase implements database.Database {
             System.out.println(avancement.getPourcentage());
             System.out.println("\n");
         }
+        */
+
+        /*
+        HashSet hashSet = new HashSet<Avancement>();
+        hashSet = database.getUserAvancementOf(100,2);
+        Iterator it = hashSet.iterator();
+        while (it.hasNext()){
+            Avancement avancement = Avancement.class.cast(it.next());
+            System.out.println(avancement.getExerciceId());
+            System.out.println(avancement.getLevelId());
+            System.out.println(avancement.getPourcentage());
+            System.out.println("\n");
+        }
+        */
+
+
+        int pourcentage;
+        pourcentage = database.getUserAvancementOfAt(100,2,2);
+        System.out.println(pourcentage);
+        int pourcentage2;
+        pourcentage2 = database.getUserAvancementOfAt(100,2,3);
+        System.out.println(pourcentage2);
 
 
     }
