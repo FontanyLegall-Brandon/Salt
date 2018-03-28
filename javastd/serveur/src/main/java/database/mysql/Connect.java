@@ -24,7 +24,12 @@ public class Connect {
      * La fonction permet la connexion à la database
      * @return objet du type Connection qui va être passé à la classe Database
      */
+
     public static Connection connection(){
+        return connection(DB_URL,USER,PASS);
+    }
+
+    public static Connection connection(String url,String user,String password){
 
         Connection conn = null;
         try{
@@ -33,7 +38,7 @@ public class Connect {
 
             //STEP 3: Open a connection
             System.out.println("Connecting to a selected database...");
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            conn = DriverManager.getConnection(url, user, password);
             System.out.println("Connected database successfully...");
         }catch(SQLException se){
             //Handle errors for JDBC
@@ -49,5 +54,7 @@ public class Connect {
     public static void main(String[] args) {
 
         Connect.connection();
+
+
     }
 }

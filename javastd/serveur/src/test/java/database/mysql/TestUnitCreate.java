@@ -33,8 +33,8 @@ public class TestUnitCreate {
 
         bool2 = database.existPseudo(pseudo);
 
-        System.out.println(bool1);
-        System.out.println(bool2);
+        //System.out.println(bool1);
+        //System.out.println(bool2);
 
         assertEquals(bool1,bool2);
     }

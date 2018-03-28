@@ -40,6 +40,11 @@ public class MySQLDatabase implements database.Database {
     @Override
     public Boolean addUser(String pseudo, String nom, String prenom, String email, String password, int age) {
         Connection con = Connect.connection();
+        return _addUser(pseudo,nom,prenom,email,password,age,con);
+    }
+
+    protected Boolean _addUser(String pseudo, String nom, String prenom, String email, String password, int age,Connection con) {
+
         Boolean bool = false;
 
         try{
@@ -77,6 +82,12 @@ public class MySQLDatabase implements database.Database {
     @Override
     public Session connection(String email, String password) {
         Connection con = Connect.connection();
+        return _connection(email,password,con);
+    }
+
+
+    protected Session _connection(String email, String password,Connection con){
+
 
         int id= 0;
         String pseudo = null;
@@ -117,6 +128,10 @@ public class MySQLDatabase implements database.Database {
     @Override
     public Boolean editPassword(int id, String old, String password,String passwordVerification) {
         Connection con = Connect.connection();
+        return _editPassword(id, old, password, passwordVerification,con);
+    }
+
+    protected Boolean _editPassword(int id, String old, String password,String passwordVerification,Connection con) {
         String oldpassword = null;
         Boolean bool = false;
 
@@ -171,6 +186,11 @@ public class MySQLDatabase implements database.Database {
     @Override
     public Boolean existPseudo(String pseudo) {
         Connection con = Connect.connection();
+        return _existPseudo(pseudo,con);
+    }
+
+    protected Boolean _existPseudo(String pseudo,Connection con) {
+
         Boolean bool = false;
         int nb = 0;
 
@@ -205,6 +225,11 @@ public class MySQLDatabase implements database.Database {
     @Override
     public Boolean deleteUser(String pseudo) {
         Connection con = Connect.connection();
+        return _deleteUser(pseudo,con);
+    }
+
+    protected Boolean _deleteUser(String pseudo,Connection con) {
+
         Boolean bool = false;
 
         try{
@@ -235,6 +260,10 @@ public class MySQLDatabase implements database.Database {
     @Override
     public Hashtable<Integer, String> getExerciceList() {
         Connection con = Connect.connection();
+        return _getExerciceList(con);
+    }
+
+    protected Hashtable<Integer, String> _getExerciceList(Connection con) {
         Hashtable hashtable = new Hashtable<Integer, String>();
 
         try {
@@ -263,6 +292,10 @@ public class MySQLDatabase implements database.Database {
     @Override
     public HashSet<Avancement> getUserAvancement(int userID) {
         Connection con = Connect.connection();
+        return _getUserAvancement(userID,con);
+    }
+
+    protected HashSet<Avancement> _getUserAvancement(int userID,Connection con) {
         HashSet hashSet = new HashSet<Avancement>();
 
         try {
@@ -295,6 +328,10 @@ public class MySQLDatabase implements database.Database {
     @Override
     public HashSet<Avancement> getUserAvancementOf(int UserID, int ExerciceID) {
         Connection con = Connect.connection();
+        return _getUserAvancementOf(UserID, ExerciceID,con);
+    }
+
+    protected HashSet<Avancement> _getUserAvancementOf(int UserID, int ExerciceID,Connection con) {
         HashSet hashSet = new HashSet<Avancement>();
 
         try {
@@ -328,6 +365,10 @@ public class MySQLDatabase implements database.Database {
     @Override
     public int getUserAvancementOfAt(int UserID, int ExerciceID, int niveau) {
         Connection con = Connect.connection();
+        return _getUserAvancementOfAt(UserID, ExerciceID, niveau,con);
+    }
+
+    protected int _getUserAvancementOfAt(int UserID, int ExerciceID, int niveau,Connection con) {
         int pourcentage = 0;
 
         try {
@@ -355,6 +396,9 @@ public class MySQLDatabase implements database.Database {
     @Override
     public Boolean setUserAvancement(int UserID,int ExerciceID,int niveau,int pourcentage) {
         Connection con = Connect.connection();
+        return _setUserAvancement(UserID, ExerciceID, niveau, pourcentage,con);
+    }
+    protected Boolean _setUserAvancement(int UserID,int ExerciceID,int niveau,int pourcentage,Connection con) {
         int nb = 0;
 
         try {
@@ -410,6 +454,9 @@ public class MySQLDatabase implements database.Database {
     @Override
     public Boolean setMaxUserAvancement(int UserID,int ExerciceID,int niveau,int pourcentage) {
         Connection con = Connect.connection();
+        return _setMaxUserAvancement(UserID, ExerciceID, niveau, pourcentage,con);
+    }
+    protected Boolean _setMaxUserAvancement(int UserID,int ExerciceID,int niveau,int pourcentage,Connection con) {
 
         int nb = 0;
 
@@ -458,6 +505,10 @@ public class MySQLDatabase implements database.Database {
     @Override
     public Boolean existEmail(String email) {
         Connection con = Connect.connection();
+        return _existEmail(email,con);
+    }
+
+    private Boolean _existEmail(String email,Connection con) {
         Boolean bool = false;
         int nb = 0;
 
@@ -539,6 +590,7 @@ public class MySQLDatabase implements database.Database {
 //        bool = database.existEmail("tt@tt.com");
 //        System.out.println(bool);
 //        */
-//    }
+//   }
+
 
 }
