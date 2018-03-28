@@ -156,9 +156,9 @@
         app:layout_constraintEnd_toStartOf="@+id/etEmail"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_mail"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="2dp" />
+    <!--app:srcCompat="@drawable/ic_mail"-->
 
     <ImageView
         android:id="@+id/imageView7"
@@ -172,8 +172,8 @@
         app:layout_constraintEnd_toStartOf="@+id/etMDP"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iconMail"
-        app:srcCompat="@drawable/ic_mdp" />
+        app:layout_constraintTop_toBottomOf="@+id/iconMail"/>
+        <!--app:srcCompat="@drawable/ic_mdp"-->
 
     <EditText
         android:id="@+id/etDate"
@@ -206,8 +206,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/etDate"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7"
-        app:srcCompat="@drawable/ic_cake" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView7"/>
+        <!--app:srcCompat="@drawable/ic_cake"-->
 
     <ImageView
         android:id="@+id/imageView2"
@@ -221,8 +221,9 @@
         app:layout_constraintEnd_toStartOf="@+id/etPseudo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_userr"
         android:layout_marginRight="2dp"
         android:layout_marginLeft="5dp" />
+        <!--app:srcCompat="@drawable/ic_userr"-->
+
 
 </android.support.constraint.ConstraintLayout>
