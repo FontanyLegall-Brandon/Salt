@@ -28,7 +28,7 @@ public class RegisterActivity extends ActivityForIO {
                 //extraction des données saisies
                 final String prenom = etPrenom.getText().toString();
                 final String nom = etNom.getText().toString();
-                final int age = Integer.parseInt(etAge.getText().toString());//TODO:changer pour un sélecteur
+                final int age = Integer.parseInt(etAge.getText().toString());
                 final String email = etEmail.getText().toString();
                 final String pseudo = etPseudo.getText().toString();
                 final String mdp = etMDP.getText().toString();
