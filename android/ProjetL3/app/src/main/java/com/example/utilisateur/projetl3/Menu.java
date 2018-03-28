@@ -18,99 +18,46 @@ import java.net.URISyntaxException;
 import java.util.concurrent.TimeUnit;
 
 import com.example.utilisateur.projetl3.network.Client;
+import com.example.utilisateur.projetl3.network.Singleton;
 import com.example.utilisateur.projetl3.utils.LoadingScreen;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 public class Menu extends ActivityForIO {
-    private Client client;
-    //Pass est true si on veut passer en mode hors connexion.
-    private boolean pass =false;
-    private Thread attenteConnexion = null;
-    //Constructeur pour les boites de dialogue.
-    AlertDialog.Builder builder;
-
-    public Client getClient() {
-        if (client == null) client = new Client();
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setContentView(R.layout.activity_menu);
+        final EditText pseudo = (EditText) findViewById(R.id.etPseudo);
+        final EditText password = (EditText) findViewById(R.id.etMDP);
+        final Button loginButton = (Button) findViewById(R.id.buttonValid);
+        final TextView register = (TextView) findViewById(R.id.tvSinscrireici);
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent registerIntent = new Intent(Menu.this,RegisterActivity.class);
+                Menu.this.startActivity(registerIntent);
+            }
+        });
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Menu.this, MenuPrincipal.class);
+                EditText pseudo = findViewById(R.id.etPseudo);//pseudo récupéré du champs de texte
+                intent.putExtra("login", pseudo.getText().toString());
+                startActivity(intent);
+            }
+        });
+
         super.onCreate(savedInstanceState);
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
                 .setDefaultFontPath("fonts/sfcomicscriptnormal.ttf")
                 .setFontAttrId(R.attr.fontPath)
                 .build()
         );
-        setContentView(R.layout.loading_screen);
-        LoadingScreen loadingscreen = new LoadingScreen((ImageView) findViewById(R.id.animatedLoading));
-
-        //Bouton pour passer en hors connexion
-        TextView passer = (TextView) findViewById(R.id.buttonNoCo);
-
-        //Choix pour le "hors connexion" (sert principalement pour les tests et pouvoir se passer de serveur et de son attente pour les vérifications qui n'en ont pas besoin.)
-        builder = new AlertDialog.Builder(this, R.style.MyAlertDialogStyle);
-        builder.setTitle("/!\\ Attention /!\\ ");
-        builder.setMessage("En entrant en mode \"Hors connexion\" votre progression ne pourra pas être sauvegardée... \n Continuer quand même?");
-        builder.setPositiveButton("Oui",new OkOnClickListener());
-        builder.setNegativeButton("Annuler", new CancelOnClickListener());
-        passer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                builder.show();
-            }
-        });
-        loadingscreen.setLoadScreen();
-        this.getClient().connect();
-
-        attenteConnexion = new Thread(new Runnable() {
-            public void run() {
-                int connecting = 0;
-                while (!client.is_connected() && connecting < Integer.MAX_VALUE / 2 && !pass) {
-                    connecting++;
-                }
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        setContentView(R.layout.activity_menu);
-                        if (client.is_connected()) {
-                            Toast.makeText(getApplicationContext(), "Connecté", Toast.LENGTH_SHORT).show();
-                        } else {
-                            //Il semble possible que la connection ai réussie quand on reçoit ce message.
-                            Toast.makeText(getApplicationContext(), "Échec possible de la connexion", Toast.LENGTH_LONG).show();
-                        }
-                        final EditText pseudo = (EditText) findViewById(R.id.etPseudo);
-                        final EditText password = (EditText) findViewById(R.id.etMDP);
-                        final Button loginButton = (Button) findViewById(R.id.buttonValid);
-                        final TextView register = (TextView) findViewById(R.id.tvSinscrireici);
-                        register.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent registerIntent = new Intent(Menu.this,RegisterActivity.class);
-                                Menu.this.startActivity(registerIntent);
-                            }
-                        });
-                        loginButton.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent(Menu.this, MenuPrincipal.class);
-                                EditText pseudo = findViewById(R.id.etPseudo);//pseudo récupéré du champs de texte
-                                intent.putExtra("login", pseudo.getText().toString());
-                                startActivity(intent);
-                            }
-                        });
-                    }
-                });
-            }
-        });
-        attenteConnexion.start();
+    Singleton client = Singleton.CLIENT;
+    client.setActivity(this);//définir l'activité utilisée par le singleton sur l'activité courante
     }
-
     private final class CancelOnClickListener implements
             DialogInterface.OnClickListener {
         public void onClick(DialogInterface dialog, int which) {
@@ -119,10 +66,10 @@ public class Menu extends ActivityForIO {
         }
     }
 
-    private final class OkOnClickListener implements
+    /*private final class OkOnClickListener implements
             DialogInterface.OnClickListener {
         public void onClick(DialogInterface dialog, int which) {
             pass=true;
         }
-    }
+    }*/
 }
