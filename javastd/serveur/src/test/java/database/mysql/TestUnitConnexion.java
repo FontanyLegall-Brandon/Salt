@@ -5,7 +5,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import database.Database;
-import serveur.Session;
+import listeners.mappers.Session;
 
 import java.sql.Connection;
 

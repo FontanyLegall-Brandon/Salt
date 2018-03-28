@@ -53,4 +53,8 @@ public class DragAndDrop {
     public int getStock(){
         return stock;
     }
+
+    public int getValeurDepart(){
+        return valeurDepart;
+    }
 }

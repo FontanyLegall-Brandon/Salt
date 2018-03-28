@@ -1,8 +1,8 @@
 package database.mysql;
 import database.Database;
+import listeners.mappers.Session;
 import listeners.mappers.UserInfo;
 import serveur.Avancement;
-import serveur.Session;
 import sun.security.x509.AVA;
 
 import java.sql.* ;

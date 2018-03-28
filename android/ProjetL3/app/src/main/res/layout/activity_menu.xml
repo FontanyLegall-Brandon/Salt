@@ -24,7 +24,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@android:color/white"
         android:textSize="28sp"
-        fontPath="fonts/sfcomicscriptnormal.tt"/>
+        fontPath="fonts/sfcomicscriptnormal.ttf"/>
 
     <EditText
         android:id="@+id/etPseudo"
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:ems="10"
-        fontPath="fonts/sfcomicscriptnormal.tt"
+        fontPath="fonts/sfcomicscriptnormal.ttf"
         android:hint="Pseudo"
         android:inputType="textPersonName" />
 
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:ems="10"
-        fontPath="fonts/sfcomicscriptnormal.tt"
+        fontPath="fonts/sfcomicscriptnormal.ttf"
         android:hint="Mot de pass"
         android:inputType="textPassword" />
 
@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="@android:color/white"
-        fontPath="fonts/sfcomicscriptnormal.tt"
+        fontPath="fonts/sfcomicscriptnormal.ttf"
         android:text="Se connecter"
         android:textColor="@android:color/holo_red_dark" />
 
@@ -60,7 +60,7 @@
         android:id="@+id/tvSinscrireici"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        fontPath="fonts/sfcomicscriptnormal.tt"
+        fontPath="fonts/sfcomicscriptnormal.ttf"
         android:text="S'inscrire ici!"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
