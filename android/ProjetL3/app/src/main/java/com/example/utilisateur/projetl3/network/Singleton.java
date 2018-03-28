@@ -1,5 +1,8 @@
 package com.example.utilisateur.projetl3.network;
 import android.util.Log;
+import android.widget.Toast;
+
+import com.example.utilisateur.projetl3.ActivityForIO;
 
 import java.net.URISyntaxException;
 
@@ -17,7 +20,7 @@ public enum Singleton {
     private Singleton() {
         connect();
     }
-
+    private ActivityForIO activity;
     public void connect() {
         boolean connected = false;
         try {
@@ -27,6 +30,9 @@ public enum Singleton {
             mSocket.on("connect", new Emitter.Listener() {
                 @Override
                 public void call(Object... args) {
+                    if (activity != null) {
+                        activity.displayToast("connecté", Toast.LENGTH_LONG);
+                    }
                     Log.d("connexion", "connecté");
                 }
             });
@@ -35,4 +41,14 @@ public enum Singleton {
             e.printStackTrace();
         }
     }
+
+    public boolean is_connected() {
+        return mSocket.connected();
+    }
+
+
+    public void setActivity(ActivityForIO activity) {
+        this.activity = activity;
+    }
+
 }

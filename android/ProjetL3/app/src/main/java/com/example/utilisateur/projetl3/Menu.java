@@ -22,7 +22,7 @@ import com.example.utilisateur.projetl3.utils.LoadingScreen;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
-public class Menu extends AppCompatActivity {
+public class Menu extends ActivityForIO {
     private Client client;
     //Pass est true si on veut passer en mode hors connexion.
     private boolean pass =false;
