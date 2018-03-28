@@ -38,13 +38,16 @@ public class NewUserListener implements DataListener<UserInfo> {
 
         Database database = server.getDatabase();
 
-        if (database.existUser(user.getPseudo())) {//si le joueur existe déjà
-            socket.sendEvent("signUpReply", new Reply("userAlreadyExists"));
+        if (database.existPseudo(user.getPseudo())) {//si le pseudo existe déjà
+            socket.sendEvent("signUpReply", new Reply("pseudoAlreadyExists"));
         }
-        /*
-        Peut être faudrait-il vérifier l'unicité de l'adresse e-mail également, ainsi que d'autres
-        attributs…
-         */
+        
+        else if (database.existEmail(user.getEmail())) {	// L'email existe déjà
+        	
+        	socket.sendEvent("signUpReply", new Reply("emailAlreadyExists"));
+        	
+        	
+        }
         
         else { // Si le joueur n'existe pas encore
 

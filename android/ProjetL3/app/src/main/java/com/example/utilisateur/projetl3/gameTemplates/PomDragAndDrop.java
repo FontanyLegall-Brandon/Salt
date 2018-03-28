@@ -3,6 +3,7 @@ package com.example.utilisateur.projetl3.gameTemplates;
 import android.content.ClipData;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -33,43 +34,66 @@ public class PomDragAndDrop extends AppCompatActivity {
         ViewGroup zoneJeu =findViewById(R.id.zoneJeu);
         zoneJeu.setOnDragListener(new MyDragListener());
         //Par la suite on pourra faire en sorte que ce soit DragAndDrop qui prenne un nombre au hasard en fonction du niveau du joueur.
-        moteur = new DragAndDrop(3);
+        // Via ce constructeur : moteur = new DragAndDrop(3);
+        moteur = new DragAndDrop();
         //On ajoute dynamiquement le nombre de poms' présentes afin de pouvoir remplir le but.
-        for(int i=0; i<moteur.getStock(); i++){
-            View pom = LayoutInflater.from(this).inflate(R.layout.component_pom, zoneJeu, false);
-            pom.setOnTouchListener(new MyTouchListener());
-            zoneJeu.addView(pom);
-        }
+        ajouterPomsDans(moteur.getStock(),zoneJeu);
         TextView intitule =findViewById(R.id.intitule);
-        intitule.setText("On veut "+moteur.getGoal()+" pom' dans le panier.");
+        intitule.setText("On veut "+moteur.getGoal()+" poms' dans le panier.");
 
         //Le listener pour le menu de bas d'activité.
         GameUI gameUi =findViewById(R.id.gameUi);
         gameUi.setUiListener(new UIInteractionsListener() {
             @Override
             public void onUIInteraction(String type) {
-                if(type.equals("valid")){
+                if(type.equals("valider")){
                     //On vérifie que la réponse est juste.
                     ViewGroup panier = findViewById(R.id.panier);
                     int res =moteur.verifWin(panier.getChildCount()-1);
                     if(res==1){
                         Toast.makeText(getApplicationContext(), "Victoire!",
                                 Toast.LENGTH_SHORT).show();
+                        //TODO : sauvegarder la progression.
                         finish();
                     }else{
                         if(res==-1){
-                            Toast.makeText(getApplicationContext(), "Perdu, il n'y avait pas assez de poms.",
+                            Toast.makeText(getApplicationContext(), "Perdu, il n'y a pas assez de poms.",
                                     Toast.LENGTH_SHORT).show();
                         }else{
-                            Toast.makeText(getApplicationContext(), "Perdu, il y avait trop de poms.",
+                            Toast.makeText(getApplicationContext(), "Perdu, il y a trop de poms.",
                                     Toast.LENGTH_SHORT).show();
                         }
+                        //Ici on pourra sauvegarder le nombre de fois qu'un joueur à échoué afin de, soit le sauvegarder définitivement, soit diminuer la récompense.
                     }
                 }else{
-                    //Remettre le jeu à 0
+                    if(type.equals("recommencer")){
+                        Toast.makeText(getApplicationContext(), "Recommencer.",Toast.LENGTH_SHORT).show();
+                        reInit();
+                    }
                 }
             }
         });
+    }
+
+    public void ajouterPomsDans(int nbPoms,ViewGroup container){
+        for(int i=0; i<nbPoms; i++){
+            View pom = LayoutInflater.from(this).inflate(R.layout.component_pom, container, false);
+            pom.setOnTouchListener(new MyTouchListener());
+            container.addView(pom);
+        }
+    }
+
+    public void reInit(){
+        ViewGroup panier = findViewById(R.id.panier);
+        ViewGroup zoneJeu =findViewById(R.id.zoneJeu);
+        View pom=panier.findViewWithTag("pomme");
+        while(pom!=null){
+            panier.removeView(pom);
+            pom=panier.findViewWithTag("pomme");
+        }
+        majCmpt(panier);
+        zoneJeu.removeAllViews();
+        ajouterPomsDans(moteur.getStock(),zoneJeu);
     }
 
     public void majCmpt(ViewGroup container){

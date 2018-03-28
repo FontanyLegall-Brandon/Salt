@@ -169,7 +169,7 @@ public class MySQLDatabase implements database.Database {
      * @return un boolean permettant de savoir si oui ou non l'utilisateur existe
      */
     @Override
-    public Boolean existUser(String pseudo) {
+    public Boolean existPseudo(String pseudo) {
         Connection con = Connect.connection();
         Boolean bool = false;
         int nb = 0;
@@ -450,6 +450,40 @@ public class MySQLDatabase implements database.Database {
     }
 
 
+    /**
+     * La fonction existEmail permet de savoir si un email est existant
+     * @param email l'email à check
+     * @return un boolean retournant vrai ou faux en fonction de la bdd
+     */
+    @Override
+    public Boolean existEmail(String email) {
+        Connection con = Connect.connection();
+        Boolean bool = false;
+        int nb = 0;
+
+
+        try{
+            Statement stmt = con.createStatement();
+
+            String sql = "SELECT COUNT(*) AS nb FROM membre WHERE email='"+email+"'";
+            ResultSet rs = stmt.executeQuery(sql);
+            //STEP 5: Extract data from result set
+            while(rs.next()){
+                //Retrieve by column name
+                nb  = rs.getInt("nb");
+            }
+            rs.close();
+
+            bool = (nb > 0); // Si il y a plus de 0 membres
+
+        }catch(SQLException se){
+            //Handle errors for JDBC
+            bool = false;
+        }
+        return bool;
+
+    }
+
 //    public static void main(String[] args) {
 //
 //
@@ -482,26 +516,29 @@ public class MySQLDatabase implements database.Database {
 //            Avancement avancement = Avancement.class.cast(it.next());
 //            System.out.println(avancement.getExerciceId());
 //            System.out.println(avancement.getLevelId());
-//            System.out.println(avancement.getPourcentage());
-//            System.out.println("\n");
-//        }
-//        */
+//           System.out.println(avancement.getPourcentage());
+//           System.out.println("\n");
+//       }
+//       */
 //
 //        /*
-//        int pourcentage;
-//        pourcentage = database.getUserAvancementOfAt(100,2,2);
-//        System.out.println(pourcentage);
-//        int pourcentage2;
-//        pourcentage2 = database.getUserAvancementOfAt(100,2,3);
-//        System.out.println(pourcentage2);
-//        */
-//
-//        /*
-//        Boolean bool;
+//       int pourcentage;
+//       pourcentage = database.getUserAvancementOfAt(100,2,2);
+//       System.out.println(pourcentage);
+//       int pourcentage2;
+//       pourcentage2 = database.getUserAvancementOfAt(100,2,3);
+//       System.out.println(pourcentage2);
+//       *//*
+//       Boolean bool;
 //        bool = database.setUserAvancement(100,2,3,65);
 //        System.out.println(bool);
 //        */
 //
+//        /*
+//        Boolean bool;
+//        bool = database.existEmail("tt@tt.com");
+//        System.out.println(bool);
+//        */
 //    }
 
 }
