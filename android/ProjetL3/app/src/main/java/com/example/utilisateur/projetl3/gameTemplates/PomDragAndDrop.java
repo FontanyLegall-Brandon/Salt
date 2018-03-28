@@ -3,6 +3,7 @@ package com.example.utilisateur.projetl3.gameTemplates;
 import android.content.ClipData;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -33,7 +34,8 @@ public class PomDragAndDrop extends AppCompatActivity {
         ViewGroup zoneJeu =findViewById(R.id.zoneJeu);
         zoneJeu.setOnDragListener(new MyDragListener());
         //Par la suite on pourra faire en sorte que ce soit DragAndDrop qui prenne un nombre au hasard en fonction du niveau du joueur.
-        moteur = new DragAndDrop(3);
+        // Via ce constructeur : moteur = new DragAndDrop(3);
+        moteur = new DragAndDrop();
         //On ajoute dynamiquement le nombre de poms' présentes afin de pouvoir remplir le but.
         for(int i=0; i<moteur.getStock(); i++){
             View pom = LayoutInflater.from(this).inflate(R.layout.component_pom, zoneJeu, false);
@@ -48,6 +50,7 @@ public class PomDragAndDrop extends AppCompatActivity {
         gameUi.setUiListener(new UIInteractionsListener() {
             @Override
             public void onUIInteraction(String type) {
+                Log.d("PomDragAndDrop","On a cliqué sur le gameUI et l'event est : "+type+".");
                 if(type.equals("valid")){
                     //On vérifie que la réponse est juste.
                     ViewGroup panier = findViewById(R.id.panier);

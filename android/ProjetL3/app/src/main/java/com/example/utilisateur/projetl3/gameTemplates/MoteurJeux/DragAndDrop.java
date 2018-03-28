@@ -16,6 +16,12 @@ public class DragAndDrop {
     private int valeurDepart; //poms' déjà dans le panier en début de partie
     private int stock; //poms' mises à disposition du joeur.
 
+    public DragAndDrop(){
+        objectif=(int)(10*Math.random());
+        valeurDepart=0; // On changera ça par la suite en "Un nombre aléatoire entre 0 et objectif+5" (le -1 seulement si objectif>0)
+        stock=objectif - valeurDepart + (int)(5*Math.random()); //On ajoute un nombre aléatoire de poms (afin que le joueur puisse se tromper.)
+    }
+
     public DragAndDrop(int goal){
         if(goal >= 0){
             objectif=goal;
