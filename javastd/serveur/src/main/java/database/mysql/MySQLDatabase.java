@@ -101,12 +101,16 @@ public class MySQLDatabase implements database.Database {
             Statement smt = con.createStatement() ;
             ResultSet rs = smt.executeQuery(sql) ;
 
+
+
             while (rs.next()) {
-                id = rs.getInt("id");
-                pseudo = rs.getString("pseudo");
-                prenom = rs.getString("prenom");
-                nom = rs.getString("nom");
-                age = rs.getInt("age");
+                if(rs.getString("password").equals(password)) {
+                    id = rs.getInt("id");
+                    pseudo = rs.getString("pseudo");
+                    prenom = rs.getString("prenom");
+                    nom = rs.getString("nom");
+                    age = rs.getInt("age");
+                }
             }
         }  catch (Exception e) {
             System.exit(1);
@@ -590,6 +594,18 @@ public class MySQLDatabase implements database.Database {
 //        Boolean bool;
 //        bool = database.existEmail("tt@tt.com");
 //        System.out.println(bool);
+//        */
+//
+//        /*
+//        Session session;
+//        session = database.connection("tt@tt.com","tt");
+//
+//
+//        System.out.println(session.getPseudo());
+//        System.out.println(session.getNom());
+//        System.out.println(session.getPrenom());
+//        System.out.println(session.getEmail());
+//        System.out.println(session.getAge());
 //        */
 //   }
 
