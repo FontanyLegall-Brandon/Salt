@@ -46,24 +46,24 @@ public class PomDragAndDrop extends AppCompatActivity {
         gameUi.setUiListener(new UIInteractionsListener() {
             @Override
             public void onUIInteraction(String type) {
-                Log.d("PomDragAndDrop","On a cliqué sur le gameUI et l'event est : "+type+".");
                 if(type.equals("valider")){
-                    Log.d("PomDragAndDrop", "Le joueur veut valider sa réponse.");
                     //On vérifie que la réponse est juste.
                     ViewGroup panier = findViewById(R.id.panier);
                     int res =moteur.verifWin(panier.getChildCount()-1);
                     if(res==1){
                         Toast.makeText(getApplicationContext(), "Victoire!",
                                 Toast.LENGTH_SHORT).show();
+                        //TODO : sauvegarder la progression.
                         finish();
                     }else{
                         if(res==-1){
-                            Toast.makeText(getApplicationContext(), "Perdu, il n'y avait pas assez de poms.",
+                            Toast.makeText(getApplicationContext(), "Perdu, il n'y a pas assez de poms.",
                                     Toast.LENGTH_SHORT).show();
                         }else{
-                            Toast.makeText(getApplicationContext(), "Perdu, il y avait trop de poms.",
+                            Toast.makeText(getApplicationContext(), "Perdu, il y a trop de poms.",
                                     Toast.LENGTH_SHORT).show();
                         }
+                        //Ici on pourra sauvegarder le nombre de fois qu'un joueur à échoué afin de, soit le sauvegarder définitivement, soit diminuer la récompense.
                     }
                 }else{
                     if(type.equals("recommencer")){
