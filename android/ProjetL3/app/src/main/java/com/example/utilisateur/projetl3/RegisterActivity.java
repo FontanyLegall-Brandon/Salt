@@ -86,7 +86,6 @@ public class RegisterActivity extends AppCompatActivity {
 
                     @Override
                     protected JSONObject doInBackground(Void... params) {
-
                         return postJsonObject("L'url vers lequel le jsonObject sera envoyé", makingJson());
                     }
 

@@ -94,8 +94,8 @@
                     <mainClass>StartServer</mainClass>
 
                     <arguments>
-                        <argument>192.168.124.1</argument>
-                        <argument>10000</argument>
+                        <argument>192.168.43.244</argument>
+                        <argument>1245</argument>
                     </arguments>
 
                 </configuration>

@@ -6,10 +6,16 @@ import org.junit.Test;
 
 import listeners.mappers.Session;
 
+import java.sql.Connection;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class TestUnitPassword {
+public class TestUnitPassword extends MySQLDatabase{
+    public TestUnitPassword() {
+        super();
+    }
+
     private static final String pseudo = "test";
     private static final String nom = "test";
     private static final String prenom = "test";
@@ -20,25 +26,32 @@ public class TestUnitPassword {
 
     private static final String newpassword = "test2";
 
+
+    //DATABASE pour les test
+    private static final String urlTEST = "jdbc:mysql://mysql-lpepd.alwaysdata.net/lpepd_test";
+    private static final String userTEST = "lpepd_test";
+    private static final String passwordTEST = "G3792WtYcXhs";
+    private static final Connection connectionTEST = Connect.connection(urlTEST,userTEST,passwordTEST);
+
     private static void setId(int id) {
         TestUnitPassword.id = id;
     }
 
     @BeforeClass
     public static void begin(){
-        database.mysql.MySQLDatabase database = new MySQLDatabase();
+        TestUnitPassword database = new TestUnitPassword();
 
-        if(database.existPseudo(pseudo)==false){
-            database.addUser(pseudo,nom,prenom,email,password,age);
+        if(database._existPseudo(pseudo,connectionTEST)==false){
+            database._addUser(pseudo,nom,prenom,email,password,age,connectionTEST);
         }
     }
 
     @Test public void testConnection(){
-        MySQLDatabase database = new MySQLDatabase();
+        TestUnitPassword database = new TestUnitPassword();
 
         Session session;
 
-        session = database.connection(email,password);
+        session = database._connection(email,password,connectionTEST);
 
 
         assertEquals(pseudo,session.getPseudo());
@@ -51,21 +64,21 @@ public class TestUnitPassword {
     }
 
     @Test public void editPassword(){
-        MySQLDatabase database = new MySQLDatabase();
+        TestUnitPassword database = new TestUnitPassword();
 
         boolean bool;
 
-        bool = database.editPassword(id,password,newpassword,newpassword);
+        bool = database._editPassword(id,password,newpassword,newpassword,connectionTEST);
 
         assertTrue(bool);
     }
 
     @Test public void nextConnection(){
-        MySQLDatabase database = new MySQLDatabase();
+        TestUnitPassword database = new TestUnitPassword();
 
         Session session;
 
-        session = database.connection(email,newpassword);
+        session = database._connection(email,newpassword,connectionTEST);
 
 
         assertEquals(pseudo,session.getPseudo());
@@ -77,10 +90,10 @@ public class TestUnitPassword {
 
 
     @AfterClass public static void end(){
-        database.mysql.MySQLDatabase database = new MySQLDatabase();
+        TestUnitPassword database = new TestUnitPassword();
 
-        if(database.existPseudo(pseudo)){
-            database.deleteUser(pseudo);
+        if(database._existPseudo(pseudo,connectionTEST)){
+            database._deleteUser(pseudo,connectionTEST);
         }
     }
 

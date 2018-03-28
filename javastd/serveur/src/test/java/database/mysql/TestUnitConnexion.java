@@ -7,9 +7,14 @@ import org.junit.Test;
 import database.Database;
 import listeners.mappers.Session;
 
+import java.sql.Connection;
+
 import static org.junit.Assert.assertEquals;
 
-public class TestUnitConnexion {
+public class TestUnitConnexion extends MySQLDatabase{
+    public TestUnitConnexion() {
+        super();
+    }
 
     private static final String pseudo = "test";
     private static final String nom = "test";
@@ -19,20 +24,27 @@ public class TestUnitConnexion {
     private static final int age = 11;
 
 
-    @BeforeClass public static void begin(){
-        Database database = new MySQLDatabase();
+    //DATABASE pour les test
+    private static final String urlTEST = "jdbc:mysql://mysql-lpepd.alwaysdata.net/lpepd_test";
+    private static final String userTEST = "lpepd_test";
+    private static final String passwordTEST = "G3792WtYcXhs";
+    private static final Connection connectionTEST = Connect.connection(urlTEST,userTEST,passwordTEST);
 
-        if(database.existPseudo(pseudo)==false){
-            database.addUser(pseudo,nom,prenom,email,password,age);
+
+    @BeforeClass public static void begin(){
+        TestUnitConnexion database = new TestUnitConnexion();
+
+        if(database._existPseudo(pseudo,connectionTEST)==false){
+            database._addUser(pseudo,nom,prenom,email,password,age,connectionTEST);
         }
     }
 
     @Test public void testConnection(){
-        Database database = new MySQLDatabase();
+        TestUnitConnexion database = new TestUnitConnexion();
 
         Session session;
 
-        session = database.connection(email,password);
+        session = database._connection(email,password,connectionTEST);
 
 
         assertEquals(pseudo,session.getPseudo());
@@ -43,11 +55,12 @@ public class TestUnitConnexion {
     }
 
 
-    @AfterClass public static void end(){
-        Database database = new MySQLDatabase();
 
-        if(database.existPseudo(pseudo)){
-            database.deleteUser(pseudo);
+    @AfterClass public static void end(){
+        TestUnitConnexion database = new TestUnitConnexion();
+
+        if(database._existPseudo(pseudo,connectionTEST)){
+            database._deleteUser(pseudo,connectionTEST);
         }
     }
 
