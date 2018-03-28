@@ -12,6 +12,9 @@ import java.sql.Connection;
 import static org.junit.Assert.assertEquals;
 
 public class TestUnitConnexion extends MySQLDatabase{
+    public TestUnitConnexion() {
+        super();
+    }
 
     private static final String pseudo = "test";
     private static final String nom = "test";
@@ -20,26 +23,28 @@ public class TestUnitConnexion extends MySQLDatabase{
     private static final String password = "test";
     private static final int age = 11;
 
-    private static final String urlDB = "jdbc:mysql://mysql-lpepd.alwaysdata.net/lpepd_test";
-    private static final String userDB = "lpepd_test";
-    private static final String passwordDB = "G3792WtYcXhs";
-    private static final Connection connection = Connect.connection(urlDB,userDB,passwordDB);
+
+    //DATABASE pour les test
+    private static final String urlTEST = "jdbc:mysql://mysql-lpepd.alwaysdata.net/lpepd_test";
+    private static final String userTEST = "lpepd_test";
+    private static final String passwordTEST = "G3792WtYcXhs";
+    private static final Connection connectionTEST = Connect.connection(urlTEST,userTEST,passwordTEST);
 
 
     @BeforeClass public static void begin(){
-        Database database = new MySQLDatabase();
+        TestUnitConnexion database = new TestUnitConnexion();
 
-        if(database.existPseudo(pseudo)==false){
-            database.addUser(pseudo,nom,prenom,email,password,age);
+        if(database._existPseudo(pseudo,connectionTEST)==false){
+            database._addUser(pseudo,nom,prenom,email,password,age,connectionTEST);
         }
     }
 
     @Test public void testConnection(){
-        Database database = new MySQLDatabase();
+        TestUnitConnexion database = new TestUnitConnexion();
 
         Session session;
 
-        session = database.connection(email,password);
+        session = database._connection(email,password,connectionTEST);
 
 
         assertEquals(pseudo,session.getPseudo());
@@ -50,11 +55,12 @@ public class TestUnitConnexion extends MySQLDatabase{
     }
 
 
-    @AfterClass public static void end(){
-        Database database = new MySQLDatabase();
 
-        if(database.existPseudo(pseudo)){
-            database.deleteUser(pseudo);
+    @AfterClass public static void end(){
+        TestUnitConnexion database = new TestUnitConnexion();
+
+        if(database._existPseudo(pseudo,connectionTEST)){
+            database._deleteUser(pseudo,connectionTEST);
         }
     }
 

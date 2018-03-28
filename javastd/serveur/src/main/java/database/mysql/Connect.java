@@ -11,12 +11,11 @@ import java.sql.* ;
  */
 public class Connect {
 
-
-    // JDBC driver name and database URL
+    //JDBC Driver
     private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    private static final String DB_URL = "jdbc:mysql://mysql-lpepd.alwaysdata.net/lpepd_database";
 
-    //  Database credentials
+    //DATABASE classique
+    private static final String DB_URL = "jdbc:mysql://mysql-lpepd.alwaysdata.net/lpepd_database";
     private static final String USER = "lpepd";
     private static final String PASS = "qt8i244AZUsA";
 

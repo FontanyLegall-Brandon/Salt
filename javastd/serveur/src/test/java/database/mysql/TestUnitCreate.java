@@ -3,9 +3,14 @@ package database.mysql;
 
 import org.junit.*;
 
+import java.sql.Connection;
+
 import static org.junit.Assert.*;
 
-public class TestUnitCreate {
+public class TestUnitCreate extends MySQLDatabase{
+    public TestUnitCreate() {
+        super();
+    }
 
     private static final String pseudo = "test";
     private static final String nom = "test";
@@ -14,24 +19,30 @@ public class TestUnitCreate {
     private static final String password = "test";
     private static final int age = 11;
 
-    @BeforeClass public static void begin(){
-        database.mysql.MySQLDatabase database = new MySQLDatabase();
+    //DATABASE pour les test
+    private static final String urlTEST = "jdbc:mysql://mysql-lpepd.alwaysdata.net/lpepd_test";
+    private static final String userTEST = "lpepd_test";
+    private static final String passwordTEST = "G3792WtYcXhs";
+    private static final Connection connectionTEST = Connect.connection(urlTEST,userTEST,passwordTEST);
 
-        if(database.existPseudo(pseudo)){
-            database.deleteUser(pseudo);
+    @BeforeClass public static void begin(){
+        TestUnitCreate database = new TestUnitCreate();
+
+        if(database._existPseudo(pseudo,connectionTEST)){
+            database._deleteUser(pseudo,connectionTEST);
         }
     }
 
     @Test public void creationUtilisateur(){
-        database.mysql.MySQLDatabase database = new MySQLDatabase();
+        TestUnitCreate database = new TestUnitCreate();
 
 
         boolean bool1;
         boolean bool2;
 
-        bool1 = database.addUser(pseudo,nom,prenom,email,password,age);
+        bool1 = database._addUser(pseudo,nom,prenom,email,password,age,connectionTEST);
 
-        bool2 = database.existPseudo(pseudo);
+        bool2 = database._existPseudo(pseudo,connectionTEST);
 
         //System.out.println(bool1);
         //System.out.println(bool2);
@@ -41,10 +52,10 @@ public class TestUnitCreate {
 
 
     @AfterClass public static void end(){
-        database.mysql.MySQLDatabase database = new MySQLDatabase();
+        TestUnitCreate database = new TestUnitCreate();
 
-        if(database.existPseudo(pseudo)){
-            database.deleteUser(pseudo);
+        if(database._existPseudo(pseudo,connectionTEST)){
+            database._deleteUser(pseudo,connectionTEST);
         }
     }
 
