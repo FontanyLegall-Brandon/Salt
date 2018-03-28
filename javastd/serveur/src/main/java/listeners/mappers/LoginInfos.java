@@ -2,12 +2,19 @@ package listeners.mappers;
 
 public class LoginInfos {
 	
+
 	private String email;
 	private String password;
 	
 	public LoginInfos() {
 		
 	}
+	
+	public LoginInfos(String email, String password) {
+		this.email = email;
+		this.password = password;
+	}
+
 	
 	public String getEmail() {
 		return email;

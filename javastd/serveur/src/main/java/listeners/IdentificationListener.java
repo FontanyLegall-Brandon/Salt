@@ -17,6 +17,8 @@ public class IdentificationListener implements DataListener<LoginInfos> {
 	
 	public void onData(SocketIOClient socket, LoginInfos user, AckRequest ackRequest) {
 		
+		System.out.println("Not yet implemented");
+		
 	}
 
 }

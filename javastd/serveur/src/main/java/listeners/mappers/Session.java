@@ -12,26 +12,27 @@ public class Session {
     private final String nom;
     private final String email;
     private final int age;
-
+    
+    /**
+     * Le constructeur de la classe Session, il regroupe toutes les informations d'un compte :
+     * <ul>
+     *     <li>son identifiant(id) <strong>unique</strong></li>
+     *     <li>son pseudo <strong>unique</strong></li>
+     *     <li>son nom</li>
+     *     <li>son prenom</li>
+     *     <li>son email <strong>unique</strong></li>
+     *     <li>son age</li>
+     * </ul>
+     *
+     * @param id l'id du compte
+     * @param pseudo le pseudo du compte
+     * @param nom le nom de la personne ayant créé le compte
+     * @param prenom le prenom de la personne ayant créé le compte
+     * @param email l'email du compte
+     * @param age l'age de la personne ayant créé le compte
+     */
     public Session(int id, String pseudo, String prenom, String nom, String email, int age) {
-        /**
-         * Le constructeur de la classe Session, il regroupe toutes les informations d'un compte :
-         * <ul>
-         *     <li>son identifiant(id) <strong>unique</strong></li>
-         *     <li>son pseudo <strong>unique</strong></li>
-         *     <li>son nom</li>
-         *     <li>son prenom</li>
-         *     <li>son email <strong>unique</strong></li>
-         *     <li>son age</li>
-         * </ul>
-         *
-         * @param id l'id du compte
-         * @param pseudo le pseudo du compte
-         * @param nom le nom de la personne ayant créé le compte
-         * @param prenom le prenom de la personne ayant créé le compte
-         * @param email l'email du compte
-         * @param age l'age de la personne ayant créé le compte
-         */
+
         this.id = id;
         this.pseudo = pseudo;
         this.prenom = prenom;
