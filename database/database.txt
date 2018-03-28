@@ -4,3 +4,12 @@ nom : lpepd_database
 utilisateur : lpepd
 hôte : mysql-lpepd.alwaysdata.net
 mdp : qt8i244AZUsA
+
+----------------------------------
+https://phpmyadmin.alwaysdata.com
+
+nom : lpepd_test
+utilisateur : test
+hôte : mysql-lpepd.alwaysdata.net
+mdp : G3792WtYcXhs
+
