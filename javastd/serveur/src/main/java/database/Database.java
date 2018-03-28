@@ -2,10 +2,11 @@ package database;
 
 
 import serveur.Avancement;
-import serveur.Session;
 
 import java.util.HashSet;
 import java.util.Hashtable;
+
+import listeners.mappers.Session;
 
 /**
  * la database sous forme d'interface va nous permettre d'interragir entre le serveur et la database.
