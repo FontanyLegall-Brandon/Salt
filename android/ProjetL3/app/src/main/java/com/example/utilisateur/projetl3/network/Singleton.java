@@ -5,7 +5,11 @@ import android.widget.Toast;
 import com.example.utilisateur.projetl3.ActivityForIO;
 import com.example.utilisateur.projetl3.RegisterRequest;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.net.URISyntaxException;
+import java.util.HashMap;
 
 import io.socket.client.IO;
 import io.socket.client.Socket;
@@ -62,6 +66,21 @@ public enum Singleton {
 
         } catch (URISyntaxException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void sendNewUser(RegisterRequest request) {
+        if ((mSocket != null) && (mSocket.connected())) {
+            JSONObject obj = new JSONObject();
+            HashMap<String, String> map = request.getParams();
+            try {
+                for (String id : map.keySet()) {
+                    obj.put(id, map.get(id));
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            mSocket.emit("newUser", obj);
         }
     }
 
