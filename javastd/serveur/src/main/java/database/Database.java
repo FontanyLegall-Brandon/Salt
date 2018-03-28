@@ -24,6 +24,7 @@ public interface Database {
   Session connection(String email, String password);
   Boolean editPassword(int id,String old,String password,String passwordVerification);
   Boolean existUser(String pseudo);
+  Boolean existEmail(String email);
   Boolean deleteUser(String pseudo);
   HashSet<Avancement> getUserAvancement(int userID);
   HashSet<Avancement> getUserAvancementOf(int UserID,int ExerciceID);
