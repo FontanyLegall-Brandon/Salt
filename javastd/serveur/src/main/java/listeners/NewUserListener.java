@@ -52,7 +52,7 @@ public class NewUserListener implements DataListener<UserInfo> {
         else { // Si le joueur n'existe pas encore
 
             // On inscrit le joueur dans la BDD
-            if(database.addUser(user.getPseudo(), user.getNom(), user.getPrenom(), user.getEmail(), user.getPassword(), user.getAge())) {
+            if(database.addUser(user.getPseudo(), user.getNom(), user.getPrenom(), user.getEmail(), "pass"/*user.getPassword()*/, user.getAge())) {
                 // Dans le cas ou l'inscrition a marché
                 System.out.println("Sign up successful");
                 socket.sendEvent("signUpReply", new Reply("signedUp"));
