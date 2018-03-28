@@ -3,7 +3,8 @@ package database.mysql;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import serveur.Session;
+
+import listeners.mappers.Session;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
