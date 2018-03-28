@@ -39,7 +39,7 @@ public class PomDragAndDrop extends AppCompatActivity {
         //On ajoute dynamiquement le nombre de poms' présentes afin de pouvoir remplir le but.
         ajouterPomsDans(moteur.getStock(),zoneJeu);
         TextView intitule =findViewById(R.id.intitule);
-        intitule.setText("On veut "+moteur.getGoal()+" pommes dans le panier.");
+        intitule.setText("On veut "+moteur.getGoal()+" poms' dans le panier.");
 
         //Le listener pour le menu de bas d'activité.
         GameUI gameUi =findViewById(R.id.gameUi);
@@ -162,5 +162,10 @@ public class PomDragAndDrop extends AppCompatActivity {
             }
             return true;
         }
+    }
+
+    //Seulement pour les tests.
+    public DragAndDrop getMoteur(){
+        return moteur;
     }
 }
