@@ -54,8 +54,8 @@ public class TestNewUser {
     	// Base de donnée
         when(bdd.addUser(any(), any(), any(), any(), any(), anyInt())).thenReturn(true);		// L'ajout marche toujours
         when(bdd.addUser(eq("titi"), any(), any(), any(), any(), anyInt())).thenReturn(false);	// Sauf pour le pseudo titi
-        when(bdd.existUser(anyString())).thenReturn(false);
-        when(bdd.existUser("toto")).thenReturn(true);			// Encore une fois ici toto est un pseudo existant
+        when(bdd.existPseudo(anyString())).thenReturn(false);
+        when(bdd.existPseudo("toto")).thenReturn(true);			// Encore une fois ici toto est un pseudo existant
         
         // Serveur
         when(serveur.getDatabase()).thenReturn(bdd);    // Permet d'injecter la mock db dans le mock server…

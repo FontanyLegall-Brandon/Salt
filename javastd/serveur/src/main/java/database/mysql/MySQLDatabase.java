@@ -169,7 +169,7 @@ public class MySQLDatabase implements database.Database {
      * @return un boolean permettant de savoir si oui ou non l'utilisateur existe
      */
     @Override
-    public Boolean existUser(String pseudo) {
+    public Boolean existPseudo(String pseudo) {
         Connection con = Connect.connection();
         Boolean bool = false;
         int nb = 0;

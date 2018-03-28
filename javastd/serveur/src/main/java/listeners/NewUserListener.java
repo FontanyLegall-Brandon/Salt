@@ -38,7 +38,7 @@ public class NewUserListener implements DataListener<UserInfo> {
 
         Database database = server.getDatabase();
 
-        if (database.existUser(user.getPseudo())) {//si le joueur existe déjà
+        if (database.existPseudo(user.getPseudo())) {//si le joueur existe déjà
             socket.sendEvent("signUpReply", new Reply("userAlreadyExists"));
         }
         /*

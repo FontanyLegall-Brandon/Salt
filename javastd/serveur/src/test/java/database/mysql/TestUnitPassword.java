@@ -27,7 +27,7 @@ public class TestUnitPassword {
     public static void begin(){
         database.mysql.MySQLDatabase database = new MySQLDatabase();
 
-        if(database.existUser(pseudo)==false){
+        if(database.existPseudo(pseudo)==false){
             database.addUser(pseudo,nom,prenom,email,password,age);
         }
     }
@@ -78,7 +78,7 @@ public class TestUnitPassword {
     @AfterClass public static void end(){
         database.mysql.MySQLDatabase database = new MySQLDatabase();
 
-        if(database.existUser(pseudo)){
+        if(database.existPseudo(pseudo)){
             database.deleteUser(pseudo);
         }
     }

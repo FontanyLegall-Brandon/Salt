@@ -22,7 +22,7 @@ public class TestUnitConnexion {
     @BeforeClass public static void begin(){
         Database database = new MySQLDatabase();
 
-        if(database.existUser(pseudo)==false){
+        if(database.existPseudo(pseudo)==false){
             database.addUser(pseudo,nom,prenom,email,password,age);
         }
     }
@@ -46,7 +46,7 @@ public class TestUnitConnexion {
     @AfterClass public static void end(){
         Database database = new MySQLDatabase();
 
-        if(database.existUser(pseudo)){
+        if(database.existPseudo(pseudo)){
             database.deleteUser(pseudo);
         }
     }

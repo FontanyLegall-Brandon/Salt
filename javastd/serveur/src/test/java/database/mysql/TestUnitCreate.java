@@ -17,7 +17,7 @@ public class TestUnitCreate {
     @BeforeClass public static void begin(){
         database.mysql.MySQLDatabase database = new MySQLDatabase();
 
-        if(database.existUser(pseudo)){
+        if(database.existPseudo(pseudo)){
             database.deleteUser(pseudo);
         }
     }
@@ -31,7 +31,7 @@ public class TestUnitCreate {
 
         bool1 = database.addUser(pseudo,nom,prenom,email,password,age);
 
-        bool2 = database.existUser(pseudo);
+        bool2 = database.existPseudo(pseudo);
 
         System.out.println(bool1);
         System.out.println(bool2);
@@ -43,7 +43,7 @@ public class TestUnitCreate {
     @AfterClass public static void end(){
         database.mysql.MySQLDatabase database = new MySQLDatabase();
 
-        if(database.existUser(pseudo)){
+        if(database.existPseudo(pseudo)){
             database.deleteUser(pseudo);
         }
     }
