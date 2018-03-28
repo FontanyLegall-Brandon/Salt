@@ -37,13 +37,9 @@ public class PomDragAndDrop extends AppCompatActivity {
         // Via ce constructeur : moteur = new DragAndDrop(3);
         moteur = new DragAndDrop();
         //On ajoute dynamiquement le nombre de poms' présentes afin de pouvoir remplir le but.
-        for(int i=0; i<moteur.getStock(); i++){
-            View pom = LayoutInflater.from(this).inflate(R.layout.component_pom, zoneJeu, false);
-            pom.setOnTouchListener(new MyTouchListener());
-            zoneJeu.addView(pom);
-        }
+        ajouterPomsDans(moteur.getStock(),zoneJeu);
         TextView intitule =findViewById(R.id.intitule);
-        intitule.setText("On veut "+moteur.getGoal()+" pom' dans le panier.");
+        intitule.setText("On veut "+moteur.getGoal()+" poms' dans le panier.");
 
         //Le listener pour le menu de bas d'activité.
         GameUI gameUi =findViewById(R.id.gameUi);
@@ -51,7 +47,8 @@ public class PomDragAndDrop extends AppCompatActivity {
             @Override
             public void onUIInteraction(String type) {
                 Log.d("PomDragAndDrop","On a cliqué sur le gameUI et l'event est : "+type+".");
-                if(type.equals("valid")){
+                if(type.equals("valider")){
+                    Log.d("PomDragAndDrop", "Le joueur veut valider sa réponse.");
                     //On vérifie que la réponse est juste.
                     ViewGroup panier = findViewById(R.id.panier);
                     int res =moteur.verifWin(panier.getChildCount()-1);
@@ -69,10 +66,34 @@ public class PomDragAndDrop extends AppCompatActivity {
                         }
                     }
                 }else{
-                    //Remettre le jeu à 0
+                    if(type.equals("recommencer")){
+                        Toast.makeText(getApplicationContext(), "Recommencer.",Toast.LENGTH_SHORT).show();
+                        reInit();
+                    }
                 }
             }
         });
+    }
+
+    public void ajouterPomsDans(int nbPoms,ViewGroup container){
+        for(int i=0; i<nbPoms; i++){
+            View pom = LayoutInflater.from(this).inflate(R.layout.component_pom, container, false);
+            pom.setOnTouchListener(new MyTouchListener());
+            container.addView(pom);
+        }
+    }
+
+    public void reInit(){
+        ViewGroup panier = findViewById(R.id.panier);
+        ViewGroup zoneJeu =findViewById(R.id.zoneJeu);
+        View pom=panier.findViewWithTag("pomme");
+        while(pom!=null){
+            panier.removeView(pom);
+            pom=panier.findViewWithTag("pomme");
+        }
+        majCmpt(panier);
+        zoneJeu.removeAllViews();
+        ajouterPomsDans(moteur.getStock(),zoneJeu);
     }
 
     public void majCmpt(ViewGroup container){
