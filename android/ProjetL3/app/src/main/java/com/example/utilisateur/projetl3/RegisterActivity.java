@@ -33,7 +33,7 @@ public class RegisterActivity extends ActivityForIO {
                 final String pseudo = etPseudo.getText().toString();
                 final String mdp = etMDP.getText().toString();
                 if (Singleton.CLIENT.is_connected()) {//si on est connecté au serveur, on envoie les données
-                    RegisterRequest newUser= new RegisterRequest(prenom, nom, 0, email, pseudo, mdp);
+                    RegisterRequest newUser= new RegisterRequest(prenom, nom, age, email, pseudo, mdp);
                     Singleton.CLIENT.sendNewUser(newUser);
                 } //TODO : finir et gérer les problèmes d'inscription
         }});

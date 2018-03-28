@@ -23,7 +23,7 @@ public class RegisterRequest {
         params.put("age", age + ""); //conversion int to string
         params.put("email", email);
         params.put("pseudo", pseudo);
-        params.put("mdp", mdp);
+        params.put("password", mdp);
     }
 
     public HashMap<String, String> getParams() {
