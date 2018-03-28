@@ -19,7 +19,6 @@ public class Client {
     public Client() {
     }
 
-
     public void disconnect() {
         if (mSocket != null) mSocket.disconnect();
     }
