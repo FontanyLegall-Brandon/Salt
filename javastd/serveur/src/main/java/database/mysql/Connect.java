@@ -55,6 +55,11 @@ public class Connect {
 
         Connect.connection();
 
+        //String url = "jdbc:mysql://mysql-lpepd.alwaysdata.net/lpepd_test";
+        //String user = "lpepd_test";
+        //String password = "G3792WtYcXhs";
+        //Connect.connection(url,user,password);
+
 
     }
 }

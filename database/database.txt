@@ -9,7 +9,7 @@ mdp : qt8i244AZUsA
 https://phpmyadmin.alwaysdata.com
 
 nom : lpepd_test
-utilisateur : test
+utilisateur : lpepd_test
 hôte : mysql-lpepd.alwaysdata.net
 mdp : G3792WtYcXhs
 

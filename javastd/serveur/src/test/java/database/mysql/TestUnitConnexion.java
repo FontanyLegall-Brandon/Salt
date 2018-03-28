@@ -7,9 +7,11 @@ import org.junit.Test;
 import database.Database;
 import serveur.Session;
 
+import java.sql.Connection;
+
 import static org.junit.Assert.assertEquals;
 
-public class TestUnitConnexion {
+public class TestUnitConnexion extends MySQLDatabase{
 
     private static final String pseudo = "test";
     private static final String nom = "test";
@@ -17,6 +19,11 @@ public class TestUnitConnexion {
     private static final String email = "test@test.fr";
     private static final String password = "test";
     private static final int age = 11;
+
+    private static final String urlDB = "jdbc:mysql://mysql-lpepd.alwaysdata.net/lpepd_test";
+    private static final String userDB = "lpepd_test";
+    private static final String passwordDB = "G3792WtYcXhs";
+    private static final Connection connection = Connect.connection(urlDB,userDB,passwordDB);
 
 
     @BeforeClass public static void begin(){

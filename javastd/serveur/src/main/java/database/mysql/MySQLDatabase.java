@@ -540,6 +540,7 @@ public class MySQLDatabase implements database.Database {
 //
 //        Database database = new MySQLDatabase();
 //
+//
 //        /*
 //        Hashtable hashtable = new Hashtable<Integer, String>();
 //        hashtable = database.getExerciceList();
