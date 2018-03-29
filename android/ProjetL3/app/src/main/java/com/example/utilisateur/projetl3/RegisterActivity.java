@@ -1,10 +1,16 @@
 package com.example.utilisateur.projetl3;
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import com.example.utilisateur.projetl3.network.Singleton;
 
 
@@ -21,6 +27,43 @@ public class RegisterActivity extends ActivityForIO {
         final EditText etPseudo = (EditText) findViewById(R.id.etPseudo);
         final EditText etMDP = (EditText) findViewById(R.id.etMDP);
         final Button buttonSinscrire = (Button) findViewById(R.id.buttonSinscrire);
+        buttonSinscrire.setBackgroundColor(Color.GRAY);
+        buttonSinscrire.setEnabled(false);
+
+        TextWatcher textWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (etAge.getText().length()==0 ||
+                        etEmail.getText().length()==0 ||
+                        etMDP.getText().length()==0 ||
+                        etNom.getText().length()==0 ||
+                        etPrenom.getText().length()==0 ||
+                        etPseudo.getText().length()==0) {
+                    findViewById(R.id.buttonSinscrire).setEnabled(false);
+                    buttonSinscrire.setBackgroundColor(Color.GRAY);
+                } else {
+                    findViewById(R.id.buttonSinscrire).setEnabled(true);
+                    buttonSinscrire.setBackgroundColor(Color.WHITE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {//active le bouton inscription seulement quand tous les champs sont remplis
+
+            }
+        };
+
+        etAge.addTextChangedListener(textWatcher);
+        etPrenom.addTextChangedListener(textWatcher);
+        etNom.addTextChangedListener(textWatcher);
+        etEmail.addTextChangedListener(textWatcher);
+        etPseudo.addTextChangedListener(textWatcher);
+        etMDP.addTextChangedListener(textWatcher);
 
         buttonSinscrire.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,7 +78,9 @@ public class RegisterActivity extends ActivityForIO {
                 if (Singleton.CLIENT.is_connected()) {//si on est connecté au serveur, on envoie les données
                     RegisterRequest newUser= new RegisterRequest(prenom, nom, age, email, pseudo, mdp);
                     Singleton.CLIENT.sendNewUser(newUser);
-                } //TODO : finir et gérer les problèmes d'inscription
+                } else {//TODO : prendre en compte les réponses lors de l'inscription
+                    Toast.makeText(getApplicationContext(),"Vous n'êtes pas connecté au serveur", Toast.LENGTH_LONG).show();
+                }
         }});
     }
 }
