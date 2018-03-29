@@ -34,35 +34,50 @@ public class TestConnexion {
 	
 	private Session session1, session2, sessionVide;
 	
-	private LoginInfos infos1, infos2;
+	private LoginInfos infosLoginCorrect, infosMauvaisMdp;
 
     @Before
     public void setup() {
     	
     	session1 = new Session(1, "Toto", "Charles-Henri", "Michel", "toto@titi.fr", 59);
     	//session2 = new Session(2, "Tata", "Jean-Marie", "Martin", "tata@titi.fr", 68);
-    	//sessionVide = new Session(0, null, null, null, null, 0);
+    	sessionVide = new Session(0, null, null, null, null, 0);
     	
-    	infos1 = new LoginInfos("toto@titi.fr", "mdp");
-    	infos2 = new LoginInfos("toto@titi.fr", "mauvaisMdp");
+    	infosLoginCorrect = new LoginInfos("toto@titi.fr", "mdp");
+    	infosMauvaisMdp = new LoginInfos("toto@titi.fr", "mauvaisMdp");
     	
-    	when(serveur.getDatabase()).thenReturn(database);
-    	
+    	when(serveur.getDatabase()).thenReturn(database);	// Le mock serveur contient maintenant notre mock database
+
+		// Quand on se connecte avec l'email toto avec n'importe quel mdp on renvoit une session vide (mauvais login)
     	when(database.connection(eq("toto@titi.fr"), anyString())).thenReturn(sessionVide);
+    	// mais si l'on a le bon mdp on renvoit la session1
     	when(database.connection(eq("toto@titi.fr"), eq("mdp"))).thenReturn(session1);
-    	
+
+    	// Instanciation du listener que l'on va tester
     	listenerTest = new IdentificationListener(serveur);
 		
     }
 
     @Test
-    public void testWorkingLogin() {
+    public void workingLogin() {
+
+        // On appel le onData du listener avec un couple login mdp auquel la bd répond positivement
+    	listenerTest.onData(socketClient, infosLoginCorrect, null);
     	
-    	listenerTest.onData(socketClient, infos1, null);
-    	
-    	verify(socketClient).sendEvent(eq("session"), refEq(session1));
+    	verify(socketClient).sendEvent(eq("session"), refEq(session1)); // Vérifie qu'on renvoit une session
     	
     }
 
+
+    @Test
+    public void incorrectLogin() {
+
+        // Appel de onData avec un mdp considéré par la bd comme mauvais
+        listenerTest.onData(socketClient, infosMauvaisMdp, null);
+
+        // Vérifie que le message de retour indique que le login est incorrect
+        verify(socketClient).sendEvent(eq("badCredentials"), any());
+
+    }
 
 }
