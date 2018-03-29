@@ -28,9 +28,21 @@ public class MenuPrincipal extends Activity {
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent jouerIntent = new Intent(MenuPrincipal.this,PomDragAndDrop.class); //On devra faire une classe qui séléctionne et lance differents jeux en fonction du niveau du joueur.
+                Intent jouerIntent = new Intent(MenuPrincipal.this, PomDragAndDrop.class); //On devra faire une classe qui séléctionne et lance differents jeux en fonction du niveau du joueur.
                 MenuPrincipal.this.startActivity(jouerIntent);
             }
         });
-    }
-}
+
+        Button profil = findViewById(R.id.button_profil);
+        profil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent profilIntent = new Intent(MenuPrincipal.this, ProfilActivity.class);
+                MenuPrincipal.this.startActivity(profilIntent);
+            }
+        });
+    }}
+
+
+
+

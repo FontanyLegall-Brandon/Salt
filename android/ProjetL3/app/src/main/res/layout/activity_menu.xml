@@ -4,27 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/saltfond"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:weightSum="1"
-    tools:context=".Menu"
-    tools:ignore="MissingPrefix"
 
-    android:background="@drawable/saltfond">
+    tools:context=".Menu"
+    tools:ignore="MissingPrefix">
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:layout_width="202dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/sfcomicscriptnormal"
         android:text="@string/identifiants"
+        android:textAlignment="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@android:color/white"
-        android:textSize="28sp"
-        fontPath="fonts/sfcomicscriptnormal.ttf"/>
+        android:textSize="34sp" />
 
     <EditText
         android:id="@+id/etPseudo"
@@ -32,9 +33,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:ems="10"
-        fontPath="fonts/sfcomicscriptnormal.ttf"
+        android:fontFamily="@font/sfcomicscriptnormal"
         android:hint="Pseudo"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:textSize="24sp" />
 
     <EditText
         android:id="@+id/etMDP"
@@ -42,31 +44,49 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:ems="10"
-        fontPath="fonts/sfcomicscriptnormal.ttf"
-        android:hint="Mot de pass"
-        android:inputType="textPassword" />
+        android:fontFamily="@font/sfcomicscriptnormal"
+        android:hint="Mot de passe"
+        android:inputType="textPassword"
+        android:textSize="24sp" />
 
     <Button
         android:id="@+id/buttonValid"
-        android:layout_width="wrap_content"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="@android:color/white"
-        fontPath="fonts/sfcomicscriptnormal.ttf"
+        android:fontFamily="@font/sfcomicscriptnormal"
         android:text="Se connecter"
-        android:textColor="@android:color/holo_red_dark" />
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="28sp" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sfcomicscriptnormal"
+        android:text="Tu n'es toujours pas inscrit ?"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvSinscrireici"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        fontPath="fonts/sfcomicscriptnormal.ttf"
+        android:fontFamily="@font/sfcomicscriptshaded"
         android:text="S'inscrire ici!"
         android:textAlignment="center"
+        android:textAllCaps="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:visibility="visible"/>
+        android:textSize="26sp"
+        android:textStyle="bold|italic"
+        android:visibility="visible" />
 
 </LinearLayout>

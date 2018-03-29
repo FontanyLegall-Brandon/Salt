@@ -14,6 +14,13 @@
         android:layout_marginTop="10dp"
         android:text="On veut 1 pom' dans le panier." />
 
+    <!--Pour l'utilité qu'on en a on pourrait changer "panier" et "zoneJeu" en gridLayout, cela permettra par la suite de :
+            1-Faire des tests correctement avec espresso. (qui ne semble pas pouvoir prendre un élément parmis plusieurs.)
+            2-Pouvoir créer plusieurs lignes de poms' au lieu d'une seule dans chaqu'un des layouts.
+
+       TODO : Faire toutes les modifications necessaires à l'implémentation d'un GridLayout à la place du LinearLayout actuel.
+    -->
+
     <LinearLayout
         android:id="@+id/panier"
         android:tag="container"
