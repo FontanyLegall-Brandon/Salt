@@ -8,7 +8,9 @@ import com.corundumstudio.socketio.listener.ConnectListener;
 import com.corundumstudio.socketio.listener.DataListener;
 import com.corundumstudio.socketio.listener.DisconnectListener;
 import database.Database;
+import listeners.IdentificationListener;
 import listeners.NewUserListener;
+import listeners.mappers.LoginInfos;
 import listeners.mappers.UserInfo;
 import java.util.concurrent.TimeUnit;
 
@@ -88,6 +90,7 @@ public class Server {
         this.socketServer.addConnectListener(connectListener);
         this.socketServer.addDisconnectListener(disconnectListener);
         this.socketServer.addEventListener("newUser", UserInfo.class, new NewUserListener(this));
+        this.socketServer.addEventListener("login", LoginInfos.class, new IdentificationListener(this));
     }
 
     public Database getDatabase() {
