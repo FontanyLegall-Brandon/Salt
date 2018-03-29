@@ -21,6 +21,10 @@ public class UserInfo {
         this.age = age;
     }
 
+    public UserInfo() {
+
+    }
+
 
     /*  le mapping se fait automatiquement et on
         n'a pas à modifier le message par la suite
@@ -58,5 +62,19 @@ public class UserInfo {
         return nom;
     }
 
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
 
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
 }

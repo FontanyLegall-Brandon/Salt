@@ -163,4 +163,9 @@ public class PomDragAndDrop extends AppCompatActivity {
             return true;
         }
     }
+
+    //Seulement pour les tests.
+    public DragAndDrop getMoteur(){
+        return moteur;
+    }
 }
