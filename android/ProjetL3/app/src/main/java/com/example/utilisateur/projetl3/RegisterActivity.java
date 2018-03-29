@@ -1,5 +1,6 @@
 package com.example.utilisateur.projetl3;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -35,7 +36,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends Activity {
     final static String url = "http://192.168.43.244:1345";
 
 
@@ -43,6 +44,8 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        /*
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         final EditText etAge = (EditText) findViewById(R.id.etAge);   //on trouve le textview etAge (issu du xml) et on dit qu'il est du type EditText puis on l'appelle etAge
         final EditText etPrenom = (EditText) findViewById(R.id.etPrenom);
@@ -193,6 +196,6 @@ public class RegisterActivity extends AppCompatActivity {
                 return result;
             }
         });
-
+*/
         }
 }

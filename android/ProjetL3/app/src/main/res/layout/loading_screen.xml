@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:theme="@android:style/Theme.NoTitleBar"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/saltfond">
 
     <ImageView
         android:id="@+id/animatedLoading"
@@ -25,6 +26,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="12dp"
         android:text="Veuillez patienter"
+        android:fontFamily="@font/sfcomicscriptnormal"
         tools:layout_editor_absoluteX="138dp"
         tools:layout_editor_absoluteY="313dp" />
 
