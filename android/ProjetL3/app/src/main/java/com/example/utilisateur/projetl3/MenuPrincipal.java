@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.utilisateur.projetl3.Aides.ListeAides;
 import com.example.utilisateur.projetl3.gameTemplates.PomDragAndDrop;
 
 /**
@@ -39,6 +40,15 @@ public class MenuPrincipal extends Activity {
             public void onClick(View v) {
                 Intent profilIntent = new Intent(MenuPrincipal.this, ProfilActivity.class);
                 MenuPrincipal.this.startActivity(profilIntent);
+            }
+        });
+
+        Button aides = findViewById(R.id.buttonAides);
+        aides.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent aidesIntent = new Intent(MenuPrincipal.this, ListeAides.class);
+                MenuPrincipal.this.startActivity(aidesIntent);
             }
         });
     }}

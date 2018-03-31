@@ -19,6 +19,8 @@
         <activity android:name=".MenuPrincipal" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".UserAreaActivity"/>
+        <activity android:name=".Aides.ListeAides"/>
+        <activity android:name=".Aides.AideActivity"/>
         <activity android:name=".gameTemplates.PomDragAndDrop"/>
     </application>
 
