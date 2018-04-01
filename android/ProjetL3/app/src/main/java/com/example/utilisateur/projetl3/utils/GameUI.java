@@ -1,6 +1,7 @@
 package com.example.utilisateur.projetl3.utils;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -26,6 +27,17 @@ public class GameUI extends RelativeLayout {
     public GameUI(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.GameUI, 0, 0);
+
+        //On considérera qu'on peut reload par défaut.
+        Boolean canReload = a.getBoolean(R.styleable.GameUI_canReload,true);
+
+        //Si on ne peut pas reload on supprime le bouton.
+        if(!canReload){
+            removeView(findViewById(R.id.resetButton));
+        }
+
+        a.recycle();
     }
 
     public void setUiListener(UIInteractionsListener listen){
