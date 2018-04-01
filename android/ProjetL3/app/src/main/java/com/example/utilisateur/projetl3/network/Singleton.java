@@ -23,11 +23,13 @@ public enum Singleton {
     CLIENT;
     private Socket mSocket;
     private boolean failedConnect;
+    private ActivityForIO activity;
+
     private Singleton() {
         connect();
-        failedConnect=false;
+        failedConnect = false;
     }
-    private ActivityForIO activity;
+
     public void connect() {
         boolean connected = false;
         try {
@@ -84,10 +86,22 @@ public enum Singleton {
         }
     }
 
+    public void sendLogin(String login, String password) {
+        if ((mSocket != null) && (mSocket.connected())) {
+            JSONObject obj = new JSONObject();
+            try {
+                obj.put("login", login);
+                obj.put("password", password);
+                mSocket.emit("login", obj);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public boolean is_connected() {
         return mSocket.connected();
     }
-
 
     public void setActivity(ActivityForIO activity) {
         this.activity = activity;

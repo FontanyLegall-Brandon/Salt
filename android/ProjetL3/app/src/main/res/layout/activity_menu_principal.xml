@@ -36,45 +36,23 @@
         android:textSize="34sp" />
 
     <Button
-        android:id="@+id/buttonJouer"
-        android:layout_width="111dp"
+        android:id="@+id/pommes"
+        android:layout_width="151dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="@android:color/white"
         android:fontFamily="@font/sfcomicscriptnormal"
-        android:text="Jouer"
+        android:text="Pommes"
         android:textColor="@android:color/holo_red_dark"
         android:textSize="22sp" />
 
     <Button
-        android:id="@+id/buttonAides"
-        android:layout_width="110dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:backgroundTint="@android:color/white"
-        android:fontFamily="@font/sfcomicscriptnormal"
-        android:text="Aides"
-        android:textColor="@android:color/holo_red_dark"
-        android:textSize="22sp" />
-
-    <Button
-        android:id="@+id/buttonScores"
-        android:layout_width="109dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:backgroundTint="@android:color/white"
-        android:fontFamily="@font/sfcomicscriptnormal"
-        android:text="Scores"
-        android:textColor="@android:color/holo_red_dark"
-        android:textSize="22sp" />
-
-    <Button
-        android:id="@+id/button_profil"
+        android:id="@+id/buttonProfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@android:color/white"
+        android:layout_gravity="center_horizontal"
         android:fontFamily="@font/sfcomicscriptnormal"
         android:text="Profil"
         android:textColor="@android:color/holo_red_dark"
-        android:textSize="18sp" />
+        android:textSize="22sp" />
 </LinearLayout>

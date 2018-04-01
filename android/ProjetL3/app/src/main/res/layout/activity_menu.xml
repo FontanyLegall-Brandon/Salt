@@ -51,13 +51,26 @@
 
     <Button
         android:id="@+id/buttonValid"
-        style="@style/Widget.AppCompat.Button"
+
         android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/sfcomicscriptnormal"
+        android:text="Se connecter"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="28sp" />
+
+    <Button
+        android:id="@+id/playButton"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="245dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="@android:color/white"
         android:fontFamily="@font/sfcomicscriptnormal"
-        android:text="Se connecter"
+        android:text="Jouer!"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@android:color/holo_red_dark"
