@@ -34,7 +34,7 @@ public class ProfilActivity extends Activity {
         logout.setOnClickListener(new View.OnClickListener() {
 
         public void onClick(View v) {
-            Intent out = new Intent(ProfilActivity.this,WelcomeActivity.class); //On devra faire une classe qui séléctionne et lance differents jeux en fonction du niveau du joueur.
+            Intent out = new Intent(ProfilActivity.this,WelcomeActivity.class);
             ProfilActivity.this.startActivity(out);
         }
     });

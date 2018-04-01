@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.utilisateur.projetl3.ActivityForIO;
 import com.example.utilisateur.projetl3.R;
 import com.example.utilisateur.projetl3.gameTemplates.MoteurJeux.DragAndDrop;
 import com.example.utilisateur.projetl3.utils.GameUI;
@@ -21,7 +22,7 @@ import com.example.utilisateur.projetl3.utils.UIInteractionsListener;
  * Created by Utilisateur on 01/03/2018.
  */
 
-public class PomDragAndDrop extends AppCompatActivity {
+public class PomDragAndDrop extends ActivityForIO {
 
     private DragAndDrop moteur;
 
@@ -100,10 +101,10 @@ public class PomDragAndDrop extends AppCompatActivity {
         int count = container.getChildCount();
         //Cherche un endroit pour afficher le nombre de poms' contenues.
         TextView cmpt = container.findViewWithTag("cmpt");
-        if(cmpt !=null) {
+        /*if(cmpt !=null) {
             //On prend "count-1" car le TextView est considéré comme un enfant.
             cmpt.setText("Contient " + (count - 1) + " poms'.");
-        }
+        }*/
     }
 
     private final class MyTouchListener implements View.OnTouchListener {
