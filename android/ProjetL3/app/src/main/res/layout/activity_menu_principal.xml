@@ -47,6 +47,17 @@
         android:textSize="22sp" />
 
     <Button
+        android:id="@+id/buttonAides"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/sfcomicscriptnormal"
+        android:backgroundTint="@android:color/white"
+        android:text="Aides"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="22sp" />
+
+    <Button
         android:id="@+id/buttonProfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
