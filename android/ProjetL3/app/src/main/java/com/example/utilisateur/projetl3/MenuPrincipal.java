@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.utilisateur.projetl3.Aides.ListeAides;
 import com.example.utilisateur.projetl3.gameTemplates.PomDragAndDrop;
+import com.example.utilisateur.projetl3.gameTemplates.TindNumber;
 
 /**
  * Created by Utilisateur on 14/02/2018.
@@ -35,6 +36,14 @@ public class MenuPrincipal extends ActivityForIO {
             }
         });
 
+        Button tindNumber = findViewById(R.id.tindNumber);
+        tindNumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent tindNumberIntent = new Intent(MenuPrincipal.this, TindNumber.class);
+                MenuPrincipal.this.startActivity(tindNumberIntent);
+            }
+        });
 
         Button profil = findViewById(R.id.buttonProfil);
         profil.setEnabled(false);

@@ -50,7 +50,7 @@ public class PomDragAndDrop extends ActivityForIO {
                 if(type.equals("valider")){
                     //On vérifie que la réponse est juste.
                     ViewGroup panier = findViewById(R.id.panier);
-                    int res =moteur.verifWin(panier.getChildCount()-1);
+                    int res = moteur.verifWin(panier.getChildCount());
                     if(res==1){
                         Toast.makeText(getApplicationContext(), "Victoire!",
                                 Toast.LENGTH_SHORT).show();
