@@ -50,8 +50,6 @@ public class TindNumber extends ActivityForIO {
 
             @Override
             public void removeFirstObjectInAdapter() {
-                System.err.println(i);
-                System.err.println("finished ? : " + finished);
                 cards.remove(0);
                 adapter.notifyDataSetChanged();
             }
@@ -68,7 +66,6 @@ public class TindNumber extends ActivityForIO {
                     }
                 }
                 if (currentCard != null) {
-                    System.out.println("" + currentCard + " : " + currentCard.getCorrect());
                     currentCard = cards.get(0);
                 }
                 i++;
@@ -88,7 +85,6 @@ public class TindNumber extends ActivityForIO {
                     }
                 }
                 if (currentCard != null) {
-                    System.out.println("" + currentCard + " : " + currentCard.getCorrect());
                     currentCard = cards.get(0);
                 }
                 i++;
