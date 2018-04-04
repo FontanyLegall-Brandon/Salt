@@ -1,12 +1,12 @@
-package com.example.utilisateur.projetl3.gameTemplates;
+package com.example.utilisateur.projetl3.gameTemplates.MoteurJeux.randomEqualities;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 import com.example.utilisateur.projetl3.ActivityForIO;
 import com.example.utilisateur.projetl3.R;
 import com.example.utilisateur.projetl3.gameTemplates.MoteurJeux.randomEqualities.EndCard;
+import com.example.utilisateur.projetl3.gameTemplates.MoteurJeux.randomEqualities.Operation;
 import com.example.utilisateur.projetl3.gameTemplates.MoteurJeux.randomEqualities.RandomAddition;
 import com.example.utilisateur.projetl3.gameTemplates.MoteurJeux.randomEqualities.RandomEquality;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
@@ -18,6 +18,12 @@ import java.util.ArrayList;
  */
 
 public class TindNumber extends ActivityForIO {
+    Operation type;
+
+    public TindNumber(Operation type) {
+        this.type = type;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +32,7 @@ public class TindNumber extends ActivityForIO {
 
         final ArrayList<RandomEquality> cards = new ArrayList<>();
         for (int i = 0 ; i < 10 ; i++) {
-            cards.add(new RandomAddition());
+            cards.add(type.getRandomEquality());
         }
 
         final ArrayAdapter<RandomEquality> adapter = new ArrayAdapter<>(this, R.layout.card_item, R.id.helloText, cards);

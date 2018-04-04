@@ -6,12 +6,12 @@ import java.util.Random;
  * Created by theo on 4/4/18.
  */
 
-public class RandomAddition extends RandomEquality {
-
-    public RandomAddition() {
+public class RandomSoustraction extends RandomEquality {
+    public RandomSoustraction() {
         super();
         Random r = new Random();
-        int tempB = this.getC() - this.getA();//calcul de la valeur de b
+        if (this.getA() < this.getC()) this.switchAC();
+        int tempB = this.getA() - this.getC();//calcul de la valeur de b
 
         if (!this.getCorrect()) {
             //si l'équation n'est pas correcte, on la fausse
@@ -22,6 +22,6 @@ public class RandomAddition extends RandomEquality {
     }
 
     public String toString() {
-        return this.getStringRepr("+");
+        return this.getStringRepr("-");
     }
 }

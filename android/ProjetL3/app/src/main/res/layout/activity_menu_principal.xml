@@ -47,13 +47,24 @@
         android:textSize="22sp" />
 
     <Button
-        android:id="@+id/tindNumber"
+        android:id="@+id/tindNumberAdd"
         android:layout_width="191dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="@android:color/white"
         android:fontFamily="@font/sfcomicscriptnormal"
-        android:text="Tindnumber"
+        android:text="Additions"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="22sp" />
+
+    <Button
+        android:id="@+id/tindNumberSub"
+        android:layout_width="191dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="@android:color/white"
+        android:fontFamily="@font/sfcomicscriptnormal"
+        android:text="Soustractions"
         android:textColor="@android:color/holo_red_dark"
         android:textSize="22sp" />
 

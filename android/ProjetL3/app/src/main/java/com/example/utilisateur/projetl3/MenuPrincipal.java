@@ -9,7 +9,9 @@ import android.widget.TextView;
 
 import com.example.utilisateur.projetl3.Aides.ListeAides;
 import com.example.utilisateur.projetl3.gameTemplates.PomDragAndDrop;
-import com.example.utilisateur.projetl3.gameTemplates.TindNumber;
+import com.example.utilisateur.projetl3.gameTemplates.MoteurJeux.randomEqualities.TindNumber;
+import com.example.utilisateur.projetl3.gameTemplates.TindNumberAdd;
+import com.example.utilisateur.projetl3.gameTemplates.TindNumberSub;
 
 /**
  * Created by Utilisateur on 14/02/2018.
@@ -36,11 +38,20 @@ public class MenuPrincipal extends ActivityForIO {
             }
         });
 
-        Button tindNumber = findViewById(R.id.tindNumber);
-        tindNumber.setOnClickListener(new View.OnClickListener() {
+        Button tindNumberAdd = findViewById(R.id.tindNumberAdd);
+        tindNumberAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent tindNumberIntent = new Intent(MenuPrincipal.this, TindNumber.class);
+                Intent tindNumberIntent = new Intent(MenuPrincipal.this, TindNumberAdd.class);
+                MenuPrincipal.this.startActivity(tindNumberIntent);
+            }
+        });
+
+        final Button tindNumberSub = findViewById(R.id.tindNumberSub);
+        tindNumberSub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent tindNumberIntent = new Intent(MenuPrincipal.this, TindNumberSub.class);
                 MenuPrincipal.this.startActivity(tindNumberIntent);
             }
         });

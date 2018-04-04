@@ -22,7 +22,8 @@
         <activity android:name=".Aides.ListeAides"/>
         <activity android:name=".Aides.AideActivity"/>
         <activity android:name=".gameTemplates.PomDragAndDrop"/>
-        <activity android:name=".gameTemplates.TindNumber"/>
+        <activity android:name=".gameTemplates.TindNumberAdd"/>
+        <activity android:name=".gameTemplates.TindNumberSub"/>
     </application>
 
 </manifest>

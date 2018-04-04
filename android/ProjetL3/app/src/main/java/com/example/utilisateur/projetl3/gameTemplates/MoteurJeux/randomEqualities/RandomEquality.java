@@ -42,4 +42,10 @@ public abstract class RandomEquality {
     public int getC() {
         return c;
     }
+
+    public void switchAC() {
+        int temp = this.a;
+        this.a = this.c;
+        this.c = temp;
+    }
 }
