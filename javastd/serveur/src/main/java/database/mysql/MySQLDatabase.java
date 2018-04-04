@@ -48,22 +48,27 @@ public class MySQLDatabase implements database.Database {
         Boolean bool = false;
 
         try{
-            // create our java preparedstatement using a sql update query
-            PreparedStatement ps = con.prepareStatement("INSERT INTO membre(pseudo,prenom,nom,email,password,age) VALUES(?,?,?,?,?,?)");
+            if(_existPseudo(pseudo, con)==false && _existEmail(email, con)==false) {
+                // create our java preparedstatement using a sql update query
+                PreparedStatement ps = con.prepareStatement("INSERT INTO membre(pseudo,prenom,nom,email,password,age) VALUES(?,?,?,?,?,?)");
 
-            // set the preparedstatement parameters
-            ps.setString(1,pseudo);
-            ps.setString(2,nom);
-            ps.setString(3,prenom);
-            ps.setString(4,email);
-            ps.setString(5,password);
-            ps.setInt(6,age);
+                // set the preparedstatement parameters
+                ps.setString(1, pseudo);
+                ps.setString(2, nom);
+                ps.setString(3, prenom);
+                ps.setString(4, email);
+                ps.setString(5, password);
+                ps.setInt(6, age);
 
-            // call executeUpdate to execute our sql update statement
-            int exec = ps.executeUpdate();
-            ps.close();
+                // call executeUpdate to execute our sql update statement
+                int exec = ps.executeUpdate();
+                ps.close();
 
-            bool = (exec == 1);
+                bool = (exec == 1);
+            }
+            else{
+                bool = false;
+            }
         }
         catch (SQLException se){
             se.printStackTrace();

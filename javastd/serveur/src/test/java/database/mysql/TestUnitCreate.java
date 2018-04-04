@@ -51,6 +51,22 @@ public class TestUnitCreate extends MySQLDatabase{
     }
 
 
+    @Test public void testBlocage(){
+        TestUnitCreate database = new TestUnitCreate();
+
+
+        boolean bool1;
+        boolean bool2;
+
+        bool1 = database._addUser(pseudo,nom,prenom,email,password,age,connectionTEST);
+
+        //System.out.println(bool1);
+        //System.out.println(bool2);
+
+        assertFalse(bool1);
+    }
+
+
     @AfterClass public static void end(){
         TestUnitCreate database = new TestUnitCreate();
 
