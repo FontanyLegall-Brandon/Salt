@@ -33,13 +33,14 @@ public class TestUnitPassword extends MySQLDatabase{
     private static final String passwordTEST = "G3792WtYcXhs";
     private static final Connection connectionTEST = Connect.connection(urlTEST,userTEST,passwordTEST);
 
+    private static final TestUnitPassword database = new TestUnitPassword();
+
     private static void setId(int id) {
         TestUnitPassword.id = id;
     }
 
     @BeforeClass
     public static void begin(){
-        TestUnitPassword database = new TestUnitPassword();
 
         if(database._existPseudo(pseudo,connectionTEST)==false){
             database._addUser(pseudo,nom,prenom,email,password,age,connectionTEST);
@@ -50,7 +51,6 @@ public class TestUnitPassword extends MySQLDatabase{
     }
 
     @Test public void testConnection(){
-        TestUnitPassword database = new TestUnitPassword();
 
         Session session;
 
@@ -67,7 +67,6 @@ public class TestUnitPassword extends MySQLDatabase{
     }
 
     @Test public void editPassword(){
-        TestUnitPassword database = new TestUnitPassword();
 
         boolean bool;
 
@@ -90,17 +89,10 @@ public class TestUnitPassword extends MySQLDatabase{
 
 
     @AfterClass public static void end(){
-        TestUnitPassword database = new TestUnitPassword();
 
         if(database._existPseudo(pseudo,connectionTEST)){
             database._deleteUser(pseudo,connectionTEST);
         }
     }
-
-
-
-
-
-
 
 }

@@ -25,8 +25,9 @@ public class TestUnitCreate extends MySQLDatabase{
     private static final String passwordTEST = "G3792WtYcXhs";
     private static final Connection connectionTEST = Connect.connection(urlTEST,userTEST,passwordTEST);
 
+    private static final TestUnitCreate database = new TestUnitCreate();
+
     @BeforeClass public static void begin(){
-        TestUnitCreate database = new TestUnitCreate();
 
         if(database._existPseudo(pseudo,connectionTEST)){
             database._deleteUser(pseudo,connectionTEST);
@@ -34,7 +35,6 @@ public class TestUnitCreate extends MySQLDatabase{
     }
 
     @Test public void creationUtilisateur(){
-        TestUnitCreate database = new TestUnitCreate();
 
 
         boolean bool1;
@@ -52,7 +52,6 @@ public class TestUnitCreate extends MySQLDatabase{
 
 
     @Test public void testBlocage(){
-        TestUnitCreate database = new TestUnitCreate();
 
 
         boolean bool1;
@@ -68,7 +67,6 @@ public class TestUnitCreate extends MySQLDatabase{
 
 
     @AfterClass public static void end(){
-        TestUnitCreate database = new TestUnitCreate();
 
         if(database._existPseudo(pseudo,connectionTEST)){
             database._deleteUser(pseudo,connectionTEST);
