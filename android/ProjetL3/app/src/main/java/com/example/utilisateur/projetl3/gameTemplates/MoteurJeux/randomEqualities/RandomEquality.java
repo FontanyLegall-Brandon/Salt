@@ -43,6 +43,10 @@ public abstract class RandomEquality {
         return c;
     }
 
+    public int getB() {
+        return b;
+    }
+
     public void switchAC() {
         int temp = this.a;
         this.a = this.c;
