@@ -17,35 +17,34 @@
     <!--Pour l'utilité qu'on en a on pourrait changer "panier" et "zoneJeu" en gridLayout, cela permettra par la suite de :
             1-Faire des tests correctement avec espresso. (qui ne semble pas pouvoir prendre un élément parmis plusieurs.)
             2-Pouvoir créer plusieurs lignes de poms' au lieu d'une seule dans chaqu'un des layouts.
-
-       TODO : Faire toutes les modifications necessaires à l'implémentation d'un GridLayout à la place du LinearLayout actuel.
     -->
 
-    <LinearLayout
+    <GridLayout
         android:id="@+id/panier"
-        android:tag="container"
-        android:background="@drawable/shape"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="0dp"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
+        android:background="@drawable/shape"
+        android:columnCount="6"
+        android:orientation="horizontal"
+        android:tag="container">
 
 
-    </LinearLayout>
+    </GridLayout>
 
-    <LinearLayout
+    <GridLayout
         android:id="@+id/zoneJeu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/panier"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:columnCount="6"
+        android:orientation="horizontal"
         android:padding="20dp"
-        android:tag="container"
-        android:orientation="horizontal">
-    </LinearLayout>
+        android:tag="container"></GridLayout>
 
     <com.example.utilisateur.projetl3.utils.GameUI
         android:id="@+id/gameUi"

@@ -29,7 +29,7 @@ public class DragAndDrop {
             objectif=goal*-1;
         }
         valeurDepart=0; // On changera ça par la suite en "Un nombre aléatoire entre 0 et objectif+5" (le -1 seulement si objectif>0)
-        stock=objectif - valeurDepart + (int)(5*Math.random()); //On ajoute un nombre aléatoire de poms (afin que le joueur puisse se tromper.)
+        stock=objectif - valeurDepart + (int)(4*Math.random())+1; //On ajoute un nombre aléatoire +1 de poms (afin que le joueur puisse se tromper.)
     }
 
     public int verifWin(int score){
