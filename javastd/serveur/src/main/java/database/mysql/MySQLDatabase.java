@@ -517,7 +517,7 @@ public class MySQLDatabase implements database.Database {
         return _existEmail(email,con);
     }
 
-    private Boolean _existEmail(String email,Connection con) {
+    protected Boolean _existEmail(String email,Connection con) {
         Boolean bool = false;
         int nb = 0;
 
@@ -544,10 +544,10 @@ public class MySQLDatabase implements database.Database {
 
     }
 
-//    public static void main(String[] args) {
+    public static void main(String[] args) {
 //
 //
-//        Database database = new MySQLDatabase();
+       Database database = new MySQLDatabase();
 //
 //
 //        /*
@@ -612,7 +612,11 @@ public class MySQLDatabase implements database.Database {
 //        System.out.println(session.getEmail());
 //        System.out.println(session.getAge());
 //        */
-//   }
+
+        database.addUser("test","test","test","test@test.fr","test",11);
+        System.out.println(database.existEmail("test@test.fr"));
+
+   }
 
 
 }

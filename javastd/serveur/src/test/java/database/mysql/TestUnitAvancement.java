@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.Hashtable;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 public class TestUnitAvancement extends MySQLDatabase {
@@ -17,12 +18,12 @@ public class TestUnitAvancement extends MySQLDatabase {
         super();
     }
 
-    private static final String pseudo = "test";
-    private static final String nom = "test";
+    private static final String pseudo = "TestAvancement";
+    private static final String email = "avancement@test.fr";
+    private static final String nom = "avancement";
     private static final String prenom = "test";
-    private static final String email = "test@test.fr";
     private static final String password = "test";
-    private static final int age = 11;
+
     private static int id = 0;
 
 
@@ -34,15 +35,23 @@ public class TestUnitAvancement extends MySQLDatabase {
 
     private static final TestUnitPassword database = new TestUnitPassword();
 
-    @BeforeClass
-    public static void begin(){
+    private static void setId(int id) {
+        TestUnitAvancement.id = id;
+    }
 
-        if(database._existPseudo(pseudo,connectionTEST)==false){
-            database._addUser(pseudo,nom,prenom,email,password,age,connectionTEST);
-        }else{
-            database._deleteUser(pseudo,connectionTEST);
-            database._addUser(pseudo,nom,prenom,email,password,age,connectionTEST);
+    @BeforeClass
+    public static void begin() {
+        Session session;
+        if (database._existEmail(email, connectionTEST) == false) {
+            database._addUser(pseudo, nom, prenom, email, password, 11, connectionTEST);
         }
+        session = database._connection(email, password, connectionTEST);
+        TestUnitAvancement.setId(session.getId());
+    }
+
+
+    @Test public void connection(){
+        assertNotEquals(0,id);
     }
 
     @Test public void getExercice(){
@@ -55,14 +64,5 @@ public class TestUnitAvancement extends MySQLDatabase {
         assertTrue(hashtable.get(5).equals("exerciceTest3"));
     }
 
-
-
-    @AfterClass
-    public static void end(){
-
-        if(database._existPseudo(pseudo,connectionTEST)){
-            database._deleteUser(pseudo,connectionTEST);
-        }
-    }
 
 }
