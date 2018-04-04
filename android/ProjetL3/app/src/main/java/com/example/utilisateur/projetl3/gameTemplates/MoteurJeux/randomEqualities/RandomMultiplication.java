@@ -22,7 +22,9 @@ public class RandomMultiplication extends RandomEquality {
         if (!this.getCorrect()) {
             //si l'équation n'est pas correcte, on la fausse
             tempB += r.nextInt(5) + 1;//on ajoute 1 pour ne pas avoir 0, qui rendrait l'équation vraie
-            tempA += r.nextInt(5) + 1;
+            while (tempA * tempB == tempC) {
+                tempA++;
+            }
         }
         System.out.println("AFTER : A = " + tempA + "\t B = " + tempB + "\t C = " + tempC);
         this.setA(tempA);
