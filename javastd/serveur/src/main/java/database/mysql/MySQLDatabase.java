@@ -544,10 +544,10 @@ public class MySQLDatabase implements database.Database {
 
     }
 
-    public static void main(String[] args) {
+//    public static void main(String[] args) {
 //
 //
-       Database database = new MySQLDatabase();
+//       Database database = new MySQLDatabase();
 //
 //
 //        /*
@@ -612,11 +612,12 @@ public class MySQLDatabase implements database.Database {
 //        System.out.println(session.getEmail());
 //        System.out.println(session.getAge());
 //        */
-
-        database.addUser("test","test","test","test@test.fr","test",11);
-        System.out.println(database.existEmail("test@test.fr"));
-
-   }
+//
+//        /*
+//        database.addUser("test","test","test","test@test.fr","test",11);
+//        System.out.println(database.existEmail("test@test.fr"));
+//        */
+//   }
 
 
 }

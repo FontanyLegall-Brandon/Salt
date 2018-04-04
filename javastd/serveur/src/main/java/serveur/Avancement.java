@@ -37,4 +37,24 @@ public class Avancement {
     public int getPourcentage() {
         return pourcentage;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Avancement that = (Avancement) o;
+
+        if (exerciceId != that.exerciceId) return false;
+        if (levelId != that.levelId) return false;
+        return pourcentage == that.pourcentage;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = exerciceId;
+        result = 31 * result + levelId;
+        result = 31 * result + pourcentage;
+        return result;
+    }
 }
