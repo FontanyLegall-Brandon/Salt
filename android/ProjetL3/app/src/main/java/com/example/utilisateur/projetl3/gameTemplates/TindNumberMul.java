@@ -7,9 +7,9 @@ import com.example.utilisateur.projetl3.gameTemplates.MoteurJeux.randomEqualitie
  * Created by theo on 4/4/18.
  */
 
-public class TindNumberSub extends TindNumber {
+public class TindNumberMul extends TindNumber {
 
-    public TindNumberSub() {
-        super(Operation.SOUSTRACTION);
+    public TindNumberMul() {
+        super(Operation.MULTIPLICATION);
     }
 }

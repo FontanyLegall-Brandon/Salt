@@ -14,7 +14,7 @@ public enum Operation {
         } else if (this == SOUSTRACTION) {
             res = new RandomSoustraction();
         } else {
-            res = new RandomAddition();
+            res = new RandomMultiplication();
         }
         return res;
     }

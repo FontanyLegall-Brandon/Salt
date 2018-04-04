@@ -8,7 +8,6 @@ import com.example.utilisateur.projetl3.gameTemplates.MoteurJeux.randomEqualitie
  */
 
 public class TindNumberAdd extends TindNumber {
-    private TindNumber game;
 
     public TindNumberAdd() {
         super(Operation.ADDITION);

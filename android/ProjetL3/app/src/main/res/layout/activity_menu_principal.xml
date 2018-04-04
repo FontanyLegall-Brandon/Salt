@@ -53,7 +53,7 @@
         android:layout_gravity="center_horizontal"
         android:backgroundTint="@android:color/white"
         android:fontFamily="@font/sfcomicscriptnormal"
-        android:text="Additions"
+        android:text="Addition"
         android:textColor="@android:color/holo_red_dark"
         android:textSize="22sp" />
 
@@ -64,7 +64,18 @@
         android:layout_gravity="center_horizontal"
         android:backgroundTint="@android:color/white"
         android:fontFamily="@font/sfcomicscriptnormal"
-        android:text="Soustractions"
+        android:text="Soustraction"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="22sp" />
+
+    <Button
+        android:id="@+id/tindNumberMul"
+        android:layout_width="191dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="@android:color/white"
+        android:fontFamily="@font/sfcomicscriptnormal"
+        android:text="Multiplication"
         android:textColor="@android:color/holo_red_dark"
         android:textSize="22sp" />
 

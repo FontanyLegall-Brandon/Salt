@@ -11,6 +11,7 @@ import com.example.utilisateur.projetl3.Aides.ListeAides;
 import com.example.utilisateur.projetl3.gameTemplates.PomDragAndDrop;
 import com.example.utilisateur.projetl3.gameTemplates.MoteurJeux.randomEqualities.TindNumber;
 import com.example.utilisateur.projetl3.gameTemplates.TindNumberAdd;
+import com.example.utilisateur.projetl3.gameTemplates.TindNumberMul;
 import com.example.utilisateur.projetl3.gameTemplates.TindNumberSub;
 
 /**
@@ -47,11 +48,20 @@ public class MenuPrincipal extends ActivityForIO {
             }
         });
 
-        final Button tindNumberSub = findViewById(R.id.tindNumberSub);
+        Button tindNumberSub = findViewById(R.id.tindNumberSub);
         tindNumberSub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent tindNumberIntent = new Intent(MenuPrincipal.this, TindNumberSub.class);
+                MenuPrincipal.this.startActivity(tindNumberIntent);
+            }
+        });
+
+        Button tindNumberMul = findViewById(R.id.tindNumberMul);
+        tindNumberMul.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent tindNumberIntent = new Intent(MenuPrincipal.this, TindNumberMul.class);
                 MenuPrincipal.this.startActivity(tindNumberIntent);
             }
         });
