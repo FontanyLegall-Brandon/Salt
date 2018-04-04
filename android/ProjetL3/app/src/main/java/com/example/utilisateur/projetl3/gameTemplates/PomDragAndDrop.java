@@ -35,7 +35,7 @@ public class PomDragAndDrop extends ActivityForIO {
         ViewGroup zoneJeu =findViewById(R.id.zoneJeu);
         zoneJeu.setOnDragListener(new MyDragListener());
         //Par la suite on pourra faire en sorte que ce soit DragAndDrop qui prenne un nombre au hasard en fonction du niveau du joueur.
-        // Via ce constructeur : moteur = new DragAndDrop(3);
+        // Via ce constructeur : moteur = new DragAndDrop(nb);
         moteur = new DragAndDrop();
         //On ajoute dynamiquement le nombre de poms' présentes afin de pouvoir remplir le but.
         ajouterPomsDans(moteur.getStock(),zoneJeu);
