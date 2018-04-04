@@ -31,6 +31,7 @@ public class TindNumber extends ActivityForIO {
         SwipeFlingAdapterView flingContainer = (SwipeFlingAdapterView) findViewById(R.id.frame);
 
         final ArrayList<RandomEquality> cards = new ArrayList<>();
+        cards.add(new BeginCard());
         for (int i = 0 ; i < 10 ; i++) {
             cards.add(type.getRandomEquality());
         }
@@ -38,7 +39,7 @@ public class TindNumber extends ActivityForIO {
         final ArrayAdapter<RandomEquality> adapter = new ArrayAdapter<>(this, R.layout.card_item, R.id.helloText, cards);
         flingContainer.setAdapter(adapter);
         flingContainer.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
-            private int i = 0;
+            private int i = -1;
             private int score = 0;
             private RandomEquality currentCard  = cards.get(0);//on récupère la carte courante
             private boolean finished = false; //on ne compte plus les points si l'exercice est terminé

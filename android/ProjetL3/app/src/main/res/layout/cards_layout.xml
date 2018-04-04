@@ -14,5 +14,4 @@
         app:min_adapter_stack="6"
         app:rotation_degrees="16" />
 
-
 </LinearLayout>

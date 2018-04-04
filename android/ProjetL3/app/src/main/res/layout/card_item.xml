@@ -29,7 +29,7 @@
         android:background="#5AF"
         android:gravity="center"
         android:textColor="@android:color/white"
-        android:textSize="40sp"
+        android:textSize="35sp"
         tools:text="Tindnumber" />
 
 </FrameLayout>
