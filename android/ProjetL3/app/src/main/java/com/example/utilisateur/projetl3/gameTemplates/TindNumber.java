@@ -6,7 +6,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 import com.example.utilisateur.projetl3.ActivityForIO;
 import com.example.utilisateur.projetl3.R;
-import com.example.utilisateur.projetl3.utils.TextDrawable;
+import com.example.utilisateur.projetl3.gameTemplates.MoteurJeux.randomEqualities.EndCard;
+import com.example.utilisateur.projetl3.gameTemplates.MoteurJeux.randomEqualities.RandomAddition;
+import com.example.utilisateur.projetl3.gameTemplates.MoteurJeux.randomEqualities.RandomEquality;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
 import java.util.ArrayList;
@@ -22,15 +24,18 @@ public class TindNumber extends ActivityForIO {
         setContentView(R.layout.cards_layout);
         SwipeFlingAdapterView flingContainer = (SwipeFlingAdapterView) findViewById(R.id.frame);
 
-        final ArrayList<String> cards = new ArrayList<>();
-        cards.add("21 - 9 = 27");
-        cards.add("21 - 7 = 14");
+        final ArrayList<RandomEquality> cards = new ArrayList<>();
+        for (int i = 0 ; i < 10 ; i++) {
+            cards.add(new RandomAddition());
+        }
 
-        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.card_item, R.id.helloText, cards);
+        final ArrayAdapter<RandomEquality> adapter = new ArrayAdapter<>(this, R.layout.card_item, R.id.helloText, cards);
         flingContainer.setAdapter(adapter);
         flingContainer.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
-            private int i = 1;
-            int j = 0;
+            private int i = 0;
+            private int score = 0;
+            private RandomEquality currentCard  = cards.get(0);//on récupère la carte courante
+            private boolean finished = false; //on ne compte plus les points si l'exercice est terminé
 
             @Override
             public void onScroll(float f) {
@@ -39,8 +44,8 @@ public class TindNumber extends ActivityForIO {
 
             @Override
             public void removeFirstObjectInAdapter() {
-                // this is the simplest way to delete an object from the Adapter (/AdapterView)
-                Log.d("LIST", "removed object!");
+                System.err.println(i);
+                System.err.println("finished ? : " + finished);
                 cards.remove(0);
                 adapter.notifyDataSetChanged();
             }
@@ -48,33 +53,54 @@ public class TindNumber extends ActivityForIO {
             @Override
             public void onLeftCardExit(Object dataObject) {
                 //Do something on the left!
-                //You also have access to the original object.
-                //If you want to use it just cast it (String) dataObject
-                Toast.makeText(getApplicationContext(), "Left!", Toast.LENGTH_SHORT).show();
-
+                if (!finished) {
+                    if (currentCard.getCorrect()) {
+                        Toast.makeText(getApplicationContext(), ":(", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), ":)", Toast.LENGTH_SHORT).show();
+                        score++;
+                    }
+                }
+                if (currentCard != null) {
+                    System.out.println("" + currentCard + " : " + currentCard.getCorrect());
+                    currentCard = cards.get(0);
+                }
+                i++;
+                if (i >= 10) {
+                    finished = true;
+                }
             }
 
             @Override
             public void onRightCardExit(Object dataObject) {
-                Toast.makeText(getApplicationContext(), "Right!", Toast.LENGTH_SHORT).show();
-
+                if (!finished) {
+                    if (currentCard.getCorrect()) {
+                        Toast.makeText(getApplicationContext(), ":)", Toast.LENGTH_SHORT).show();
+                        score++;
+                    } else {
+                        Toast.makeText(getApplicationContext(), ":(", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                if (currentCard != null) {
+                    System.out.println("" + currentCard + " : " + currentCard.getCorrect());
+                    currentCard = cards.get(0);
+                }
+                i++;
+                if (i >= 10) {
+                    finished = true;
+                }
             }
 
             @Override
             public void onAdapterAboutToEmpty(int itemsInAdapter) {
                 // Ask for more data here
-                if (i < 20) {
-                    cards.add("Carte ".concat(String.valueOf(i)));
-                } else if (i == 20) {
-                    cards.add("stop");
-                    j++;
-                } else {
-                    cards.add("stop ".concat(String.valueOf(j)).concat(" fois"));
-                    j++;
+                if (i == 9) {
+                    cards.add(new EndCard(-1));
                 }
-                i++;
-                adapter.notifyDataSetChanged();
-                Log.d("LIST", "notified");
+                if (i > 9) {
+                    cards.add(new EndCard(score));
+                    cards.add(new EndCard(score));
+                }
             }
         });
     }
