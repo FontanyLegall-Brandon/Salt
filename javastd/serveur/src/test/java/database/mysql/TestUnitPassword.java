@@ -43,6 +43,9 @@ public class TestUnitPassword extends MySQLDatabase{
 
         if(database._existPseudo(pseudo,connectionTEST)==false){
             database._addUser(pseudo,nom,prenom,email,password,age,connectionTEST);
+        }else{
+            database._deleteUser(pseudo,connectionTEST);
+            database._addUser(pseudo,nom,prenom,email,password,age,connectionTEST);
         }
     }
 
@@ -71,10 +74,6 @@ public class TestUnitPassword extends MySQLDatabase{
         bool = database._editPassword(id,password,newpassword,newpassword,connectionTEST);
 
         assertTrue(bool);
-    }
-
-    @Test public void nextConnection(){
-        TestUnitPassword database = new TestUnitPassword();
 
         Session session;
 
@@ -87,6 +86,7 @@ public class TestUnitPassword extends MySQLDatabase{
         assertEquals(email,session.getEmail());
         assertEquals(age,session.getAge());
     }
+
 
 
     @AfterClass public static void end(){
