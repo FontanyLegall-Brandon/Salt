@@ -1,6 +1,5 @@
 package com.example.utilisateur.projetl3;
 
-
 import android.support.test.espresso.ViewInteraction;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -15,11 +14,8 @@ import org.hamcrest.TypeSafeMatcher;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.android.internal.creation.AndroidByteBuddyMockMaker;
-import org.mockito.internal.matchers.And;
-
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -30,32 +26,20 @@ import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class MenuTest {
+public class RegisterTest {
 
     @Rule
     public ActivityTestRule<Menu> mActivityTestRule = new ActivityTestRule<>(Menu.class);
 
     @Test
-    public void menuTest() {
-        ViewInteraction button = onView(
-                allOf(withId(R.id.buttonValid),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                3),
-                        isDisplayed()));
-        button.check(matches(isDisplayed()));
-
-        onView(withId(R.id.buttonValid)).check(matches(withText("Se connecter")));
-
+    public void registerTest() {
         ViewInteraction textView = onView(
                 allOf(withId(R.id.tvSinscrireici), withText("S'inscrire ici!"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                5),
+                                6),
                         isDisplayed()));
         textView.check(matches(withText("S'inscrire ici!")));
 
@@ -79,7 +63,5 @@ public class MenuTest {
             }
         };
     }
-
-
 
 }

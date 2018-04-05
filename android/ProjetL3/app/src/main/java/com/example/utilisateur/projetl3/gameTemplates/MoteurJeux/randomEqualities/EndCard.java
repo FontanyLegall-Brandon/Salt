@@ -22,7 +22,7 @@ public class EndCard extends RandomEquality {
         } else {
             builder.append("Score : ");
             builder.append(this.score);
-            builder.append(" points");
+            builder.append(" points sur 10");
         }
         return builder.toString();
     }

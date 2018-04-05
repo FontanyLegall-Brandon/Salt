@@ -63,7 +63,7 @@
         android:textSize="28sp" />
 
     <Button
-        android:id="@+id/playButton"
+        android:id="@+id/playbutton"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="245dp"
         android:layout_height="wrap_content"
@@ -90,9 +90,9 @@
 
     <TextView
         android:id="@+id/tvSinscrireici"
+        fontPath="fonts/sfcomicscriptnormal.ttf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        fontPath="fonts/sfcomicscriptnormal.ttf"
         android:text="S'inscrire ici!"
         android:textAlignment="center"
         android:textAllCaps="true"

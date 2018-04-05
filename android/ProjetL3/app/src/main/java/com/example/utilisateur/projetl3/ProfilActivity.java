@@ -14,7 +14,7 @@ import com.example.utilisateur.projetl3.gameTemplates.PomDragAndDrop;
  * Created by inesr on 22/03/2018.
  */
 
-public class ProfilActivity extends Activity {
+public class ProfilActivity extends ActivityForIO {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +37,8 @@ public class ProfilActivity extends Activity {
             Intent out = new Intent(ProfilActivity.this,WelcomeActivity.class);
             ProfilActivity.this.startActivity(out);
         }
-    });
+    }           );
 
-}}
+}
+
+}

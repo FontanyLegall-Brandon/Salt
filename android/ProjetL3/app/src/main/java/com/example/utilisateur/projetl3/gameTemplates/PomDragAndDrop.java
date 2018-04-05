@@ -1,6 +1,8 @@
 package com.example.utilisateur.projetl3.gameTemplates;
 
 import android.content.ClipData;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -54,22 +56,41 @@ public class PomDragAndDrop extends ActivityForIO {
                     if(res==1){
                         Toast.makeText(getApplicationContext(), "Victoire!",
                                 Toast.LENGTH_SHORT).show();
+                        SharedPreferences prefs = getSharedPreferences("exercicePom", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = prefs.edit();
+                        editor.putInt("prog", res); //progression correspondant au res
+                        editor.commit();
+                        Log.d("sp res=1", "score sauvegarde");
+
                         //TODO : sauvegarder la progression.
                         finish();
                     }else{
                         if(res==-1){
                             Toast.makeText(getApplicationContext(), "Perdu, il n'y a pas assez de poms.",
                                     Toast.LENGTH_SHORT).show();
+
+
                         }else{
                             Toast.makeText(getApplicationContext(), "Perdu, il y a trop de poms.",
                                     Toast.LENGTH_SHORT).show();
+
+
+
                         }
+                        SharedPreferences prefs = getSharedPreferences("exercicePom", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = prefs.edit();
+                        editor.putInt("prog", res); //progression correspondant au res
+                        editor.commit();
                         //Ici on pourra sauvegarder le nombre de fois qu'un joueur à échoué afin de, soit le sauvegarder définitivement, soit diminuer la récompense.
                     }
-                }else{
+                }
+                else{
                     if(type.equals("recommencer")){
                         Toast.makeText(getApplicationContext(), "Recommencer.",Toast.LENGTH_SHORT).show();
                         reInit();
+                        SharedPreferences prefs = getSharedPreferences("exercicePom", Context.MODE_PRIVATE);
+                        int score = prefs.getInt("prog", 0); //0 is the default value
+
                     }
                 }
             }

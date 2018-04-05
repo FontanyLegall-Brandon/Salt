@@ -10,6 +10,6 @@ public class BeginCard extends RandomEquality {
     }
 
     public String toString() {
-        return "Glisser à gauche si l'égalité est vraie\n Glisser à droite sinon";
+        return "Glisser à droite si l'égalité est vraie\n Glisser à gauche sinon";
     }
 }

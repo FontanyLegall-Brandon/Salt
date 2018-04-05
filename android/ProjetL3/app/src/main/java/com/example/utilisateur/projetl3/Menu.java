@@ -20,12 +20,13 @@ public class Menu extends ActivityForIO {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         final EditText pseudo = (EditText) findViewById(R.id.etPseudo);
         final EditText password = (EditText) findViewById(R.id.etMDP);
         final Button loginButton = (Button) findViewById(R.id.buttonValid);
         final TextView register = (TextView) findViewById(R.id.tvSinscrireici);
-        final Button playButton = (Button) findViewById(R.id.playButton);
+        final Button playbutton = (Button) findViewById(R.id.playbutton);
         findViewById(R.id.buttonValid).setEnabled(false);
         loginButton.setBackgroundColor(Color.GRAY);
 
@@ -76,7 +77,7 @@ public class Menu extends ActivityForIO {
             }
         });
 
-        playButton.setOnClickListener(new View.OnClickListener() {
+        playbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Menu.this, MenuPrincipal.class);
@@ -99,6 +100,7 @@ public class Menu extends ActivityForIO {
                     Toast.LENGTH_LONG).show();
         }
     }
+
 
     /*private final class OkOnClickListener implements
             DialogInterface.OnClickListener {
