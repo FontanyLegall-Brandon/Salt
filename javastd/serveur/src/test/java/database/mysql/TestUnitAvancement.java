@@ -1,6 +1,6 @@
 package database.mysql;
 
-import com.sun.source.tree.AssertTree;
+
 import listeners.mappers.Session;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
