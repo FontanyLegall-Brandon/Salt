@@ -33,8 +33,8 @@ public enum Singleton {
     public void connect() {
         boolean connected = false;
         try {
-            Log.d("connexion", "http://192.168.0.254:1245");
-            mSocket = IO.socket("http://192.168.0.254:1245");
+            Log.d("connexion", "http://134.59.2.171:10000");
+            mSocket = IO.socket("http://134.59.2.171:10000");
             mSocket.connect();
             mSocket.on("connect", new Emitter.Listener() {
                 @Override

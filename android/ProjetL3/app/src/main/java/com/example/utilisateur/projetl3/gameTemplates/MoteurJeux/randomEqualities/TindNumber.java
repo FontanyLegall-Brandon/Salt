@@ -2,6 +2,7 @@ package com.example.utilisateur.projetl3.gameTemplates.MoteurJeux.randomEqualiti
 
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Toast;
 import com.example.utilisateur.projetl3.ActivityForIO;
 import com.example.utilisateur.projetl3.R;
@@ -29,6 +30,7 @@ public class TindNumber extends ActivityForIO {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cards_layout);
         SwipeFlingAdapterView flingContainer = (SwipeFlingAdapterView) findViewById(R.id.frame);
+        final ImageView indicator = findViewById(R.id.indicator);
 
         final ArrayList<RandomEquality> cards = new ArrayList<>();
         for (int i = 0 ; i < 10 ; i++) {
@@ -38,7 +40,7 @@ public class TindNumber extends ActivityForIO {
         final ArrayAdapter<RandomEquality> adapter = new ArrayAdapter<>(this, R.layout.card_item, R.id.helloText, cards);
         flingContainer.setAdapter(adapter);
         flingContainer.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
-            private int i = -1;
+            private int i = 0;
             private int score = 0;
             private RandomEquality currentCard  = cards.get(0);//on récupère la carte courante
             private boolean finished = false; //on ne compte plus les points si l'exercice est terminé
@@ -56,12 +58,11 @@ public class TindNumber extends ActivityForIO {
 
             @Override
             public void onLeftCardExit(Object dataObject) {
-                //Do something on the left!
                 if (!finished) {
                     if (currentCard.getCorrect()) {
-                        Toast.makeText(getApplicationContext(), ":(", Toast.LENGTH_SHORT).show();
+                        indicator.setImageDrawable(getResources().getDrawable(R.drawable.thumbsdown));
                     } else {
-                        Toast.makeText(getApplicationContext(), ":)", Toast.LENGTH_SHORT).show();
+                        indicator.setImageDrawable(getResources().getDrawable(R.drawable.thumbsup));
                         score++;
                     }
                 }
@@ -78,10 +79,10 @@ public class TindNumber extends ActivityForIO {
             public void onRightCardExit(Object dataObject) {
                 if (!finished) {
                     if (currentCard.getCorrect()) {
-                        Toast.makeText(getApplicationContext(), ":)", Toast.LENGTH_SHORT).show();
+                        indicator.setImageDrawable(getResources().getDrawable(R.drawable.thumbsup));
                         score++;
                     } else {
-                        Toast.makeText(getApplicationContext(), ":(", Toast.LENGTH_SHORT).show();
+                        indicator.setImageDrawable(getResources().getDrawable(R.drawable.thumbsdown));
                     }
                 }
                 if (currentCard != null) {
