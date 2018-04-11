@@ -3,7 +3,8 @@
     <string name="identifiants">Identifiants</string>
     <string name="pseudo">Pseudo</string>
     <string name="title_activity_login">Sign in</string>
-
+    <string name="swipeLeft">Glisser vers la gauche</string>
+    <string name="swipeRight">Glisser vers la droite</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>

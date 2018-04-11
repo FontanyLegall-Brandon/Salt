@@ -7,6 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:colorForeground">@color/foreground_material_light</item>
+        <item name="SwipeFlingStyle">@style/SwipeFling</item>
     </style>
 
     <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
@@ -15,4 +16,7 @@
         <item name="android:background">#AF4C50</item>
     </style>
 
+    <style name="SwipeFlingStyle" parent="AppTheme">
+
+    </style>
 </resources>

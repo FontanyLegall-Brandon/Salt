@@ -31,7 +31,6 @@ public class TindNumber extends ActivityForIO {
         SwipeFlingAdapterView flingContainer = (SwipeFlingAdapterView) findViewById(R.id.frame);
 
         final ArrayList<RandomEquality> cards = new ArrayList<>();
-        cards.add(new BeginCard());
         for (int i = 0 ; i < 10 ; i++) {
             cards.add(type.getRandomEquality());
         }
