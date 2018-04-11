@@ -20,9 +20,9 @@ public class EndCard extends RandomEquality {
         if (score < 0) {
             builder.append("FINI");
         } else {
-            builder.append("Score : ");
             builder.append(this.score);
-            builder.append(" points sur 10");
+            builder.append("\n—\n");
+            builder.append("10");
         }
         return builder.toString();
     }
