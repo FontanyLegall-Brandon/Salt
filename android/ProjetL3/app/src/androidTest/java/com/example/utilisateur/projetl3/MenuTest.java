@@ -15,10 +15,6 @@ import org.hamcrest.TypeSafeMatcher;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.android.internal.creation.AndroidByteBuddyMockMaker;
-import org.mockito.internal.matchers.And;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
@@ -27,16 +23,54 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 
-
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class MenuTest {
 
     @Rule
-    public ActivityTestRule<Menu> mActivityTestRule = new ActivityTestRule<>(Menu.class);
+    public ActivityTestRule<WelcomeActivity> mActivityTestRule = new ActivityTestRule<>(WelcomeActivity.class);
 
     @Test
-    public void menuTest() {
+    public void menu_Test() {
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        ViewInteraction textView = onView(
+                allOf(withId(R.id.textView), withText("Identifiants"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                0),
+                        isDisplayed()));
+        textView.check(matches(withText("Identifiants")));
+
+        ViewInteraction editText = onView(
+                allOf(withId(R.id.etPseudo), withText("Pseudo"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                1),
+                        isDisplayed()));
+        editText.check(matches(withText("Pseudo")));
+
+        ViewInteraction editText2 = onView(
+                allOf(withId(R.id.etMDP),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                2),
+                        isDisplayed()));
+        editText2.check(matches(withText("MotdePasse")));
+
         ViewInteraction button = onView(
                 allOf(withId(R.id.buttonValid),
                         childAtPosition(
@@ -47,17 +81,37 @@ public class MenuTest {
                         isDisplayed()));
         button.check(matches(isDisplayed()));
 
-        onView(withId(R.id.buttonValid)).check(matches(withText("Se connecter")));
+        ViewInteraction button2 = onView(
+                allOf(withId(R.id.playbutton),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                4),
+                        isDisplayed()));
+        button2.check(matches(isDisplayed()));
 
-        ViewInteraction textView = onView(
-                allOf(withId(R.id.tvSinscrireici), withText("S'inscrire ici!"),
+        ViewInteraction textView2 = onView(
+                allOf(withId(R.id.textView6), withText("Tu n'es toujours pas inscrit ?"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
                                 5),
                         isDisplayed()));
-        textView.check(matches(withText("S'inscrire ici!")));
+        textView2.check(matches(withText("Tu n'es toujours pas inscrit ?")));
+
+        ViewInteraction textView3 = onView(
+                allOf(withId(R.id.tvSinscrireici), withText("S'inscrire ici!"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                6),
+                        isDisplayed()));
+        textView3.check(matches(withText("S'inscrire ici!")));
+
+
 
     }
 
@@ -79,7 +133,4 @@ public class MenuTest {
             }
         };
     }
-
-
-
 }
