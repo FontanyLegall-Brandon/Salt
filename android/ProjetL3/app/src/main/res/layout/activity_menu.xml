@@ -91,7 +91,8 @@
     <TextView
         android:id="@+id/tvSinscrireici"
         fontPath="fonts/sfcomicscriptnormal.ttf"
-        android:layout_width="match_parent"
+        android:layout_width="210dp"
+        android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:text="S'inscrire ici!"
         android:textAlignment="center"
@@ -99,6 +100,8 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="26sp"
+        android:drawableLeft="@drawable/add_user"
+        android:src="@drawable/add_user"
         android:textStyle="bold|italic"
         android:visibility="visible" />
 

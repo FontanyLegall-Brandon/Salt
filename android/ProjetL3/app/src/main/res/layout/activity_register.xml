@@ -1,228 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/saltfond"
+    android:orientation="vertical"
     tools:ignore="MissingPrefix"
     tools:context="com.example.utilisateur.projetl3.RegisterActivity">
+
+
+
+    <TextView
+        android:id="@+id/textInscription"
+        android:layout_width="250dp"
+        android:layout_height="54dp"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/sfcomicscriptnormal"
+        android:text="Inscription"
+        android:drawableLeft="@drawable/ic_form"
+        android:drawablePadding="@dimen/activity_horizontal_margin"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textColor="@android:color/white"
+        android:textSize="32sp"
+        android:src="@drawable/ic_form"/>
+
 
     <EditText
         android:id="@+id/etPrenom"
         android:layout_width="307dp"
-        android:layout_height="43dp"
-        android:layout_marginEnd="38dp"
-        android:layout_marginLeft="39dp"
-        android:layout_marginRight="38dp"
-        android:layout_marginStart="39dp"
-        android:layout_marginTop="50dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:ems="10"
-        fontPath="fonts/sfcomicscriptnormal.ttf"
+        android:fontFamily="@font/sfcomicscriptnormal"
         android:hint="Prénom"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/etNom"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInscription" />
-
-    <EditText
-        android:id="@+id/etPseudo"
-        android:layout_width="307dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="38dp"
-        android:layout_marginLeft="39dp"
-        android:layout_marginRight="38dp"
-        android:layout_marginStart="39dp"
-        android:ems="10"
-        fontPath="fonts/sfcomicscriptnormal.ttf"
-        android:hint="Pseudo"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/etEmail"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etNom" />
-
-    <EditText
-        android:id="@+id/etMDP"
-        android:layout_width="306dp"
-        android:layout_height="45dp"
-        android:layout_marginEnd="39dp"
-        android:layout_marginStart="39dp"
-        android:ems="10"
-        fontPath="fonts/sfcomicscriptnormal.ttf"
-        android:hint="Mot de passe"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/etDate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
-
-    <Button
-        android:id="@+id/buttonSinscrire"
-        android:layout_width="226dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="85dp"
-        android:layout_marginEnd="79dp"
-        android:layout_marginStart="79dp"
-        android:contextClickable="false"
-        fontPath="fonts/sfcomicscriptnormal.ttf"
-        android:text="S'inscrire"
-        android:textColor="@android:color/holo_red_dark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/etNom"
         android:layout_width="307dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="38dp"
-        android:layout_marginStart="39dp"
+        android:layout_gravity="center_horizontal"
         android:ems="10"
-        fontPath="fonts/sfcomicscriptnormal.ttf"
+        android:fontFamily="@font/sfcomicscriptnormal"
+
         android:hint="Nom"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/textInscription"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPrenom"
-        android:layout_marginRight="38dp"
-        android:layout_marginLeft="39dp" />
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/etEmail"
-        android:layout_width="306dp"
-        android:layout_height="44dp"
-        android:layout_marginEnd="39dp"
-        android:layout_marginStart="39dp"
+        android:layout_width="307dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:ems="10"
-        fontPath="fonts/sfcomicscriptnormal.ttf"
+        android:fontFamily="@font/sfcomicscriptnormal"
         android:hint="E-mail"
+        android:drawableStart="@drawable/ic_mail"
         android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/textInscription"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPseudo" />
+        android:src="@drawable/ic_mail"
+        />
 
-    <TextView
-        android:id="@+id/textInscription"
-        android:layout_width="165dp"
-        android:layout_height="47dp"
-        android:layout_marginBottom="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="18dp"
-        android:autoSizeMaxTextSize="24dp"
-        android:autoSizeMinTextSize="10dp"
-        fontPath="fonts/sfcomicscriptnormal.ttf"
-        android:text="Inscription"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:textColor="@android:color/white"
-        android:textSize="32sp"
-        app:layout_constraintBottom_toTopOf="@+id/etPrenom"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.534"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginLeft="8dp" />
+    <EditText
+        android:id="@+id/etPseudo"
+        android:layout_width="307dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:ems="10"
+        android:fontFamily="@font/sfcomicscriptnormal"
+        android:hint="Pseudo"
+        android:drawableStart="@drawable/ic_user"
+        android:inputType="textPersonName"
+        android:src="@drawable/ic_user"
+         />
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="58dp"
-        android:layout_height="49dp"
-        android:layout_marginBottom="50dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/etPrenom"
-        app:layout_constraintEnd_toStartOf="@+id/textInscription"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_register"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="72dp" />
-
-    <ImageView
-        android:id="@+id/iconMail"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginStart="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/etEmail"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="2dp" />
-    <!--app:srcCompat="@drawable/ic_mail"-->
-
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginBottom="189dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/etMDP"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iconMail"/>
-        <!--app:srcCompat="@drawable/ic_mdp"-->
+    <EditText
+        android:id="@+id/etMDP"
+        android:layout_width="307dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:ems="10"
+        android:fontFamily="@font/sfcomicscriptnormal"
+        android:hint="Mot de passe"
+        android:drawableStart="@drawable/ic_mdp"
+        android:inputType="textPassword"
+        android:src="@drawable/ic_mdp"
+         />
 
     <EditText
         android:id="@+id/etAge"
-        fontPath="fonts/sfcomicscriptnormal.ttf"
-        android:layout_width="303dp"
-        android:layout_height="42dp"
-        android:layout_marginBottom="1dp"
-        android:layout_marginEnd="42dp"
-        android:layout_marginRight="42dp"
-        android:layout_marginStart="39dp"
-        android:layout_marginLeft="39dp"
-        android:ems="10"
-        android:hint="Age"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/buttonSinscrire"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etMDP" />
-
-    <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginBottom="144dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="2dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="11dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/etDate"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7"/>
-        <!--app:srcCompat="@drawable/ic_cake"-->
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
+        android:fontFamily="@font/sfcomicscriptnormal"
+        android:layout_width="307dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="6dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="202dp"
-        app:layout_constraintBottom_toTopOf="@+id/iconMail"
-        app:layout_constraintEnd_toStartOf="@+id/etPseudo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginRight="2dp"
-        android:layout_marginLeft="5dp" />
-        <!--app:srcCompat="@drawable/ic_userr"-->
+        android:ems="10"
+        android:layout_gravity="center_horizontal"
+        android:hint="Age"
+        android:drawableStart="@drawable/ic_cake"
+        android:inputType="number"
+        android:src="@drawable/ic_cake"
+        />
+
+    <Button
+        android:id="@+id/buttonSinscrire"
+        android:layout_width="226dp"
+        android:layout_height="52dp"
+        android:layout_gravity="center_horizontal"
+        android:contextClickable="false"
+        android:fontFamily="@font/sfcomicscriptnormal"
+        android:text="S'inscrire"
+        android:textSize="23sp"
+        android:textColor="@android:color/holo_red_dark" />
 
 
-</android.support.constraint.ConstraintLayout>
+
+
+</LinearLayout>

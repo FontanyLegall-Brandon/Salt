@@ -32,9 +32,10 @@ public enum Singleton {
 
     public void connect() {
         boolean connected = false;
+        String urlconnection = "http://192.168.0.117:1245"; //10.0.2.2 en local
         try {
-            Log.d("connexion", "http://134.59.2.171:10000");
-            mSocket = IO.socket("http://134.59.2.171:10000");
+            Log.d("connexion", urlconnection);
+            mSocket = IO.socket(urlconnection);
             mSocket.connect();
             mSocket.on("connect", new Emitter.Listener() {
                 @Override
