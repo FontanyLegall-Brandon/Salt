@@ -33,7 +33,9 @@
         android:layout_gravity="center_horizontal"
         android:ems="10"
         android:fontFamily="@font/sfcomicscriptnormal"
+        android:textColorHint="#c4c4c4"
         android:hint="Prénom"
+        android:textColor="@android:color/white"
         android:inputType="textPersonName" />
 
     <EditText
@@ -42,8 +44,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:ems="10"
+        android:textColorHint="#c4c4c4"
+        android:textColor="@android:color/white"
         android:fontFamily="@font/sfcomicscriptnormal"
-
         android:hint="Nom"
         android:inputType="textPersonName" />
 
@@ -53,6 +56,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:ems="10"
+        android:textColorHint="#c4c4c4"
+        android:textColor="@android:color/white"
         android:fontFamily="@font/sfcomicscriptnormal"
         android:hint="E-mail"
         android:drawableStart="@drawable/ic_mail"
@@ -66,8 +71,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:ems="10"
+        android:textColorHint="#c4c4c4"
         android:fontFamily="@font/sfcomicscriptnormal"
         android:hint="Pseudo"
+        android:textColor="@android:color/white"
         android:drawableStart="@drawable/ic_user"
         android:inputType="textPersonName"
         android:src="@drawable/ic_user"
@@ -79,6 +86,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:ems="10"
+        android:textColorHint="#c4c4c4"
+        android:textColor="@android:color/white"
         android:fontFamily="@font/sfcomicscriptnormal"
         android:hint="Mot de passe"
         android:drawableStart="@drawable/ic_mdp"
@@ -92,6 +101,8 @@
         android:layout_width="307dp"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:textColorHint="#c4c4c4"
+        android:textColor="@android:color/white"
         android:layout_gravity="center_horizontal"
         android:hint="Age"
         android:drawableStart="@drawable/ic_cake"
@@ -109,8 +120,4 @@
         android:text="S'inscrire"
         android:textSize="23sp"
         android:textColor="@android:color/holo_red_dark" />
-
-
-
-
 </LinearLayout>

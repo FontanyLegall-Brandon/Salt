@@ -43,9 +43,10 @@ dependencies {
         exclude group: 'org.json', module: 'json'
     }
     testCompile "org.mockito:mockito-core:+"
-    androidTestCompile "org.mockito:mockito-android:+"
+    androidTestImplementation "org.mockito:mockito-android:+"
     compile 'com.android.volley:volley:1.0.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'uk.co.chrisjenx:calligraphy:2.2.0'
     compile 'com.lorentzos.swipecards:library:1.0.9'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-intents:3.0.1'
 }

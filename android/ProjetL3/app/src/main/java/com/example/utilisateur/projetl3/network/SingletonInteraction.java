@@ -8,4 +8,5 @@ import android.widget.Toast;
  */
 public interface SingletonInteraction {
     public  void displayToast( String msg, int length) ;
+
 }

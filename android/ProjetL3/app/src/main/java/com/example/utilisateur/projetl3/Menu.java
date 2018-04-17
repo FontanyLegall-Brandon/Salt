@@ -100,12 +100,4 @@ public class Menu extends ActivityForIO {
                     Toast.LENGTH_LONG).show();
         }
     }
-
-
-    /*private final class OkOnClickListener implements
-            DialogInterface.OnClickListener {
-        public void onClick(DialogInterface dialog, int which) {
-            pass=true;
-        }
-    }*/
 }
