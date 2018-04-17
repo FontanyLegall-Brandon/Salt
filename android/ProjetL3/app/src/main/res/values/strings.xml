@@ -6,6 +6,7 @@
     <string name="swipeLeft">Glisser vers la gauche</string>
     <string name="swipeRight">Glisser vers la droite</string>
     <string name="thumbs">Pouce en l\'air ou en bas</string>
+    <string name="retour">Retour</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>

@@ -1,24 +1,33 @@
 package com.example.utilisateur.projetl3.gameTemplates.MoteurJeux.randomEqualities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 import com.example.utilisateur.projetl3.ActivityForIO;
+import com.example.utilisateur.projetl3.Menu;
+import com.example.utilisateur.projetl3.MenuPrincipal;
 import com.example.utilisateur.projetl3.R;
+import com.example.utilisateur.projetl3.RegisterActivity;
 import com.example.utilisateur.projetl3.gameTemplates.MoteurJeux.randomEqualities.EndCard;
 import com.example.utilisateur.projetl3.gameTemplates.MoteurJeux.randomEqualities.Operation;
 import com.example.utilisateur.projetl3.gameTemplates.MoteurJeux.randomEqualities.RandomAddition;
 import com.example.utilisateur.projetl3.gameTemplates.MoteurJeux.randomEqualities.RandomEquality;
+import com.example.utilisateur.projetl3.network.Singleton;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
 import java.util.ArrayList;
+
+import static com.example.utilisateur.projetl3.network.Singleton.CLIENT;
 
 /**
  * Created by theo on 4/1/18.
  */
 
-public class TindNumber extends ActivityForIO {
+public abstract class TindNumber extends ActivityForIO {
     Operation type;
 
     public TindNumber(Operation type) {
@@ -29,6 +38,15 @@ public class TindNumber extends ActivityForIO {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cards_layout);
+
+        Button retButton = (Button)findViewById(R.id.buttonRet);
+        retButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), MenuPrincipal.class);
+                startActivity(intent);
+            }
+        });
         SwipeFlingAdapterView flingContainer = (SwipeFlingAdapterView) findViewById(R.id.frame);
         final ImageView indicator = findViewById(R.id.indicator);
 
@@ -72,6 +90,7 @@ public class TindNumber extends ActivityForIO {
                 i++;
                 if (i >= 10) {
                     finished = true;
+                    Singleton.CLIENT.incScore(getCodeJeu(), score);
                 }
             }
 
@@ -91,6 +110,7 @@ public class TindNumber extends ActivityForIO {
                 i++;
                 if (i >= 10) {
                     finished = true;
+                    CLIENT.incScore(getCodeJeu(), score);//incrémentation de la progression
                 }
             }
 
@@ -107,4 +127,6 @@ public class TindNumber extends ActivityForIO {
             }
         });
     }
+
+    public abstract int getCodeJeu();
 }
