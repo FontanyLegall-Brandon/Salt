@@ -72,7 +72,6 @@
         android:layout_width="245dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:backgroundTint="@android:color/white"
         fontPath="fonts/sfcomicscriptnormal.ttf"
         android:text="Jouer!"
         android:textAlignment="center"
