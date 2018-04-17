@@ -21,9 +21,11 @@ import io.socket.emitter.Emitter;
 
 public enum Singleton {
     CLIENT;
+    private final int nbJeux = 5;
     private Socket mSocket;
     private boolean failedConnect;
     private ActivityForIO activity;
+    private int[] progression = new int[nbJeux];//cinq jeux pour l'instant
 
     private Singleton() {
         connect();
@@ -106,5 +108,27 @@ public enum Singleton {
 
     public void setActivity(ActivityForIO activity) {
         this.activity = activity;
+    }
+
+    public void incScore(int codeJeu, int n) {
+        if (n > progression[codeJeu]) {
+            progression[codeJeu] = n;
+
+            if (CLIENT.is_connected()) {
+                //envoi du score
+            }
+        }
+    }
+
+    public int getAvancement() {
+        int avancement = 0;
+        for (int i : progression) {
+            avancement += i;
+        }
+        return avancement;
+    }
+
+    public int getMaxProgression() {
+        return 10*nbJeux;
     }
 }
