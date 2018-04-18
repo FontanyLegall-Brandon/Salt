@@ -35,11 +35,11 @@ public class Menu extends ActivityForIO {
         // Selection du layout
         setContentView(R.layout.activity_menu);
 
-        // Réccupération de toutes les vues
+        // Réccupération de toutes les vues du layout
         final EditText pseudo = (EditText) findViewById(R.id.etEmail);
         final EditText password = (EditText) findViewById(R.id.etMDP);
-        final Button loginButton = (Button) findViewById(R.id.buttonValid);
         final TextView register = (TextView) findViewById(R.id.tvSinscrireici);
+        final Button loginButton = (Button) findViewById(R.id.buttonValid);
         final Button playButton = (Button) findViewById(R.id.playbutton);
 
         // Par défaut le bouton Jouer est blanc
@@ -94,7 +94,7 @@ public class Menu extends ActivityForIO {
 
                 if (isWaitingLoginReply()) { // Si le bouton est en état d'annulation
                     // On remet les boutons dans leur configuration et on annule l'attente
-                    stopWaitingForLoginReply(loginButton, playButton);
+                    stopWaitingForLoginReply();
                     return; // Le reste de la méthode concerne le cas où on attend pas la réponse
                 }
 
@@ -114,7 +114,7 @@ public class Menu extends ActivityForIO {
                 }
                 else { // On est pas connecté
                     // On n'attends pas de réponse, donc on remet les boutons dans leur configuration de base
-                    stopWaitingForLoginReply(loginButton, playButton);
+                    stopWaitingForLoginReply();
                     // Et on signifie le problème de connexion à l'utilisateur
                     Toast.makeText(getApplicationContext(), "Vous n'êtes pas connecté au serveur", Toast.LENGTH_LONG).show();
                 }
@@ -140,10 +140,18 @@ public class Menu extends ActivityForIO {
         Singleton.CLIENT.setActivity(this); //définir l'activité utilisée par le singleton sur l'activité courante
     }
 
-    void stopWaitingForLoginReply(Button loginButton, Button playbutton) {
-        loginButton.setText("Se connecter");
-        playbutton.setBackgroundColor(Color.WHITE);
-        playbutton.setEnabled(true);
+    public void stopWaitingForLoginReply() {
+        /*loginButton.setText("Se connecter");
+        playButton.setBackgroundColor(Color.WHITE);
+        playButton.setEnabled(true);*/
         setWaitingLoginReply(false);
+    }
+
+    @Override
+    public void loginSuccessful() throws Exception {
+        // Méthode appelée lorsque le client a bien reçu une session valide lors de la connexion
+        stopWaitingForLoginReply();
+        Menu.this.startActivity(new Intent(Menu.this, MenuPrincipal.class));
+
     }
 }

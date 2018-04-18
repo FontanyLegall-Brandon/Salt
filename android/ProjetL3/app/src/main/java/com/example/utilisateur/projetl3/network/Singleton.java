@@ -3,6 +3,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.utilisateur.projetl3.ActivityForIO;
+import com.example.utilisateur.projetl3.Menu;
 import com.example.utilisateur.projetl3.RegisterRequest;
 
 import org.json.JSONException;
@@ -14,6 +15,7 @@ import java.util.HashMap;
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
+import mappers.Session;
 
 /**
  * Created by theo on 3/28/18.
@@ -26,6 +28,11 @@ public enum Singleton {
     private boolean failedConnect;
     private ActivityForIO activity;
     private int[] progression = new int[nbJeux];//cinq jeux pour l'instant
+    private Session session;
+
+    public Session getSession() {
+        return session;
+    }
 
     private Singleton() {
         connect();
@@ -116,30 +123,20 @@ public enum Singleton {
                     public void call(Object... args) {
 
                         // Réccupération du message envoyé par le serveur
-                        JSONObject session = (JSONObject) args[0];
+                        JSONObject sessionJSON = (JSONObject) args[0];
 
-                        int id = -1;
-                        String pseudo;
-                        String prenom;
-                        String nom;
-                        String email;
-                        int age;
 
                         try {   // On réccupère tous les champs de la session, exception si les champs ne sont pas bien réccupérés
-                            /*
-                            Objet session, dans lequel insérer tous ces champs
-                             */
-                            id = (int) session.get("id"); // l'id de session
-                            pseudo = (String) session.get("pseudo");
-                            prenom = (String) session.get("prenom");
-                            nom = (String) session.get("nom");
-                            email = (String) session.get("email"); // Utile ? Le mail est le login qui sert à réccupérer cette session
-                            age = (int) session.get("age");
-                        }
-                        catch (JSONException e) {
+                            session = new Session((int) sessionJSON.get("id"), (String) sessionJSON.get("pseudo"), (String) sessionJSON.get("prenom"), (String) sessionJSON.get("nom"), (String) sessionJSON.get("email"), (int) sessionJSON.get("age"));
+                        } catch (JSONException e) {
                             e.printStackTrace();
                         }
 
+                        try {
+                            activity.loginSuccessful();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                         //activity.displayToast("ID : " + id, Toast.LENGTH_LONG);
 
 

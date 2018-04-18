@@ -35,4 +35,10 @@ public abstract class ActivityForIO extends Activity implements SingletonInterac
             }
         });
     }
+
+    public void loginSuccessful() throws Exception {
+        throw new NoSuchMethodException();
+    }
+
+
 }
