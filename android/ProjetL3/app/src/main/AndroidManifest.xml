@@ -30,6 +30,7 @@
         <activity android:name=".gameTemplates.TindNumberAdd" android:exported="true"/>
         <activity android:name=".gameTemplates.TindNumberSub"/>
         <activity android:name=".gameTemplates.TindNumberMul"/>
+        <activity android:name=".gameTemplates.TindNumberComp"/>
     </application>
 
 </manifest>

@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.utilisateur.projetl3.Aides.ListeAides;
 import com.example.utilisateur.projetl3.gameTemplates.PomDragAndDrop;
 import com.example.utilisateur.projetl3.gameTemplates.TindNumberAdd;
+import com.example.utilisateur.projetl3.gameTemplates.TindNumberComp;
 import com.example.utilisateur.projetl3.gameTemplates.TindNumberMul;
 import com.example.utilisateur.projetl3.gameTemplates.TindNumberSub;
 import com.example.utilisateur.projetl3.network.Singleton;
@@ -76,7 +77,8 @@ public class MenuPrincipal extends ActivityForIO {
         tindNumberComp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent tindNumberComp = new Intent(MenuPrincipal.this, TindNumberComp.class);
+                startActivity(tindNumberComp);
             }
         });
 
@@ -105,6 +107,7 @@ public class MenuPrincipal extends ActivityForIO {
         enableAt(tindNumberSub, 10);
         enableAt(tindNumberComp, 15);
         enableAt(tindNumberMul, 20);
+
         ProgressBar progressBar = findViewById(R.id.lvlBar);
         progressBar.setMax(Singleton.CLIENT.getMaxProgression());
         progressBar.setProgress(Singleton.CLIENT.getAvancement());

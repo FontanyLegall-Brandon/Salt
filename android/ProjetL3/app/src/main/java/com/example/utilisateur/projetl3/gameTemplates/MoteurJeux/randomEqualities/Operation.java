@@ -5,7 +5,7 @@ package com.example.utilisateur.projetl3.gameTemplates.MoteurJeux.randomEqualiti
  */
 
 public enum Operation {
-    ADDITION, SOUSTRACTION, MULTIPLICATION;
+    ADDITION, SOUSTRACTION, MULTIPLICATION, COMPARAISON;
 
     public RandomEquality getRandomEquality() {
         RandomEquality res;
@@ -13,8 +13,10 @@ public enum Operation {
             res = new RandomAddition();
         } else if (this == SOUSTRACTION) {
             res = new RandomSoustraction();
-        } else {
+        } else if (this == MULTIPLICATION){
             res = new RandomMultiplication();
+        } else {
+            res = new RandomComp();
         }
         return res;
     }
