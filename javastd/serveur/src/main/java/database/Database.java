@@ -35,8 +35,9 @@ public interface Database {
 
   HashSet<Avancement> getUserScore(int userID);
   HashSet<Avancement> getUserScoreOf(int UserID,int ExerciceID);
-  int getUseScoreOfAt(int UserID,int ExerciceID,int niveau);
-  Boolean setUserScore(int UserID,int ExerciceID,int niveau,int score);
+  int getUseScoreOfAt(int UserID,int ExerciceID);
+  Boolean setUserScore(int UserID,int ExerciceID
+          ,int score);
   Boolean setMaxUserScore(int UserID,int ExerciceID,int niveau,int score);
 
 

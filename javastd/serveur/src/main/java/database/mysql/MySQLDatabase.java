@@ -453,14 +453,14 @@ public class MySQLDatabase implements database.Database {
     /**
      * Permet de définir l'avancement d'un joueur même si il l'a déjà, en mettant en avant le plus gros avancement present
      * @param UserID l'id de l'utilisateur
-     * @param ExerciceID l'id de l'exercice
+     * @param exerciceID l'id de l'exercice
      * @param pourcentage le pourcentage voulu
      * @return un boolean permettant de savoir si oui ou non l'avancement a été définie
      */
     @Override
-    public Boolean setMaxUserAvancement(int UserID,int ExerciceID,int niveau,int pourcentage) {
+    public Boolean setMaxUserAvancement(int UserID,int exerciceID,int niveau,int pourcentage) {
         Connection con = Connect.connection();
-        return _setMaxUserAvancement(UserID, ExerciceID, niveau, pourcentage,con);
+        return _setMaxUserAvancement(UserID, exerciceID, niveau, pourcentage,con);
     }
     protected Boolean _setMaxUserAvancement(int UserID,int ExerciceID,int niveau,int pourcentage,Connection con) {
 
@@ -552,13 +552,13 @@ public class MySQLDatabase implements database.Database {
     }
 
     @Override
-    public int getUseScoreOfAt(int UserID, int ExerciceID, int niveau) {
-        return getUserAvancementOfAt(UserID, ExerciceID, niveau);
+    public int getUseScoreOfAt(int UserID, int ExerciceID) {
+        return getUserAvancementOfAt(UserID, ExerciceID, 0);
     }
 
     @Override
-    public Boolean setUserScore(int UserID, int ExerciceID, int niveau, int score) {
-        return setUserAvancement(UserID, ExerciceID, niveau, score);
+    public Boolean setUserScore(int UserID, int ExerciceID, int score) {
+        return setUserAvancement(UserID, ExerciceID, 0, score);
     }
 
     @Override
