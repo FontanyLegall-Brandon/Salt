@@ -73,6 +73,14 @@ public class MenuPrincipal extends ActivityForIO {
             }
         });
 
+        Button tindNumberComp = findViewById(R.id.tindNumberComp);
+        tindNumberComp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         Button profil = findViewById(R.id.buttonProfil);
         profil.setEnabled(false);
         profil.setBackgroundColor(Color.GRAY);
@@ -93,9 +101,24 @@ public class MenuPrincipal extends ActivityForIO {
             }
         });
 
+        enableAt(pommes, 0);
+        enableAt(tindNumberAdd, 0);
+        enableAt(tindNumberSub, 10);
+        enableAt(tindNumberComp, 15);
+        enableAt(tindNumberMul, 20);
         ProgressBar progressBar = findViewById(R.id.lvlBar);
         progressBar.setMax(Singleton.CLIENT.getMaxProgression());
         progressBar.setProgress(Singleton.CLIENT.getAvancement());
+    }
+
+    public void enableAt(Button button, int progression) {
+        if (Singleton.CLIENT.getAvancement() < progression) {
+            button.setBackgroundColor(Color.GRAY);
+            button.setEnabled(false);
+        } else {
+            button.setBackgroundColor(Color.WHITE);
+            button.setEnabled(true);
+        }
     }
 }
 

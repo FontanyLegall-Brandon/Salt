@@ -20,6 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_margin="6dp"
         android:fontFamily="@font/sfcomicscriptshaded"
         android:text="Bienvenue!"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -31,6 +32,7 @@
         android:layout_width="191dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_margin="3dp"
         android:backgroundTint="@android:color/white"
         android:fontFamily="@font/sfcomicscriptnormal"
         android:text="Pommes"
@@ -42,7 +44,7 @@
         android:layout_width="191dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:backgroundTint="@android:color/white"
+        android:layout_margin="3dp"
         android:fontFamily="@font/sfcomicscriptnormal"
         android:text="Addition"
         android:textColor="@android:color/holo_red_dark"
@@ -53,21 +55,9 @@
         android:layout_width="191dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:backgroundTint="@android:color/white"
+        android:layout_margin="3dp"
         android:fontFamily="@font/sfcomicscriptnormal"
         android:text="Soustraction"
-        android:textColor="@android:color/holo_red_dark"
-        android:textSize="22sp" />
-
-    <Button
-        android:id="@+id/tindNumberMul"
-        android:layout_width="191dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:backgroundTint="@android:color/white"
-        android:fontFamily="@font/sfcomicscriptnormal"
-        android:text="Multiplication"
-        android:textAlignment="center"
         android:textColor="@android:color/holo_red_dark"
         android:textSize="22sp" />
 
@@ -76,9 +66,21 @@
         android:layout_width="191dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:backgroundTint="@android:color/white"
+        android:layout_margin="3dp"
         android:fontFamily="@font/sfcomicscriptnormal"
         android:text="Comparaison"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="22sp" />
+
+    <Button
+        android:id="@+id/tindNumberMul"
+        android:layout_width="191dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="3dp"
+        android:fontFamily="@font/sfcomicscriptnormal"
+        android:text="Multiplication"
+        android:textAlignment="center"
         android:textColor="@android:color/holo_red_dark"
         android:textSize="22sp" />
 
@@ -87,8 +89,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_margin="3dp"
         android:fontFamily="@font/sfcomicscriptnormal"
-        android:backgroundTint="@android:color/white"
         android:text="Aides"
         android:textColor="@android:color/holo_red_dark"
         android:textSize="22sp" />
@@ -98,6 +100,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_margin="3dp"
         android:fontFamily="@font/sfcomicscriptnormal"
         android:text="Profil"
         android:textColor="@android:color/holo_red_dark"
@@ -105,10 +108,11 @@
 
     <ProgressBar
         android:id="@+id/lvlBar"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
         android:layout_width="200dp"
         android:layout_height="25dp"
         android:layout_gravity="center_horizontal"
+        android:layout_margin="6dp"
         android:progressTint="@color/colorAccent" />
 
     <TextView
@@ -118,6 +122,7 @@
         android:layout_gravity="center_horizontal"
         android:fontFamily="@font/sfcomicscriptnormal"
         android:text="0"
+        android:textColor="@android:color/white"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </LinearLayout>
