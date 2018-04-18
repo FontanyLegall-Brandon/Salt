@@ -5,13 +5,16 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.utilisateur.projetl3.Aides.ListeAides;
 import com.example.utilisateur.projetl3.gameTemplates.PomDragAndDrop;
 import com.example.utilisateur.projetl3.gameTemplates.TindNumberAdd;
 import com.example.utilisateur.projetl3.gameTemplates.TindNumberMul;
 import com.example.utilisateur.projetl3.gameTemplates.TindNumberSub;
+import com.example.utilisateur.projetl3.network.Singleton;
 
 /**
  * Created by Utilisateur on 14/02/2018.
@@ -22,6 +25,10 @@ public class MenuPrincipal extends ActivityForIO {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
+
+        TextView avancement = findViewById(R.id.avancement);
+        avancement.setText(Singleton.CLIENT.getAvancement() + " / " + Singleton.CLIENT.getMaxProgression());
+
         String login = getIntent().getStringExtra("login");
         if (login == null) {
             login = "guest";
@@ -84,7 +91,12 @@ public class MenuPrincipal extends ActivityForIO {
                 MenuPrincipal.this.startActivity(aidesIntent);
             }
         });
-    }}
+
+        ProgressBar progressBar = findViewById(R.id.lvlBar);
+        progressBar.setMax(Singleton.CLIENT.getMaxProgression());
+        progressBar.setProgress(Singleton.CLIENT.getAvancement());
+    }
+}
 
 
 

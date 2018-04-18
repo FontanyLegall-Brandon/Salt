@@ -190,4 +190,8 @@ public class PomDragAndDrop extends ActivityForIO {
     public DragAndDrop getMoteur(){
         return moteur;
     }
+
+    public int getCodeJeu() {
+        return 0;
+    }
 }
