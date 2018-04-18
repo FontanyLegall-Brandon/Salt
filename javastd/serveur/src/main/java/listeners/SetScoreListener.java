@@ -3,7 +3,7 @@ package listeners;
 import com.corundumstudio.socketio.AckRequest;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.listener.DataListener;
-import listeners.mappers.Score;
+import mappers.Score;
 import serveur.Server;
 
 public class SetScoreListener implements DataListener<Score> {

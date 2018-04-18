@@ -1,4 +1,4 @@
-package listeners.mappers;
+package mappers;
 
 public class LoginInfos {
 	

@@ -1,4 +1,4 @@
-package listeners.mappers;
+package mappers;
 
 /**
  * La classe Session permet, lors de la connexion, de retourner à l'application les informations du compte pour

@@ -5,8 +5,8 @@ import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.listener.DataListener;
 
 import database.Database;
-import listeners.mappers.LoginInfos;
-import listeners.mappers.Session;
+import mappers.LoginInfos;
+import mappers.Session;
 import serveur.Server;
 
 public class IdentificationListener implements DataListener<LoginInfos> {

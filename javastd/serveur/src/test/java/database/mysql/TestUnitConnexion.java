@@ -4,8 +4,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import database.Database;
-import listeners.mappers.Session;
+import mappers.Session;
 
 import java.sql.Connection;
 

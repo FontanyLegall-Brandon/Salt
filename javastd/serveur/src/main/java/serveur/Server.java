@@ -1,7 +1,5 @@
 package serveur;
 
-import com.corundumstudio.socketio.Configuration;
-import com.corundumstudio.socketio.AckRequest;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.listener.ConnectListener;
@@ -12,9 +10,9 @@ import listeners.GetScoreListener;
 import listeners.IdentificationListener;
 import listeners.NewUserListener;
 import listeners.SetScoreListener;
-import listeners.mappers.LoginInfos;
-import listeners.mappers.Score;
-import listeners.mappers.UserInfo;
+import mappers.LoginInfos;
+import mappers.Score;
+import mappers.UserInfo;
 import java.util.concurrent.TimeUnit;
 
 

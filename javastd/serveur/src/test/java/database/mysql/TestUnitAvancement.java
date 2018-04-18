@@ -1,8 +1,7 @@
 package database.mysql;
 
 
-import listeners.mappers.Session;
-import org.junit.AfterClass;
+import mappers.Session;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import serveur.Avancement;
@@ -10,7 +9,6 @@ import serveur.Avancement;
 import java.sql.Connection;
 import java.util.HashSet;
 import java.util.Hashtable;
-import java.util.Iterator;
 
 import static org.junit.Assert.*;
 

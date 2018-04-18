@@ -3,12 +3,10 @@ package serveur;
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import listeners.NewUserListener;
-import listeners.mappers.UserInfo;
+import mappers.UserInfo;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
@@ -19,7 +17,6 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.timeout;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)

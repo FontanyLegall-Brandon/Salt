@@ -10,8 +10,8 @@ import com.corundumstudio.socketio.SocketIOClient;
 
 import listeners.IdentificationListener;
 import database.Database;
-import listeners.mappers.LoginInfos;
-import listeners.mappers.Session;
+import mappers.LoginInfos;
+import mappers.Session;
 import serveur.Server;
 
 import static org.mockito.Mockito.when;

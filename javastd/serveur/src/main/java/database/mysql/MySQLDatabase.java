@@ -1,14 +1,11 @@
 package database.mysql;
-import database.Database;
-import listeners.mappers.Session;
-import listeners.mappers.UserInfo;
+import mappers.Session;
+import mappers.UserInfo;
 import serveur.Avancement;
-import sun.security.x509.AVA;
 
 import java.sql.* ;
 import java.util.HashSet;
 import java.util.Hashtable;
-import java.util.Iterator;
 
 /**
  * La classe Database implemente l'interface database avec toutes les commandes mysql necessaires

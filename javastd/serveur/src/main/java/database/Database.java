@@ -6,7 +6,7 @@ import serveur.Avancement;
 import java.util.HashSet;
 import java.util.Hashtable;
 
-import listeners.mappers.Session;
+import mappers.Session;
 
 /**
  * la database sous forme d'interface va nous permettre d'interragir entre le serveur et la database.

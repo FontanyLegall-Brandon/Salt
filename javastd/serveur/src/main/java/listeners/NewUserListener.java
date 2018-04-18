@@ -4,8 +4,8 @@ import com.corundumstudio.socketio.AckRequest;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.listener.DataListener;
 import database.Database;
-import listeners.mappers.Reply;
-import listeners.mappers.UserInfo;
+import mappers.Reply;
+import mappers.UserInfo;
 import serveur.Server;
 
 /**
@@ -48,7 +48,7 @@ public class NewUserListener implements DataListener<UserInfo> {
         	
         	
         }
-        
+
         else { // Si le joueur n'existe pas encore
 
             // On inscrit le joueur dans la BDD
