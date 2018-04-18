@@ -1,6 +1,5 @@
 package com.example.utilisateur.projetl3;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -37,7 +36,7 @@ public class Menu extends ActivityForIO {
         setContentView(R.layout.activity_menu);
 
         // Réccupération de toutes les vues
-        final EditText pseudo = (EditText) findViewById(R.id.etPseudo);
+        final EditText pseudo = (EditText) findViewById(R.id.etEmail);
         final EditText password = (EditText) findViewById(R.id.etMDP);
         final Button loginButton = (Button) findViewById(R.id.buttonValid);
         final TextView register = (TextView) findViewById(R.id.tvSinscrireici);

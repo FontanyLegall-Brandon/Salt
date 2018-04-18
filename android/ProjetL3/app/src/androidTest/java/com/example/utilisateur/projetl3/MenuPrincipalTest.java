@@ -71,7 +71,7 @@ public class MenuPrincipalTest {
         progressBar.check(matches(isDisplayed()));
 
         ViewInteraction textView = onView(
-                allOf(withId(R.id.etPseudo), withText("guest"),
+                allOf(withId(R.id.etEmail), withText("guest"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),

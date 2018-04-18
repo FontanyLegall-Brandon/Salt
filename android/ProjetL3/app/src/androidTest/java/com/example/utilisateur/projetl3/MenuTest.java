@@ -52,7 +52,7 @@ public class MenuTest {
         textView.check(matches(withText("Identifiants")));
 
         ViewInteraction editText = onView(
-                allOf(withId(R.id.etPseudo), withText("Pseudo"),
+                allOf(withId(R.id.etEmail), withText("Pseudo"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),

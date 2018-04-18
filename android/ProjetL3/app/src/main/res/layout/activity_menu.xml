@@ -28,7 +28,7 @@
         android:textSize="34sp" />
 
     <EditText
-        android:id="@+id/etPseudo"
+        android:id="@+id/etEmail"
         android:layout_width="327dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -36,8 +36,8 @@
         android:textColorHint="#c4c4c4"
         android:textColor="@android:color/white"
         fontPath="fonts/sfcomicscriptnormal.ttf"
-        android:hint="Pseudo"
-        android:inputType="textPersonName"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
         android:textSize="24sp" />
 
     <EditText
