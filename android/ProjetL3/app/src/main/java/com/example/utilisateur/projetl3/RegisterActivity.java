@@ -1,7 +1,6 @@
 package com.example.utilisateur.projetl3;
 
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -24,7 +23,7 @@ public class RegisterActivity extends ActivityForIO {
         final EditText etPrenom = (EditText) findViewById(R.id.etPrenom);
         final EditText etNom = (EditText) findViewById(R.id.etNom);
         final EditText etEmail = (EditText) findViewById(R.id.etEmail);
-        final EditText etPseudo = (EditText) findViewById(R.id.etPseudo);
+        final EditText etPseudo = (EditText) findViewById(R.id.etEmail);
         final EditText etMDP = (EditText) findViewById(R.id.etMDP);
         final Button buttonSinscrire = (Button) findViewById(R.id.buttonSinscrire);
         buttonSinscrire.setBackgroundColor(Color.GRAY);

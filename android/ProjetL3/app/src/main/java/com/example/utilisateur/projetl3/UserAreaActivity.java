@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 public class UserAreaActivity extends AppCompatActivity {
 
     @Override
@@ -14,7 +12,7 @@ public class UserAreaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_area);
 
-        final EditText pseudo = (EditText) findViewById(R.id.etPseudo);
+        final EditText pseudo = (EditText) findViewById(R.id.etEmail);
         final EditText age = (EditText) findViewById(R.id.etAge);
         final TextView welcomemsg = (TextView) findViewById(R.id.tvWelcomeMsg);
 

@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import com.example.utilisateur.projetl3.Aides.ListeAides;
 import com.example.utilisateur.projetl3.gameTemplates.PomDragAndDrop;
-import com.example.utilisateur.projetl3.gameTemplates.MoteurJeux.randomEqualities.TindNumber;
 import com.example.utilisateur.projetl3.gameTemplates.TindNumberAdd;
 import com.example.utilisateur.projetl3.gameTemplates.TindNumberMul;
 import com.example.utilisateur.projetl3.gameTemplates.TindNumberSub;
@@ -34,7 +33,7 @@ public class MenuPrincipal extends ActivityForIO {
         if (login == null) {
             login = "guest";
         }
-        TextView view = findViewById(R.id.etPseudo);
+        TextView view = findViewById(R.id.etEmail);
         view.setText(login);
 
         Button pommes = findViewById(R.id.pommes);
