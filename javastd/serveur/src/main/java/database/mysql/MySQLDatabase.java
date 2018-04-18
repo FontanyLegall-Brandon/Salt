@@ -541,7 +541,32 @@ public class MySQLDatabase implements database.Database {
 
     }
 
-//    public static void main(String[] args) {
+    @Override
+    public HashSet<Avancement> getUserScore(int userID) {
+        return getUserAvancement(userID);
+    }
+
+    @Override
+    public HashSet<Avancement> getUserScoreOf(int UserID, int ExerciceID) {
+        return getUserAvancementOf(UserID, ExerciceID);
+    }
+
+    @Override
+    public int getUseScoreOfAt(int UserID, int ExerciceID, int niveau) {
+        return getUserAvancementOfAt(UserID, ExerciceID, niveau);
+    }
+
+    @Override
+    public Boolean setUserScore(int UserID, int ExerciceID, int niveau, int score) {
+        return setUserAvancement(UserID, ExerciceID, niveau, score);
+    }
+
+    @Override
+    public Boolean setMaxUserScore(int UserID, int ExerciceID, int niveau, int score) {
+        return setMaxUserAvancement(UserID, ExerciceID, niveau, score);
+    }
+
+    //    public static void main(String[] args) {
 //
 //
 //       Database database = new MySQLDatabase();
