@@ -33,6 +33,15 @@ public interface Database {
   Boolean setUserAvancement(int UserID,int ExerciceID,int niveau,int pourcentage);
   Boolean setMaxUserAvancement(int UserID,int ExerciceID,int niveau,int pourcentage);
 
+  HashSet<Avancement> getUserScore(int userID);
+  HashSet<Avancement> getUserScoreOf(int UserID,int ExerciceID);
+  int getUseScoreOfAt(int UserID,int ExerciceID,int niveau);
+  Boolean setUserScore(int UserID,int ExerciceID,int niveau,int score);
+  Boolean setMaxUserScore(int UserID,int ExerciceID,int niveau,int score);
+
+
+
+
   //Fonctions liés aux données :
   Hashtable<Integer,String> getExerciceList();
 
