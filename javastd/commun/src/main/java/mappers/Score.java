@@ -2,24 +2,24 @@ package mappers;
 
 public class Score {
 
-    private int valeur;
-    private int exercice; // Exercice est un int ??? voir par rapport à l'intégration de la db
+    private int note;
+    private int exercice; // Exercice est un int (code - probablement plus propre avec une enum)
 
     public Score() {
 
     }
 
-    public Score(int valeur, int exercice) {
-        this.valeur = valeur;
+    public Score(int exercice, int note) {
+        this.note= note;
         this.exercice = exercice;
     }
 
-    public int getValeur() {
-        return valeur;
+    public int getNote() {
+        return note;
     }
 
-    public void setValeur(int valeur) {
-        this.valeur = valeur;
+    public void setNote(int note) {
+        this.note = note;
     }
 
     public int getExercice() {

@@ -15,6 +15,8 @@ import com.example.utilisateur.projetl3.network.Singleton;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
+import static com.example.utilisateur.projetl3.network.Singleton.CLIENT;
+
 public class Menu extends ActivityForIO {
 
     private boolean waitingLoginReply;
@@ -60,7 +62,8 @@ public class Menu extends ActivityForIO {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (pseudo.getText().toString().length()==0 ||
-                        password.getText().toString().length()==0) {
+                        password.getText().toString().length()==0 ||
+                        !CLIENT.is_connected()) {
                     findViewById(R.id.buttonValid).setEnabled(false);
                     loginButton.setBackgroundColor(Color.GRAY);
                 } else {
@@ -107,9 +110,9 @@ public class Menu extends ActivityForIO {
                 // On attend la réponse
                 setWaitingLoginReply(true);
 
-                if (Singleton.CLIENT.is_connected()) { // Si la connexion avec le serveur est active
+                if (CLIENT.is_connected()) { // Si la connexion avec le serveur est active
                     // On lance l'opération de login sur le serveur
-                    Singleton.CLIENT.sendLogin(pseudo.getText().toString(), password.getText().toString());
+                    CLIENT.sendLogin(pseudo.getText().toString(), password.getText().toString());
                     // Un listener du client se chargera de gérer le retour du serveur
                 }
                 else { // On est pas connecté
@@ -137,7 +140,7 @@ public class Menu extends ActivityForIO {
                 .build()
         );
 
-        Singleton.CLIENT.setActivity(this); //définir l'activité utilisée par le singleton sur l'activité courante
+        CLIENT.setActivity(this); //définir l'activité utilisée par le singleton sur l'activité courante
     }
 
     public void stopWaitingForLoginReply() {
