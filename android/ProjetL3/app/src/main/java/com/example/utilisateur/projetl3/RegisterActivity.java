@@ -74,7 +74,7 @@ public class RegisterActivity extends ActivityForIO {
                 final String email = etEmail.getText().toString();
                 final String pseudo = etPseudo.getText().toString();
                 final String mdp = etMDP.getText().toString();
-                if (Singleton.CLIENT.is_connected()) {//si on est connecté au serveur, on envoie les données
+                if (Singleton.CLIENT.isConnected()) {//si on est connecté au serveur, on envoie les données
                     RegisterRequest newUser= new RegisterRequest(prenom, nom, age, email, pseudo, mdp);
                     Singleton.CLIENT.sendNewUser(newUser);
                 } else {//TODO : prendre en compte les réponses lors de l'inscription

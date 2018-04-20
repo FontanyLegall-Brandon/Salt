@@ -3,7 +3,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.utilisateur.projetl3.ActivityForIO;
-import com.example.utilisateur.projetl3.Menu;
 import com.example.utilisateur.projetl3.RegisterRequest;
 
 import org.json.JSONException;
@@ -41,7 +40,7 @@ public enum Singleton {
 
     public void connect() { // Gère la connexion au serveur
         boolean connected = false;
-        String urlconnection = "http://192.168.43.212:10005"; //10.0.2.2 en local
+        String urlconnection = "http://192.168.1.19:10005"; //10.0.2.2 en local
         try {
             Log.d("connexion", urlconnection);
             mSocket = IO.socket(urlconnection);
@@ -103,8 +102,15 @@ public enum Singleton {
         }
     }
 
+    /**
+     * Méthode permettant d'envoyer les informations de login sur le serveur et récupérant la session en cas de succès.
+     * Dans ce cas le menu de jeu est lancé et les boutons sont réinitialisés.
+     * Si les identifiants ne sont pas bons les champs se colorent en rouge et l'erreur est indiquée à l'utilisateur.
+     * @param login L'identifiant de login, dans notre application il s'agit de l'email
+     * @param password Le mot de passe
+     */
     public void sendLogin(String login, String password) {
-        // Tentative de login, envoi des identifiants au serveur
+        // Tentative de successfulLogin, envoi des identifiants au serveur
         if ((mSocket != null) && (mSocket.connected())) {
             // Si on est connecté au serveur
 
@@ -117,7 +123,7 @@ public enum Singleton {
                 // Puis on l'envoi au serveur
                 mSocket.emit("login", obj);
 
-                // On applique pour finir un listener pour gérer le retour
+                // On applique pour finir un listener pour gérer le retour de la session
                 mSocket.on("session", new Emitter.Listener() {
                     @Override
                     public void call(Object... args) {
@@ -127,18 +133,16 @@ public enum Singleton {
 
 
                         try {   // On réccupère tous les champs de la session, exception si les champs ne sont pas bien réccupérés
-                            session = new Session((int) sessionJSON.get("id"), (String) sessionJSON.get("pseudo"), (String) sessionJSON.get("prenom"), (String) sessionJSON.get("nom"), (String) sessionJSON.get("email"), (int) sessionJSON.get("age"));
+                            session = new Session((int) sessionJSON.get("id"), (String) sessionJSON.get("pseudo"),
+                                    (String) sessionJSON.get("prenom"), (String) sessionJSON.get("nom"),
+                                    (String) sessionJSON.get("email"), (int) sessionJSON.get("age"));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
 
-                        try {
-                            activity.loginSuccessful();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        //activity.displayToast("ID : " + id, Toast.LENGTH_LONG);
+                        activity.successfulLogin();
 
+                        //activity.displayToast("ID : " + id, Toast.LENGTH_LONG);
 
                     }
 
@@ -157,7 +161,7 @@ public enum Singleton {
 
 
 
-    public boolean is_connected() {
+    public boolean isConnected() {
         return mSocket.connected();
     }
 
@@ -169,7 +173,7 @@ public enum Singleton {
         if (n > progression[codeJeu]) {
             progression[codeJeu] = n;
 
-            if (CLIENT.is_connected()) {
+            if (CLIENT.isConnected()) {
                 //envoi du score
             }
         }

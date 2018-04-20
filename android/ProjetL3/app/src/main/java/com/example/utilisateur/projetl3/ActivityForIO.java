@@ -27,17 +27,49 @@ public abstract class ActivityForIO extends Activity implements SingletonInterac
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
-    public void displayToast( final String msg, final int length) {
+    /**
+     * Affiche un toast dans l'application
+     * @param message Le message à afficher
+     * @param duration La durée de l'affichage
+     */
+    public void displayToast( final String message, final int duration) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(getApplicationContext(), msg, length).show();
+                Toast.makeText(getApplicationContext(), message, duration).show();
             }
         });
     }
 
-    public void loginSuccessful() throws Exception {
-        throw new NoSuchMethodException();
+    /**
+     * Méthode appelée lorsque le client a bien reçu une session valide lors de la connexion.
+     * Permet de lancer les opérations de réinitialisation de l'interface en appellant les méthodes dans le bon thread.
+     */
+    public void successfulLogin() {
+
+        final ActivityForIO activity = this;    // Sauvegarde de l'activité courante, this fera référence au runable quand on en aura besoin
+
+        runOnUiThread(new Runnable() {  // On effectue l'opération sur le UI thread (?) en instanciant une classe abstraite Runnable
+            @Override
+            public void run() {         // dont la méthode run() se contente d'appeler la méthode resetLoginScreen()
+
+                try {
+                    activity.resetLoginScreen();
+                } catch (NoSuchMethodException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+
+    }
+
+    /**
+     *  Réinitialise les boutons "Connexion" et "Jouer" du menu de login.
+     * @throws NoSuchMethodException lorsque cette méthode est appelée sur un activitée qui n'est pas un MenuPricipal
+     */
+    public void resetLoginScreen() throws NoSuchMethodException {
+        throw new NoSuchMethodException("resetLoginScreen called from another activity than Menu");
     }
 
 

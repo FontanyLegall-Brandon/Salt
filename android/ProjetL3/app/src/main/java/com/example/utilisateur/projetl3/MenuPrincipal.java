@@ -30,7 +30,7 @@ public class MenuPrincipal extends ActivityForIO {
         TextView avancement = findViewById(R.id.avancement);
         avancement.setText(Singleton.CLIENT.getAvancement() + " / " + Singleton.CLIENT.getMaxProgression());
 
-        String login = getIntent().getStringExtra("login");
+        String login = getIntent().getStringExtra("successfulLogin");
         if (login == null) {
             login = "guest";
         }
