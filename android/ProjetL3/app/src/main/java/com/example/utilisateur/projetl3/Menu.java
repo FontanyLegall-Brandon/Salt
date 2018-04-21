@@ -62,8 +62,7 @@ public class Menu extends ActivityForIO {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (pseudo.getText().toString().length()==0 ||
-                        password.getText().toString().length()==0 ||
-                        !CLIENT.isConnected()) {
+                        password.getText().toString().length()==0) {
                     findViewById(R.id.buttonValid).setEnabled(false);
                     loginButton.setBackgroundColor(Color.GRAY);
                 } else {
@@ -167,6 +166,10 @@ public class Menu extends ActivityForIO {
 
         // Fin de l'attente
         setWaitingLoginReply(false);
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 
 }

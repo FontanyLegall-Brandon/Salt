@@ -19,7 +19,7 @@ import com.example.utilisateur.projetl3.network.Singleton;
  */
 
 public class WelcomeActivity extends ActivityForIO{
-    private static int SPLASH_TIME_OUT = 3000;
+    private static int SPLASH_TIME_OUT = 2000;
 
 
     @Override
@@ -38,10 +38,6 @@ public class WelcomeActivity extends ActivityForIO{
 
             }
         } ,SPLASH_TIME_OUT);
-
-
-
-
     }
 
 

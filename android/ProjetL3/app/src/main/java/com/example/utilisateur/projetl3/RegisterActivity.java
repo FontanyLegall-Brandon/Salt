@@ -1,5 +1,6 @@
 package com.example.utilisateur.projetl3;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -81,5 +82,11 @@ public class RegisterActivity extends ActivityForIO {
                     Toast.makeText(getApplicationContext(),"Vous n'êtes pas connecté au serveur", Toast.LENGTH_LONG).show();
                 }
         }});
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent menu = new Intent(RegisterActivity.this, Menu.class);
+        startActivity(menu);
     }
 }

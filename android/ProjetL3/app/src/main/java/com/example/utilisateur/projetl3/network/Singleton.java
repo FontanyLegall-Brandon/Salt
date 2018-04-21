@@ -187,6 +187,10 @@ public enum Singleton {
         return avancement;
     }
 
+    public int getAvancement(int i) {
+        return progression[i];
+    }
+
     public int getMaxProgression() {
         return 10*nbJeux;
     }
