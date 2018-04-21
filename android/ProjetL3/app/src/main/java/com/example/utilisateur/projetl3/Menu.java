@@ -11,8 +11,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.utilisateur.projetl3.network.Singleton;
-
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 import static com.example.utilisateur.projetl3.network.Singleton.CLIENT;
@@ -36,6 +34,8 @@ public class Menu extends ActivityForIO {
 
         // Selection du layout
         setContentView(R.layout.activity_menu);
+
+
 
         // Réccupération de toutes les vues du layout
         final EditText pseudo = (EditText) findViewById(R.id.etEmail);
@@ -62,8 +62,7 @@ public class Menu extends ActivityForIO {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (pseudo.getText().toString().length()==0 ||
-                        password.getText().toString().length()==0 ||
-                        !CLIENT.is_connected()) {
+                        password.getText().toString().length()==0) {
                     findViewById(R.id.buttonValid).setEnabled(false);
                     loginButton.setBackgroundColor(Color.GRAY);
                 } else {
@@ -90,10 +89,10 @@ public class Menu extends ActivityForIO {
             }
         });
 
-        // Listener du bouton de login
+        // Listener du bouton de successfulLogin
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {//quand on clique sur le bouton login
+            public void onClick(View v) {//quand on clique sur le bouton successfulLogin
 
                 if (isWaitingLoginReply()) { // Si le bouton est en état d'annulation
                     // On remet les boutons dans leur configuration et on annule l'attente
@@ -110,8 +109,8 @@ public class Menu extends ActivityForIO {
                 // On attend la réponse
                 setWaitingLoginReply(true);
 
-                if (CLIENT.is_connected()) { // Si la connexion avec le serveur est active
-                    // On lance l'opération de login sur le serveur
+                if (CLIENT.isConnected()) { // Si la connexion avec le serveur est active
+                    // On lance l'opération de successfulLogin sur le serveur
                     CLIENT.sendLogin(pseudo.getText().toString(), password.getText().toString());
                     // Un listener du client se chargera de gérer le retour du serveur
                 }
@@ -143,18 +142,34 @@ public class Menu extends ActivityForIO {
         CLIENT.setActivity(this); //définir l'activité utilisée par le singleton sur l'activité courante
     }
 
-    public void stopWaitingForLoginReply() {
-        /*loginButton.setText("Se connecter");
+    @Override
+    public void resetLoginScreen() {
+        stopWaitingForLoginReply(); // On arrête d'attendre et réinitialise l'affichage des éléments
+        Menu.this.startActivity(new Intent(Menu.this, MenuPrincipal.class));    // Puis on passe au menu de jeu
+    }
+
+    private void stopWaitingForLoginReply() {
+        /*
+        Méthode mettant un terme à l'état d'attente de réponse du serveur lorqu'on se connecte
+         */
+
+        // Réccupération des éléments sur lesquels on va devoir interagir
+        Button loginButton = (Button) findViewById(R.id.buttonValid);
+        Button playButton = (Button) findViewById(R.id.playbutton);
+
+        // Remise en place du texte de base sur le bouton de connexion
+        loginButton.setText("Se connecter");
+
+        // Réactivation du bouton de "Jouer"
         playButton.setBackgroundColor(Color.WHITE);
-        playButton.setEnabled(true);*/
+        playButton.setEnabled(true);
+
+        // Fin de l'attente
         setWaitingLoginReply(false);
     }
 
     @Override
-    public void loginSuccessful() throws Exception {
-        // Méthode appelée lorsque le client a bien reçu une session valide lors de la connexion
-        stopWaitingForLoginReply();
-        Menu.this.startActivity(new Intent(Menu.this, MenuPrincipal.class));
-
+    public void onBackPressed() {
     }
+
 }

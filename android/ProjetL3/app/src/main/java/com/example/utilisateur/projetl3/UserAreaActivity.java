@@ -15,7 +15,5 @@ public class UserAreaActivity extends AppCompatActivity {
         final EditText pseudo = (EditText) findViewById(R.id.etEmail);
         final EditText age = (EditText) findViewById(R.id.etAge);
         final TextView welcomemsg = (TextView) findViewById(R.id.tvWelcomeMsg);
-
-
     }
   }

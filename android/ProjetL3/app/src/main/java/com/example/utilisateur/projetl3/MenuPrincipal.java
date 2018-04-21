@@ -30,7 +30,7 @@ public class MenuPrincipal extends ActivityForIO {
         TextView avancement = findViewById(R.id.avancement);
         avancement.setText(Singleton.CLIENT.getAvancement() + " / " + Singleton.CLIENT.getMaxProgression());
 
-        String login = getIntent().getStringExtra("login");
+        String login = getIntent().getStringExtra("successfulLogin");
         if (login == null) {
             login = "guest";
         }
@@ -109,8 +109,7 @@ public class MenuPrincipal extends ActivityForIO {
         enableAt(tindNumberMul, 20);
 
         ProgressBar progressBar = findViewById(R.id.lvlBar);
-        progressBar.setMax(Singleton.CLIENT.getMaxProgression());
-        progressBar.setProgress(Singleton.CLIENT.getAvancement());
+        updateProgression(progressBar, Singleton.CLIENT.getAvancement(), Singleton.CLIENT.getMaxProgression());
     }
 
     public void enableAt(Button button, int progression) {
@@ -121,6 +120,17 @@ public class MenuPrincipal extends ActivityForIO {
             button.setBackgroundColor(Color.WHITE);
             button.setEnabled(true);
         }
+    }
+
+    public void updateProgression(ProgressBar bar, int value, int maxValue) {
+        bar.setMax(maxValue);
+        bar.setProgress(value);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent menu = new Intent(MenuPrincipal.this, Menu.class);
+        startActivity(menu);
     }
 }
 

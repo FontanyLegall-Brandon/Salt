@@ -2,6 +2,7 @@ package com.example.utilisateur.projetl3.gameTemplates;
 
 import android.content.ClipData;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.utilisateur.projetl3.ActivityForIO;
+import com.example.utilisateur.projetl3.Menu;
+import com.example.utilisateur.projetl3.MenuPrincipal;
 import com.example.utilisateur.projetl3.R;
 import com.example.utilisateur.projetl3.gameTemplates.MoteurJeux.DragAndDrop;
 import com.example.utilisateur.projetl3.utils.GameUI;
@@ -193,5 +196,11 @@ public class PomDragAndDrop extends ActivityForIO {
 
     public int getCodeJeu() {
         return 0;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent menu = new Intent(getApplicationContext(), MenuPrincipal.class);
+        startActivity(menu);
     }
 }

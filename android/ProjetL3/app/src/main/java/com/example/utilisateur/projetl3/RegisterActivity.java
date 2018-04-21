@@ -1,5 +1,6 @@
 package com.example.utilisateur.projetl3;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -74,12 +75,18 @@ public class RegisterActivity extends ActivityForIO {
                 final String email = etEmail.getText().toString();
                 final String pseudo = etPseudo.getText().toString();
                 final String mdp = etMDP.getText().toString();
-                if (Singleton.CLIENT.is_connected()) {//si on est connecté au serveur, on envoie les données
+                if (Singleton.CLIENT.isConnected()) {//si on est connecté au serveur, on envoie les données
                     RegisterRequest newUser= new RegisterRequest(prenom, nom, age, email, pseudo, mdp);
                     Singleton.CLIENT.sendNewUser(newUser);
                 } else {//TODO : prendre en compte les réponses lors de l'inscription
                     Toast.makeText(getApplicationContext(),"Vous n'êtes pas connecté au serveur", Toast.LENGTH_LONG).show();
                 }
         }});
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent menu = new Intent(RegisterActivity.this, Menu.class);
+        startActivity(menu);
     }
 }

@@ -129,4 +129,10 @@ public abstract class TindNumber extends ActivityForIO {
     }
 
     public abstract int getCodeJeu();
+
+    @Override
+    public void onBackPressed() {
+        Intent menuPr = new Intent(getApplicationContext(), MenuPrincipal.class);
+        startActivity(menuPr);
+    }
 }

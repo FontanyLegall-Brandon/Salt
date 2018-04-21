@@ -1,16 +1,20 @@
 package com.example.utilisateur.projetl3.Aides;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.example.utilisateur.projetl3.ActivityForIO;
+import com.example.utilisateur.projetl3.Menu;
+import com.example.utilisateur.projetl3.MenuPrincipal;
 import com.example.utilisateur.projetl3.R;
 
 /**
  * Created by Utilisateur on 31/03/2018.
  */
 
-public class AideActivity extends Activity {
+public class AideActivity extends ActivityForIO {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,5 +51,11 @@ public class AideActivity extends Activity {
                 description.setText("Cette aide ne semble pas exister... Désolé, mais pour nous faire pardonner nous te donnons cette magnifique pomme!");
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent menu = new Intent(getApplicationContext(), MenuPrincipal.class);
+        startActivity(menu);
     }
 }
