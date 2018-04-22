@@ -17,12 +17,13 @@ import com.example.utilisateur.projetl3.R;
  */
 
 public class CustomSwipeAdapter extends PagerAdapter {
-    private int[] image_resources= {R.drawable.lecon1, R.drawable.lecon2};
+    private int[] image_resources;
     private Context ctx;
     private LayoutInflater layoutInflater;
 
-    public CustomSwipeAdapter(Context ctx){
+    public CustomSwipeAdapter(Context ctx,int[] image_resources ){
         this.ctx=ctx;
+        this.image_resources=image_resources;
     }
 
     @Override
@@ -36,6 +37,7 @@ public class CustomSwipeAdapter extends PagerAdapter {
     }
 
     @Override
+    //permet d'instancier le swipe avec les différentes images a chacune des positions
     public Object instantiateItem(ViewGroup container, int position){
         layoutInflater= (LayoutInflater)ctx .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View item_view =layoutInflater.inflate(R.layout.slide_lesson,container,false);
@@ -47,10 +49,7 @@ public class CustomSwipeAdapter extends PagerAdapter {
     }
 
 
-    @Override
-    public void destroyItem(ViewGroup container, int position, Object object){
-        container.removeView((LinearLayout)object);
-    }
+
 
 
 }

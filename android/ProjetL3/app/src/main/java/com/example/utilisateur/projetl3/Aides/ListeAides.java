@@ -55,12 +55,14 @@ public class ListeAides extends Activity {
 
     private List<Aide> genererAides(){
         List<Aide> aides = new ArrayList<Aide>();
+        aides.add(new Aide(Color.BLACK,"Les chiffres et leurs pommes", "A chaque chiffre ses pommes."));
         aides.add(new Aide(Color.WHITE, "Les nombres", "Donner un nombre à ses pommes."));
         aides.add(new Aide(Color.GREEN, "Compter", "Compter ses pommes."));
         aides.add(new Aide(Color.CYAN, "(+) Les additions", "Acheter des pommes."));
         aides.add(new Aide(Color.BLUE, "(-) La soustraction", "Manger ses pommes."));
         aides.add(new Aide(Color.RED, "(*) La multiplication", "Prendre des sacs de pommes."));
         aides.add(new Aide(Color.GRAY, "(/) La division", "Partager les pommes."));
+        aides.add(new Aide(Color.MAGENTA,"(< >) La comparaison","Comparer deux sacs de pommes."));
         return aides;
     }
 

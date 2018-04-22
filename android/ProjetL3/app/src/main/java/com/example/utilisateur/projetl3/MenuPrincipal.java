@@ -17,8 +17,10 @@ import com.example.utilisateur.projetl3.gameTemplates.TindNumberMul;
 import com.example.utilisateur.projetl3.gameTemplates.TindNumberSub;
 import com.example.utilisateur.projetl3.network.Singleton;
 
+
+
 /**
- * Created by Utilisateur on 14/02/2018.
+ * Created by inesr on 21/04/2018.
  */
 public class MenuPrincipal extends ActivityForIO {
 
@@ -82,14 +84,13 @@ public class MenuPrincipal extends ActivityForIO {
             }
         });
 
-        Button profil = findViewById(R.id.buttonProfil);
-        profil.setEnabled(false);
-        profil.setBackgroundColor(Color.GRAY);
+        final Button profil = findViewById(R.id.buttonProfil);
+        profil.setEnabled(true);
         profil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent profilIntent = new Intent(MenuPrincipal.this, ProfilActivity.class);
-                MenuPrincipal.this.startActivity(profilIntent);
+                Intent quizIntent = new Intent(MenuPrincipal.this, ProfilActivity.class);
+                MenuPrincipal.this.startActivity(quizIntent);
             }
         });
 
@@ -114,10 +115,10 @@ public class MenuPrincipal extends ActivityForIO {
 
     public void enableAt(Button button, int progression) {
         if (Singleton.CLIENT.getAvancement() < progression) {
-            button.setBackgroundColor(Color.GRAY);
+            //button.setBackgroundColor(Color.GRAY);
             button.setEnabled(false);
         } else {
-            button.setBackgroundColor(Color.WHITE);
+            //button.setBackgroundColor(Color.WHITE);
             button.setEnabled(true);
         }
     }

@@ -45,11 +45,11 @@ public class Menu extends ActivityForIO {
         final Button playButton = (Button) findViewById(R.id.playbutton);
 
         // Par défaut le bouton Jouer est blanc
-        playButton.setBackgroundColor(Color.WHITE);
+        playButton.setEnabled(true);
 
         // Par défaut le bouton de connexion est inactif, il faut taper du texte pour l'activer
         loginButton.setEnabled(false);
-        loginButton.setBackgroundColor(Color.GRAY);
+        //loginButton.setBackgroundColor(Color.GRAY);
 
         // Permet d'activer le bouton de connexion quand on tape du texte
         TextWatcher activateButtonTextWatcher = new TextWatcher() {
@@ -64,10 +64,10 @@ public class Menu extends ActivityForIO {
                 if (pseudo.getText().toString().length()==0 ||
                         password.getText().toString().length()==0) {
                     findViewById(R.id.buttonValid).setEnabled(false);
-                    loginButton.setBackgroundColor(Color.GRAY);
+                    loginButton.setEnabled(false);
                 } else {
                     findViewById(R.id.buttonValid).setEnabled(true);
-                    loginButton.setBackgroundColor(Color.WHITE);
+                    loginButton.setEnabled(true);
                 }
             }
 
@@ -102,7 +102,7 @@ public class Menu extends ActivityForIO {
 
                 // Désactivation du bouton de passage au menu de jeu
                 playButton.setEnabled(false);
-                playButton.setBackgroundColor(Color.GRAY);
+                //playButton.setBackgroundColor(Color.GRAY);
                 // Le bouton de connexion devient un bouton d'annulation
                 loginButton.setText("Cancel");
 

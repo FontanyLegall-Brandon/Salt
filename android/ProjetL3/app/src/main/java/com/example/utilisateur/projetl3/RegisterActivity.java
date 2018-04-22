@@ -27,7 +27,7 @@ public class RegisterActivity extends ActivityForIO {
         final EditText etPseudo = (EditText) findViewById(R.id.etEmail);
         final EditText etMDP = (EditText) findViewById(R.id.etMDP);
         final Button buttonSinscrire = (Button) findViewById(R.id.buttonSinscrire);
-        buttonSinscrire.setBackgroundColor(Color.GRAY);
+        //buttonSinscrire.setBackgroundColor(Color.GRAY);
         buttonSinscrire.setEnabled(false);
 
         TextWatcher textWatcher = new TextWatcher() {
@@ -45,10 +45,10 @@ public class RegisterActivity extends ActivityForIO {
                         etPrenom.getText().length()==0 ||
                         etPseudo.getText().length()==0) {
                     findViewById(R.id.buttonSinscrire).setEnabled(false);
-                    buttonSinscrire.setBackgroundColor(Color.GRAY);
+                    buttonSinscrire.setEnabled(false);
                 } else {
                     findViewById(R.id.buttonSinscrire).setEnabled(true);
-                    buttonSinscrire.setBackgroundColor(Color.WHITE);
+                    buttonSinscrire.setEnabled(true);
                 }
             }
 
