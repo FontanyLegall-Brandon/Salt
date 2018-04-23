@@ -16,6 +16,6 @@ public class SetScoreListener implements DataListener<Score> {
 
     @Override
     public void onData(SocketIOClient socketIOClient, Score score, AckRequest ackRequest) {
-        System.out.println("Not yet implemented");
+        server.getDatabase().setUserScore(score.getIdSession(), score.getExercice(), score.getNote());
     }
 }

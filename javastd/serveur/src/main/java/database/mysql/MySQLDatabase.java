@@ -11,11 +11,6 @@ import java.util.Hashtable;
  * La classe Database implemente l'interface database avec toutes les commandes mysql necessaires
  */
 public class MySQLDatabase implements database.Database {
-  
-  //TODO Implementer cette classe qui permet de faire l'interface entre la  database et le serveur
-
-
-
     /**
      * AddUser permet d'ajouter un nouvel utilisateur avec notamment :
      * <ul>

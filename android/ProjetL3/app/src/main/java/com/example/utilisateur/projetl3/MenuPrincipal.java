@@ -29,8 +29,10 @@ public class MenuPrincipal extends ActivityForIO {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
 
+        int overallProgress = Singleton.CLIENT.getAvancement();
+
         TextView avancement = findViewById(R.id.avancement);
-        avancement.setText(Singleton.CLIENT.getAvancement() + " / " + Singleton.CLIENT.getMaxProgression());
+        avancement.setText(overallProgress + " / " + Singleton.CLIENT.getMaxProgression());
 
         String login = getIntent().getStringExtra("successfulLogin");
         if (login == null) {
@@ -103,18 +105,18 @@ public class MenuPrincipal extends ActivityForIO {
             }
         });
 
-        enableAt(pommes, 0);
-        enableAt(tindNumberAdd, 0);
-        enableAt(tindNumberSub, 10);
-        enableAt(tindNumberComp, 15);
-        enableAt(tindNumberMul, 20);
+        enableAt(pommes, 0, overallProgress);
+        enableAt(tindNumberAdd, 0, overallProgress);
+        enableAt(tindNumberSub, 10, overallProgress);
+        enableAt(tindNumberComp, 15, overallProgress);
+        enableAt(tindNumberMul, 20, overallProgress);
 
         ProgressBar progressBar = findViewById(R.id.lvlBar);
-        updateProgression(progressBar, Singleton.CLIENT.getAvancement(), Singleton.CLIENT.getMaxProgression());
+        updateProgression(progressBar, overallProgress, Singleton.CLIENT.getMaxProgression());
     }
 
-    public void enableAt(Button button, int progression) {
-        if (Singleton.CLIENT.getAvancement() < progression) {
+    public void enableAt(Button button, int needed, int actual) {
+        if (actual < needed) {
             //button.setBackgroundColor(Color.GRAY);
             button.setEnabled(false);
         } else {

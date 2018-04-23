@@ -42,7 +42,7 @@ public enum Singleton {
 
     public void connect() { // Gère la connexion au serveur
         boolean connected = false;
-        String urlconnection = "http://192.168.43.212:10005"; //10.0.2.2 en local
+        String urlconnection = "http://192.168.43.244:10005"; //10.0.2.2 en local
         try {
             Log.d("connexion", urlconnection);
             mSocket = IO.socket(urlconnection);
@@ -213,7 +213,7 @@ public enum Singleton {
 
 
     public boolean isConnected() {
-        return mSocket.connected();
+        return mSocket != null && mSocket.connected();
     }
 
     public void setActivity(ActivityForIO activity) {
@@ -224,21 +224,57 @@ public enum Singleton {
         if (n > progression[codeJeu]) {
             progression[codeJeu] = n;
 
-            if (CLIENT.isConnected()) {
-                //envoi du score
+            if (CLIENT.isConnected() && session != null) {
+                JSONObject obj = new JSONObject();
+                try {
+                    obj.put("session", session.getId());
+                    obj.put("jeu", codeJeu);
+                    obj.put("score", n);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                mSocket.emit("setScore", obj);
             }
         }
     }
 
+    public void updateAvancement(int exercice) {
+        if (isConnected() && session != null) {
+            JSONObject obj = new JSONObject();
+            try {
+                obj.put("idSession", session.getId());
+                obj.put("note", 0);
+                obj.put("exercice", exercice);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            mSocket.emit("getScore", obj);
+        }
+
+        mSocket.on("score", new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                JSONObject JSScore = (JSONObject) args[0];
+                try {   // On réccupère tous les champs de la session, exception si les champs ne sont pas bien réccupérés
+                    progression[JSScore.getInt("exercice")] = JSScore.getInt("note");
+                    System.out.println("Exercice " + JSScore.getInt("exercice") + " : " + JSScore.getInt("note"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
     public int getAvancement() {
         int avancement = 0;
-        for (int i : progression) {
-            avancement += i;
+        for (int i = 0; i < nbJeux; i++) {
+            avancement += getAvancement(i);
         }
         return avancement;
     }
 
     public int getAvancement(int i) {
+        updateAvancement(i);
         return progression[i];
     }
 
