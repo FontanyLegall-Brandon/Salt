@@ -23,7 +23,7 @@
 
     <GridLayout
         android:id="@+id/zoneJeu"
-        android:layout_width="336dp"
+        android:layout_width="match_parent"
         android:layout_height="194dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"

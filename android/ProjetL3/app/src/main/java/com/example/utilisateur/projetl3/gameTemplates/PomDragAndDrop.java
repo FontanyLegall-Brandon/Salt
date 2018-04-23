@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -56,23 +55,16 @@ public class PomDragAndDrop extends ActivityForIO {
         gameUi.setUiListener(new UIInteractionsListener() {
             @Override
             public void onUIInteraction(String type) {
+
                 if(type.equals("valider")){
-                    //On vérifie que la réponse est juste.
+                    // On vérifie que la réponse est juste.
 
                     int res = moteur.verifWin(panier.getChildCount());
 
                     if (res==1) {   // Si on a le nombre de pommes demandé dans le panier
-                        Toast.makeText(getApplicationContext(), "Victoire!", Toast.LENGTH_SHORT).show();
-                        /* Aucune idée de ce à quoi ça correspond */
-                        SharedPreferences prefs = getSharedPreferences("exercicePom", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = prefs.edit();
-                        editor.putInt("prog", res); //progression correspondant au res
-                        editor.commit();
-                        /* Sauvegarde du score ? */
-                        Log.d("sp res=1", "score sauvegarde");
+                        Toast.makeText(getApplicationContext(), "Bien joué !", Toast.LENGTH_SHORT).show();
 
-                        //TODO : sauvegarder la progression.
-                        finish();   // Met un terme à l'activité
+                        reInit();
                     }
                     else {
 
@@ -93,6 +85,7 @@ public class PomDragAndDrop extends ActivityForIO {
                         //Ici on pourra sauvegarder le nombre de fois qu'un joueur à échoué afin de, soit le sauvegarder définitivement, soit diminuer la récompense.
                     }
                 }
+
                 else{
                     if(type.equals("recommencer")){
                         Toast.makeText(getApplicationContext(), "Recommencer.",Toast.LENGTH_SHORT).show();
@@ -109,22 +102,29 @@ public class PomDragAndDrop extends ActivityForIO {
     public void ajouterPomsDans(int nbPoms,ViewGroup container){
         for(int i=0; i<nbPoms; i++){
             View pom = LayoutInflater.from(this).inflate(R.layout.component_pom, container, false);
-            pom.setOnTouchListener(new MyTouchListener());
+            pom.setOnTouchListener(new PomTouchListener());
             container.addView(pom);
         }
     }
 
+
     public void reInit(){
+
         ViewGroup panier = findViewById(R.id.panier);
-        ViewGroup zoneJeu =findViewById(R.id.zoneJeu);
-        View pom=panier.findViewWithTag("pomme");
-        while(pom!=null){
+        ViewGroup zoneJeu = findViewById(R.id.zoneJeu);
+        View pom = panier.findViewWithTag("pomme");
+
+        while (pom != null) {
+
             panier.removeView(pom);
-            pom=panier.findViewWithTag("pomme");
+            pom = panier.findViewWithTag("pomme");
+
         }
-        majCmpt(panier);
+
+        //majCmpt(panier);
         zoneJeu.removeAllViews();
         ajouterPomsDans(moteur.getStock(),zoneJeu);
+
     }
 
     public void majCmpt(ViewGroup container){
@@ -137,16 +137,20 @@ public class PomDragAndDrop extends ActivityForIO {
         }*/
     }
 
-    private final class MyTouchListener implements View.OnTouchListener {
+    private final class PomTouchListener implements View.OnTouchListener {
         public boolean onTouch(View pom, MotionEvent motionEvent) {
             if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+
                 ClipData data = ClipData.newPlainText("", "");
-                View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(
-                        pom);
+
+                View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(pom);
+
                 pom.startDrag(data, shadowBuilder, pom, 0);
                 pom.setVisibility(View.INVISIBLE);
+
                 return true;
-            } else {
+            }
+            else {
                 return false;
             }
         }
@@ -156,7 +160,7 @@ public class PomDragAndDrop extends ActivityForIO {
 
         @Override
         public boolean onDrag(View v, DragEvent event) {
-            int action = event.getAction();
+            //int action = event.getAction();
             switch (event.getAction()) {
                 /*case DragEvent.ACTION_DRAG_STARTED:
                     //Se déclenche quand on drag cet objet
@@ -175,7 +179,14 @@ public class PomDragAndDrop extends ActivityForIO {
                     if(v.getTag().equals("container")) {
                         ViewGroup container = (ViewGroup) v;
                         emplacementActu.removeView(pom);
-                        container.addView(pom);
+                        try {
+                            container.addView(pom);
+                            System.out.println("toto");
+                        }
+                        catch (Exception e) {
+                            System.err.println("Erreur drag&drop");
+                            emplacementActu.addView(pom);
+                        }
                         //On met à jour l'ancien emplacement de l'objet droppé ainsi que le nouveau.
                         majCmpt(emplacementActu);
                         majCmpt(container);
