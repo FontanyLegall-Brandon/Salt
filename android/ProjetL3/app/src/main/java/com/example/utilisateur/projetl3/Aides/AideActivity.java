@@ -49,11 +49,15 @@ public class AideActivity extends ActivityForIO {
                 description.setText("Compter est comme ajouter une pomme à un tas. Au début on part avec aucune pomme... Et on en ajoute une, nous avons donc une pomme.\n Puis on en ajoute une autre, ça fait deux pommes!\n On continue et on en ajoute encore une? Nous avons donc maintenant un petit tas de trois pommes.");
                 break;
             case "(+) Les additions":
-                description.setText("Additioner c'est comme prendre un panier de pommes et le verser dans un autre panier de pommes, on se retrouve donc avec toutes ces pommes dans le même panier!\n Celles qui étaient dans le panier qu'on a versé mais aussi celles qui étaient déjà dans le panier qui contient maintenant toutes les pommes.");
-                break;
+                setContentView(R.layout.activity_counting);
+                viewPager=(ViewPager)findViewById(R.id.ViewPager);
+                adapter=new CustomSwipeAdapter(this, new int[]{R.drawable.lecon_add, R.drawable.lecon_add2});
+                viewPager.setAdapter(adapter);
             case "(-) La soustraction":
-                description.setText("Soustraire c'est comme manger ou jeter des pommes hors de son panier, si on retire des pommes de son panier alors on a moins de pommes donc leur nombre diminue.");
-                break;
+                setContentView(R.layout.activity_counting);
+                viewPager=(ViewPager)findViewById(R.id.ViewPager);
+                adapter=new CustomSwipeAdapter(this, new int[]{R.drawable.lecon_soustrac, R.drawable.lecon_soustrac2});
+                viewPager.setAdapter(adapter);
             case "(*) La multiplication":
                 description.setText("Quand on multiplie c'est comme si on prenait un sac de pommes et qu'on en demandait plusieurs avec le même nombre de pommes dedans.");
                 break;
