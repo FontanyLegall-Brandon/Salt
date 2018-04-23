@@ -1,7 +1,7 @@
 package mappers;
 
 public class Score {
-
+    private int idSession;
     private int note;
     private int exercice; // Exercice est un int (code - probablement plus propre avec une enum)
 
@@ -30,4 +30,11 @@ public class Score {
         this.exercice = exercice;
     }
 
+    public void setIdSession(int idSession) {
+        this.idSession = idSession;
+    }
+
+    public int getIdSession() {
+        return this.getIdSession();
+    }
 }

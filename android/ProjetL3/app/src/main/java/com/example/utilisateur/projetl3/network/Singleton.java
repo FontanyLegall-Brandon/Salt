@@ -162,7 +162,7 @@ public enum Singleton {
 
 
     public boolean isConnected() {
-        return mSocket.connected();
+        return mSocket != null && mSocket.connected();
     }
 
     public void setActivity(ActivityForIO activity) {
@@ -173,10 +173,43 @@ public enum Singleton {
         if (n > progression[codeJeu]) {
             progression[codeJeu] = n;
 
-            if (CLIENT.isConnected()) {
-                //envoi du score
+            if (CLIENT.isConnected() && session != null) {
+                JSONObject obj = new JSONObject();
+                try {
+                    obj.put("session", session.getId());
+                    obj.put("jeu", codeJeu);
+                    obj.put("score", n);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                mSocket.emit("SetScore", obj);
             }
         }
+    }
+
+    public void updateAvancement(int exercice) {
+        if (isConnected() && session != null) {
+            JSONObject obj = new JSONObject();
+            try {
+                obj.put("session", session.getId());
+                obj.put("exercice", exercice);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            mSocket.emit("GetProgression", obj);
+        }
+
+        mSocket.on("GetScore", new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                JSONObject JSScore = (JSONObject) args[0];
+                try {   // On réccupère tous les champs de la session, exception si les champs ne sont pas bien réccupérés
+                    progression[JSScore.getInt("exercice")] = JSScore.getInt("Score");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     public int getAvancement() {
@@ -188,6 +221,7 @@ public enum Singleton {
     }
 
     public int getAvancement(int i) {
+        updateAvancement(i);
         return progression[i];
     }
 

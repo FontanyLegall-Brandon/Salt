@@ -60,8 +60,6 @@ public abstract class ActivityForIO extends Activity implements SingletonInterac
                 }
             }
         });
-
-
     }
 
     /**

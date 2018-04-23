@@ -71,10 +71,4 @@ public class AideActivity extends ActivityForIO {
                 break;
         }
     }
-
-    @Override
-    public void onBackPressed() {
-        Intent menu = new Intent(getApplicationContext(), MenuPrincipal.class);
-        startActivity(menu);
-    }
 }
