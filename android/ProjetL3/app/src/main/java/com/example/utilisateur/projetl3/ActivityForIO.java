@@ -2,6 +2,7 @@ package com.example.utilisateur.projetl3;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -54,7 +55,8 @@ public abstract class ActivityForIO extends Activity implements SingletonInterac
             public void run() {         // dont la méthode run() se contente d'appeler la méthode resetLoginScreen()
 
                 try {
-                    activity.resetLoginScreen();
+                    activity.stopWaitingForLoginReply();
+                    activity.startActivity(new Intent(activity, MenuPrincipal.class));
                 } catch (NoSuchMethodException e) {
                     e.printStackTrace();
                 }
@@ -65,10 +67,29 @@ public abstract class ActivityForIO extends Activity implements SingletonInterac
     }
 
     /**
-     *  Réinitialise les boutons "Connexion" et "Jouer" du menu de login.
+     * Ré-initialise l'état de l'écran de login lorsque le serveur répond négativement à la tentative
+     */
+    public void failedLogin() {
+
+        final ActivityForIO activity = this;
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    activity.stopWaitingForLoginReply();
+                } catch (NoSuchMethodException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    /**
+     * Sort le Menu principal de son état d'attente quand il essaye de se loguer. Remet à zéro les boutons
      * @throws NoSuchMethodException lorsque cette méthode est appelée sur un activitée qui n'est pas un MenuPricipal
      */
-    public void resetLoginScreen() throws NoSuchMethodException {
+    public void stopWaitingForLoginReply() throws NoSuchMethodException {
         throw new NoSuchMethodException("resetLoginScreen called from another activity than Menu");
     }
 

@@ -128,7 +128,7 @@ public enum Singleton {
                 // Puis on l'envoi au serveur
                 mSocket.emit("login", obj);
 
-                // On applique pour finir un listener pour gérer le retour de la session
+                // On applique un listener pour gérer le retour de la session
                 mSocket.on("session", new Emitter.Listener() {
                     @Override
                     public void call(Object... args) {
@@ -153,7 +153,15 @@ public enum Singleton {
 
                 });
 
-                //TODO Listener pour gérer les logins incorrects
+                // On applique sur le même modèle un listener pour gérer un retour de logins incorrects
+                mSocket.on("badCredentials", new Emitter.Listener() {
+                    @Override
+                    public void call(Object... args) {
+
+                        // Ici pas de message envoyé par le serveur, seul importe le type d'évenement
+                        activity.failedLogin();
+                    }
+                });
 
 
 
