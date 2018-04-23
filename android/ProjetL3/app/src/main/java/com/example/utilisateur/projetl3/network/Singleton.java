@@ -40,7 +40,7 @@ public enum Singleton {
 
     public void connect() { // Gère la connexion au serveur
         boolean connected = false;
-        String urlconnection = "http://192.168.43.212:10005"; //10.0.2.2 en local
+        String urlconnection = "http://192.168.43.244:10005"; //10.0.2.2 en local
         try {
             Log.d("connexion", urlconnection);
             mSocket = IO.socket(urlconnection);
@@ -195,7 +195,7 @@ public enum Singleton {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                mSocket.emit("SetScore", obj);
+                mSocket.emit("setScore", obj);
             }
         }
     }
@@ -204,20 +204,22 @@ public enum Singleton {
         if (isConnected() && session != null) {
             JSONObject obj = new JSONObject();
             try {
-                obj.put("session", session.getId());
+                obj.put("idSession", session.getId());
+                obj.put("note", 0);
                 obj.put("exercice", exercice);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            mSocket.emit("GetProgression", obj);
+            mSocket.emit("getScore", obj);
         }
 
-        mSocket.on("GetScore", new Emitter.Listener() {
+        mSocket.on("score", new Emitter.Listener() {
             @Override
             public void call(Object... args) {
                 JSONObject JSScore = (JSONObject) args[0];
                 try {   // On réccupère tous les champs de la session, exception si les champs ne sont pas bien réccupérés
-                    progression[JSScore.getInt("exercice")] = JSScore.getInt("Score");
+                    progression[JSScore.getInt("exercice")] = JSScore.getInt("note");
+                    System.out.println("Exercice " + JSScore.getInt("exercice") + " : " + JSScore.getInt("note"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -227,8 +229,8 @@ public enum Singleton {
 
     public int getAvancement() {
         int avancement = 0;
-        for (int i : progression) {
-            avancement += i;
+        for (int i = 0; i < nbJeux; i++) {
+            avancement += getAvancement(i);
         }
         return avancement;
     }
