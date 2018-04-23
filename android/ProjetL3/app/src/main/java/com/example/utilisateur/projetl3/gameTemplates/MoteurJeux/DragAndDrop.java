@@ -1,5 +1,7 @@
 package com.example.utilisateur.projetl3.gameTemplates.MoteurJeux;
 
+import java.util.Random;
+
 /**
  * Created by Utilisateur on 14/03/2018.
  */
@@ -17,9 +19,11 @@ public class DragAndDrop {
     private int stock; //poms' mises à disposition du joeur.
 
     public DragAndDrop(){
-        objectif=(int)(10*Math.random());
+        Random rand = new Random();
+        objectif = rand.nextInt(7) + 1;
         valeurDepart=0; // On changera ça par la suite en "Un nombre aléatoire entre 0 et objectif+5" (le -1 seulement si objectif>0)
-        stock=objectif - valeurDepart + (int)(5*Math.random()); //On ajoute un nombre aléatoire de poms (afin que le joueur puisse se tromper.)
+        //stock=objectif - valeurDepart + (int)(5*Math.random()); //On ajoute un nombre aléatoire de poms (afin que le joueur puisse se tromper.)
+        stock = 8;
     }
 
     public DragAndDrop(int goal){

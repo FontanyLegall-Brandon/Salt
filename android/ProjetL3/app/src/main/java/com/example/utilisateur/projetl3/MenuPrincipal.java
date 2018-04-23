@@ -107,10 +107,10 @@ public class MenuPrincipal extends ActivityForIO {
         });
 
         enableAt(pommes, 0, overallProgress);
-        enableAt(tindNumberAdd, 0, overallProgress);
-        enableAt(tindNumberSub, 10, overallProgress);
-        enableAt(tindNumberComp, 15, overallProgress);
-        enableAt(tindNumberMul, 20, overallProgress);
+        enableAt(tindNumberAdd, 10, overallProgress);
+        enableAt(tindNumberSub, 15, overallProgress);
+        enableAt(tindNumberComp, 20, overallProgress);
+        enableAt(tindNumberMul, 25, overallProgress);
 
         ProgressBar progressBar = findViewById(R.id.lvlBar);
         updateProgression(progressBar, overallProgress, Singleton.CLIENT.getMaxProgression());
