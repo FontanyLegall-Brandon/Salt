@@ -86,11 +86,60 @@ public abstract class ActivityForIO extends Activity implements SingletonInterac
     }
 
     /**
+     * Signal à l'utilisateur que son compte ne sera pas créé puisque son pseudo est déjà pris
+     */
+    public void pseudoExists() {
+
+        final ActivityForIO activity = this;
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    activity.setPseudoRed();
+                    activity.displayToast("Le nom d'utilisateur est déjà utilisé, veuillez en choisir un autre", Toast.LENGTH_LONG);
+                } catch (NoSuchMethodException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    public void emailExists() {
+
+        final ActivityForIO activity = this;
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    activity.setEmailRed();
+                } catch (NoSuchMethodException e) {
+                    e.printStackTrace();
+                }
+                activity.displayToast("L'email est déjà utilisé, veuillez en choisir un autre", Toast.LENGTH_LONG);
+            }
+        });
+    }
+
+    /**
      * Sort le Menu principal de son état d'attente quand il essaye de se loguer. Remet à zéro les boutons
-     * @throws NoSuchMethodException lorsque cette méthode est appelée sur un activitée qui n'est pas un MenuPricipal
+     * @throws NoSuchMethodException lorsque cette méthode est appelée sur une activité qui n'est pas un MenuPricipal
      */
     public void stopWaitingForLoginReply() throws NoSuchMethodException {
         throw new NoSuchMethodException("resetLoginScreen called from another activity than Menu");
+    }
+
+    /**
+     * Colore le texte éditable pseudo en rouge dans l'écran d'inscription.
+     * @throws NoSuchMethodException lorsque cette méthode est appelée sur une activité qui n'est pas RegisterActivity
+     */
+    public void setPseudoRed() throws NoSuchMethodException {
+        throw new NoSuchMethodException("setPseudoRed called from another activity than RegisterActivity");
+    }
+
+    public void setEmailRed() throws NoSuchMethodException {
+        throw new NoSuchMethodException("setEmailRed called from another activity than RegisterActivity");
     }
 
 

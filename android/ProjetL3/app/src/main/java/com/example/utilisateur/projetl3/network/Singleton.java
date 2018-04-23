@@ -3,6 +3,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.utilisateur.projetl3.ActivityForIO;
+import com.example.utilisateur.projetl3.Menu;
 import com.example.utilisateur.projetl3.RegisterRequest;
 
 import org.json.JSONException;
@@ -15,6 +16,7 @@ import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 import mappers.Session;
+import android.content.Intent;
 
 /**
  * Created by theo on 3/28/18.
@@ -61,7 +63,7 @@ public enum Singleton {
                 public void call(Object... args) {
                     if (activity != null && !failedConnect) {
                         // Affichage d'un toast d'avertissement
-                        activity.displayToast("erreur lors de la connexion, votre progrès ne pourra pas être sauvegardé",
+                        activity.displayToast("Erreur lors de la connexion, votre progrès ne pourra pas être sauvegardé",
                                 Toast.LENGTH_LONG);
                     }
                     failedConnect = true;
@@ -89,13 +91,16 @@ public enum Singleton {
 
     /**
      * Envoi des informations d'un utilisateur en vue de s'inscrire sur le serveur
-     * @param request euuuh… pas de commentaire
+     * @param request euuuh… pas de commentaires
      */
     public void sendNewUser(RegisterRequest request) {
 
-        if ((mSocket != null) && (mSocket.connected())) {
+        if ((mSocket != null) && (mSocket.connected())) { // On vérifie si la connexion avec le serveur est active
+
+            // Si c'est le cas on crée le message JSON à l'aide de la Request
             JSONObject obj = new JSONObject();
             HashMap<String, String> map = request.getParams();
+
             try {
                 for (String id : map.keySet()) {
                     obj.put(id, map.get(id));
@@ -103,7 +108,40 @@ public enum Singleton {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            // Et on envoit la requête au serveur
             mSocket.emit("newUser", obj);
+
+            // On applique le listener pour gérer la réponse du serveur
+            mSocket.on("signUpReply", new Emitter.Listener() {
+                @Override
+                public void call(Object... args) {
+
+                    JSONObject replyJSON = (JSONObject) args[0];    // Réccupération de l'objet JSON de la réponse
+
+                    try {
+                        String message = replyJSON.getString("message");
+
+                        switch (message) {
+                            case "signedUp":
+                                // Ça a marché : on affiche un message, et on retourne au menu de login
+                                activity.displayToast("Félicitation ! Vous êtes inscrit", Toast.LENGTH_LONG);
+                                Intent intent = new Intent(activity, Menu.class);
+                                activity.startActivity(intent);
+                                break;
+                            case "pseudoAlreadyExists" :
+                                activity.pseudoExists();
+                                break;
+                            case "emailAlreadyExists" :
+                                activity.emailExists();
+                                break;
+                            case "signUpFailure" :
+                                // Signaler le problème
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
         }
     }
 
