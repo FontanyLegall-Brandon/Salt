@@ -24,10 +24,10 @@ public class RegisterActivity extends ActivityForIO {
         final EditText etPrenom = (EditText) findViewById(R.id.etPrenom);
         final EditText etNom = (EditText) findViewById(R.id.etNom);
         final EditText etEmail = (EditText) findViewById(R.id.etEmail);
-        final EditText etPseudo = (EditText) findViewById(R.id.etEmail);
+        final EditText etPseudo = (EditText) findViewById(R.id.etPseudo);
         final EditText etMDP = (EditText) findViewById(R.id.etMDP);
         final Button buttonSinscrire = (Button) findViewById(R.id.buttonSinscrire);
-        //buttonSinscrire.setBackgroundColor(Color.GRAY);
+
         buttonSinscrire.setEnabled(false);
 
         TextWatcher textWatcher = new TextWatcher() {
