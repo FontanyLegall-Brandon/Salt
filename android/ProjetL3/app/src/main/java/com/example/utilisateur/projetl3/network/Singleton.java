@@ -40,7 +40,7 @@ public enum Singleton {
 
     public void connect() { // Gère la connexion au serveur
         boolean connected = false;
-        String urlconnection = "http://192.168.1.19:10005"; //10.0.2.2 en local
+        String urlconnection = "http://192.168.43.212:10005"; //10.0.2.2 en local
         try {
             Log.d("connexion", urlconnection);
             mSocket = IO.socket(urlconnection);
@@ -87,7 +87,12 @@ public enum Singleton {
         }
     }
 
+    /**
+     * Envoi des informations d'un utilisateur en vue de s'inscrire sur le serveur
+     * @param request euuuh… pas de commentaire
+     */
     public void sendNewUser(RegisterRequest request) {
+
         if ((mSocket != null) && (mSocket.connected())) {
             JSONObject obj = new JSONObject();
             HashMap<String, String> map = request.getParams();
@@ -110,7 +115,7 @@ public enum Singleton {
      * @param password Le mot de passe
      */
     public void sendLogin(String login, String password) {
-        // Tentative de successfulLogin, envoi des identifiants au serveur
+        // Tentative de login, envoi des identifiants au serveur
         if ((mSocket != null) && (mSocket.connected())) {
             // Si on est connecté au serveur
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql-lpepd.alwaysdata.net
--- Generation Time: Mar 28, 2018 at 01:00 PM
+-- Generation Time: Apr 23, 2018 at 03:20 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.2
 
@@ -46,6 +46,17 @@ CREATE TABLE `exercice` (
   `id` int(11) NOT NULL,
   `exercice` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `exercice`
+--
+
+INSERT INTO `exercice` (`id`, `exercice`) VALUES
+(0, 'Pommes'),
+(1, 'Addition'),
+(2, 'Soustraction'),
+(3, 'Comparaison'),
+(4, 'Multiplication');
 
 -- --------------------------------------------------------
 
@@ -98,19 +109,19 @@ ALTER TABLE `membre`
 -- AUTO_INCREMENT for table `avancement`
 --
 ALTER TABLE `avancement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `exercice`
 --
 ALTER TABLE `exercice`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `membre`
 --
 ALTER TABLE `membre`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=166;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
