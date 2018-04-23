@@ -86,15 +86,6 @@ public class MenuPrincipal extends ActivityForIO {
             }
         });
 
-        final Button profil = findViewById(R.id.buttonProfil);
-        profil.setEnabled(true);
-        profil.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent quizIntent = new Intent(MenuPrincipal.this, ProfilActivity.class);
-                MenuPrincipal.this.startActivity(quizIntent);
-            }
-        });
 
         Button aides = findViewById(R.id.buttonAides);
         aides.setOnClickListener(new View.OnClickListener() {
