@@ -122,4 +122,16 @@
         android:textColor="@android:color/white"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
+    <Button
+        android:id="@+id/refresh"
+        android:background="@drawable/button"
+        android:textColor="@drawable/textbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="3dp"
+        android:fontFamily="@font/sfcomicscriptnormal"
+        android:text="Refresh"
+        android:textSize="22sp" />
+
 </LinearLayout>

@@ -17,6 +17,7 @@ import com.example.utilisateur.projetl3.gameTemplates.TindNumberMul;
 import com.example.utilisateur.projetl3.gameTemplates.TindNumberSub;
 import com.example.utilisateur.projetl3.network.Singleton;
 
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -27,9 +28,9 @@ public class MenuPrincipal extends ActivityForIO {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Singleton.CLIENT.setOverallProgress(Singleton.CLIENT.getAvancement());
+        int overallProgress = Singleton.CLIENT.getOverallProgress();
         setContentView(R.layout.activity_menu_principal);
-
-        int overallProgress = Singleton.CLIENT.getAvancement();
 
         TextView avancement = findViewById(R.id.avancement);
         avancement.setText(overallProgress + " / " + Singleton.CLIENT.getMaxProgression());
@@ -93,6 +94,15 @@ public class MenuPrincipal extends ActivityForIO {
             public void onClick(View v) {
                 Intent aidesIntent = new Intent(MenuPrincipal.this, ListeAides.class);
                 MenuPrincipal.this.startActivity(aidesIntent);
+            }
+        });
+
+        Button refresh = findViewById(R.id.refresh);
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent refresh = new Intent(MenuPrincipal.this, MenuPrincipal.class);
+                startActivity(refresh);
             }
         });
 

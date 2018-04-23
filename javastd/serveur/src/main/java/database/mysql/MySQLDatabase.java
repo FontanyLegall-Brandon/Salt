@@ -32,7 +32,13 @@ public class MySQLDatabase implements database.Database {
     @Override
     public Boolean addUser(String pseudo, String nom, String prenom, String email, String password, int age) {
         Connection con = Connect.connection();
-        return _addUser(pseudo,nom,prenom,email,password,age,con);
+        boolean out = _addUser(pseudo,nom,prenom,email,password,age,con);
+        try {
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return out;
     }
 
     protected Boolean _addUser(String pseudo, String nom, String prenom, String email, String password, int age,Connection con) {
@@ -79,7 +85,13 @@ public class MySQLDatabase implements database.Database {
     @Override
     public Session connection(String email, String password) {
         Connection con = Connect.connection();
-        return _connection(email,password,con);
+        Session out = _connection(email,password,con);
+        try {
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return out;
     }
 
 
@@ -187,7 +199,13 @@ public class MySQLDatabase implements database.Database {
     @Override
     public Boolean existPseudo(String pseudo) {
         Connection con = Connect.connection();
-        return _existPseudo(pseudo,con);
+        boolean out = _existPseudo(pseudo,con);
+        try {
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return out;
     }
 
     protected Boolean _existPseudo(String pseudo,Connection con) {
@@ -366,7 +384,13 @@ public class MySQLDatabase implements database.Database {
     @Override
     public int getUserAvancementOfAt(int UserID, int ExerciceID, int niveau) {
         Connection con = Connect.connection();
-        return _getUserAvancementOfAt(UserID, ExerciceID, niveau,con);
+        int out = _getUserAvancementOfAt(UserID, ExerciceID, niveau,con);
+        try {
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return out;
     }
 
     protected int _getUserAvancementOfAt(int UserID, int ExerciceID, int niveau,Connection con) {
@@ -397,7 +421,13 @@ public class MySQLDatabase implements database.Database {
     @Override
     public Boolean setUserAvancement(int UserID,int ExerciceID,int niveau,int pourcentage) {
         Connection con = Connect.connection();
-        return _setUserAvancement(UserID, ExerciceID, niveau, pourcentage,con);
+        boolean out = _setUserAvancement(UserID, ExerciceID, niveau, pourcentage,con);
+        try {
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return out;
     }
     protected Boolean _setUserAvancement(int UserID,int ExerciceID,int niveau,int pourcentage,Connection con) {
         int nb = 0;
@@ -506,7 +536,13 @@ public class MySQLDatabase implements database.Database {
     @Override
     public Boolean existEmail(String email) {
         Connection con = Connect.connection();
-        return _existEmail(email,con);
+        boolean out = _existEmail(email,con);
+        try {
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return out;
     }
 
     protected Boolean _existEmail(String email,Connection con) {
@@ -553,6 +589,9 @@ public class MySQLDatabase implements database.Database {
 
     @Override
     public Boolean setUserScore(int UserID, int ExerciceID, int score) {
+        if (UserID == 0) {
+            return null;
+        }
         return setUserAvancement(UserID, ExerciceID, 0, score);
     }
 

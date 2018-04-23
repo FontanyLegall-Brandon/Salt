@@ -1,4 +1,5 @@
 package com.example.utilisateur.projetl3.network;
+import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -24,6 +25,9 @@ import android.content.Intent;
 
 public enum Singleton {
     CLIENT;
+
+    private boolean progressRetrieved = false;
+    private int overallProgress;
     private final int nbJeux = 5;
     private Socket mSocket;
     private boolean failedConnect;
@@ -42,7 +46,7 @@ public enum Singleton {
 
     public void connect() { // Gère la connexion au serveur
         boolean connected = false;
-        String urlconnection = "http://192.168.43.212:10005"; //10.0.2.2 en local
+        String urlconnection = "http://192.168.43.244:10005"; //10.0.2.2 en local
         try {
             Log.d("connexion", urlconnection);
             mSocket = IO.socket(urlconnection);
@@ -154,6 +158,7 @@ public enum Singleton {
      */
     public void sendLogin(String login, String password) {
         // Tentative de login, envoi des identifiants au serveur
+        setProgressRetrieved(false);
         if ((mSocket != null) && (mSocket.connected())) {
             // Si on est connecté au serveur
 
@@ -173,8 +178,6 @@ public enum Singleton {
 
                         // Réccupération du message envoyé par le serveur
                         JSONObject sessionJSON = (JSONObject) args[0];
-
-
                         try {   // On réccupère tous les champs de la session, exception si les champs ne sont pas bien réccupérés
                             session = new Session((int) sessionJSON.get("id"), (String) sessionJSON.get("pseudo"),
                                     (String) sessionJSON.get("prenom"), (String) sessionJSON.get("nom"),
@@ -182,7 +185,6 @@ public enum Singleton {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
                         activity.successfulLogin();
 
                         //activity.displayToast("ID : " + id, Toast.LENGTH_LONG);
@@ -228,12 +230,13 @@ public enum Singleton {
                 JSONObject obj = new JSONObject();
                 try {
                     obj.put("session", session.getId());
-                    obj.put("jeu", codeJeu);
-                    obj.put("score", n);
+                    obj.put("exercice", codeJeu);
+                    obj.put("note", n);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 mSocket.emit("setScore", obj);
+                System.out.println("Envoi du score au serveur...");
             }
         }
     }
@@ -268,8 +271,13 @@ public enum Singleton {
     public int getAvancement() {
         int avancement = 0;
         for (int i = 0; i < nbJeux; i++) {
-            avancement += getAvancement(i);
+            if (!isProgressRetrieved()) {
+                avancement += getAvancement(i);
+            } else {
+                avancement += progression[i];
+            }
         }
+        setProgressRetrieved(true);
         return avancement;
     }
 
@@ -280,5 +288,21 @@ public enum Singleton {
 
     public int getMaxProgression() {
         return 10*nbJeux;
+    }
+
+    public void setOverallProgress(int overallProgress) {
+        this.overallProgress = overallProgress;
+    }
+
+    public int getOverallProgress() {
+        return this.overallProgress;
+    }
+
+    public boolean isProgressRetrieved() {
+        return progressRetrieved;
+    }
+
+    public void setProgressRetrieved(boolean progressRetrieved) {
+        this.progressRetrieved = progressRetrieved;
     }
 }
