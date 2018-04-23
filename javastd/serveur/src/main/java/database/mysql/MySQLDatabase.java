@@ -398,7 +398,7 @@ public class MySQLDatabase implements database.Database {
 
         try {
             // Envoi d’un requête générique
-            String sql =  "select * from avancement WHERE pseudoId="+UserID+" AND exerciceId="+ExerciceID+" AND niveau="+niveau;
+            String sql =  "select * from avancement WHERE pseudoId="+UserID+" AND exerciceId="+ExerciceID+" AND niveau="+niveau + " ORDER BY id DESC";
             Statement smt = con.createStatement() ;
             ResultSet rs = smt.executeQuery(sql) ;
 
@@ -590,7 +590,7 @@ public class MySQLDatabase implements database.Database {
     @Override
     public Boolean setUserScore(int UserID, int ExerciceID, int score) {
         if (UserID == 0) {
-            return null;
+            return false;
         }
         return setUserAvancement(UserID, ExerciceID, 0, score);
     }
