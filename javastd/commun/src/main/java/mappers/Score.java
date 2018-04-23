@@ -12,6 +12,13 @@ public class Score {
     public Score(int exercice, int note) {
         this.note= note;
         this.exercice = exercice;
+        this.idSession = 0;
+    }
+
+    public Score(int exercice, int note, int idSession) {
+        this.exercice = exercice;
+        this.note = note;
+        this.idSession = idSession;
     }
 
     public int getNote() {
@@ -35,6 +42,6 @@ public class Score {
     }
 
     public int getIdSession() {
-        return this.getIdSession();
+        return this.idSession;
     }
 }
