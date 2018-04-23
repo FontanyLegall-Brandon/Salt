@@ -17,6 +17,7 @@ import com.example.utilisateur.projetl3.ActivityForIO;
 import com.example.utilisateur.projetl3.MenuPrincipal;
 import com.example.utilisateur.projetl3.R;
 import com.example.utilisateur.projetl3.gameTemplates.MoteurJeux.DragAndDrop;
+import com.example.utilisateur.projetl3.network.Singleton;
 import com.example.utilisateur.projetl3.utils.GameUI;
 import com.example.utilisateur.projetl3.utils.UIInteractionsListener;
 
@@ -62,9 +63,9 @@ public class PomDragAndDrop extends ActivityForIO {
                     int res = moteur.verifWin(panier.getChildCount());
 
                     if (res==1) {   // Si on a le nombre de pommes demandé dans le panier
-                        Toast.makeText(getApplicationContext(), "Bien joué !", Toast.LENGTH_SHORT).show();
-
-                        reInit();
+                        Toast.makeText(getApplicationContext(), "Bien joué, bon courage !", Toast.LENGTH_SHORT).show();
+                        Singleton.CLIENT.incScore(getCodeJeu(), 10);
+                        //reInit();
                     }
                     else {
 
