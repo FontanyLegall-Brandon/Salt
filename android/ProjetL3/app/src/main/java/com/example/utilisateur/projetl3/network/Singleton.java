@@ -42,7 +42,7 @@ public enum Singleton {
 
     public void connect() { // Gère la connexion au serveur
         boolean connected = false;
-        String urlconnection = "http://192.168.43.244:10005"; //10.0.2.2 en local
+        String urlconnection = "http://192.168.43.212:10005"; //10.0.2.2 en local
         try {
             Log.d("connexion", urlconnection);
             mSocket = IO.socket(urlconnection);

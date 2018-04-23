@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.DragEvent;
 import android.view.LayoutInflater;
@@ -16,7 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.utilisateur.projetl3.ActivityForIO;
-import com.example.utilisateur.projetl3.Menu;
 import com.example.utilisateur.projetl3.MenuPrincipal;
 import com.example.utilisateur.projetl3.R;
 import com.example.utilisateur.projetl3.gameTemplates.MoteurJeux.DragAndDrop;
@@ -33,53 +31,61 @@ public class PomDragAndDrop extends ActivityForIO {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_pom_drag_and_drop);
-        ViewGroup panier = findViewById(R.id.panier);
-        panier.setOnDragListener(new MyDragListener());
-        ViewGroup zoneJeu =findViewById(R.id.zoneJeu);
-        zoneJeu.setOnDragListener(new MyDragListener());
-        //Par la suite on pourra faire en sorte que ce soit DragAndDrop qui prenne un nombre au hasard en fonction du niveau du joueur.
-        // Via ce constructeur : moteur = new DragAndDrop(nb);
+
+        final ViewGroup panier = findViewById(R.id.panier);
+        final ViewGroup zoneJeu = findViewById(R.id.zoneJeu);
+        final TextView intitule = findViewById(R.id.intitule);
+        final GameUI gameUi = findViewById(R.id.gameUi);
+
         moteur = new DragAndDrop();
+        /*Par la suite on pourra faire en sorte que ce soit DragAndDrop qui prenne un nombre au hasard en fonction du niveau du joueur.
+        Via ce constructeur : moteur = new DragAndDrop(nb);*/
+
+        panier.setOnDragListener(new PomDragListener());
+        zoneJeu.setOnDragListener(new PomDragListener());
+
         //On ajoute dynamiquement le nombre de poms' présentes afin de pouvoir remplir le but.
-        ajouterPomsDans(moteur.getStock(),zoneJeu);
-        TextView intitule =findViewById(R.id.intitule);
-        intitule.setText("On veut "+moteur.getGoal()+" poms' dans le panier.");
+        ajouterPomsDans(moteur.getStock(), zoneJeu);
+        intitule.setText("On veut " + moteur.getGoal() + " poms' dans le panier.");
 
         //Le listener pour le menu de bas d'activité.
-        GameUI gameUi =findViewById(R.id.gameUi);
         gameUi.setUiListener(new UIInteractionsListener() {
             @Override
             public void onUIInteraction(String type) {
                 if(type.equals("valider")){
                     //On vérifie que la réponse est juste.
-                    ViewGroup panier = findViewById(R.id.panier);
+
                     int res = moteur.verifWin(panier.getChildCount());
-                    if(res==1){
-                        Toast.makeText(getApplicationContext(), "Victoire!",
-                                Toast.LENGTH_SHORT).show();
+
+                    if (res==1) {   // Si on a le nombre de pommes demandé dans le panier
+                        Toast.makeText(getApplicationContext(), "Victoire!", Toast.LENGTH_SHORT).show();
+                        /* Aucune idée de ce à quoi ça correspond */
                         SharedPreferences prefs = getSharedPreferences("exercicePom", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = prefs.edit();
                         editor.putInt("prog", res); //progression correspondant au res
                         editor.commit();
+                        /* Sauvegarde du score ? */
                         Log.d("sp res=1", "score sauvegarde");
 
                         //TODO : sauvegarder la progression.
-                        finish();
-                    }else{
-                        if(res==-1){
+                        finish();   // Met un terme à l'activité
+                    }
+                    else {
+
+                        if(res==-1){    // On a pas assez de pommes
                             Toast.makeText(getApplicationContext(), "Perdu, il n'y a pas assez de poms.",
                                     Toast.LENGTH_SHORT).show();
+                        }
 
-
-                        }else{
+                        else {  // On a trop de pommes
                             Toast.makeText(getApplicationContext(), "Perdu, il y a trop de poms.",
                                     Toast.LENGTH_SHORT).show();
-
-
-
                         }
+
                         SharedPreferences prefs = getSharedPreferences("exercicePom", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = prefs.edit();
                         editor.putInt("prog", res); //progression correspondant au res
@@ -146,7 +152,7 @@ public class PomDragAndDrop extends ActivityForIO {
         }
     }
 
-    class MyDragListener implements View.OnDragListener {
+    class PomDragListener implements View.OnDragListener {
 
         @Override
         public boolean onDrag(View v, DragEvent event) {

@@ -33,14 +33,15 @@ public class DragAndDrop {
     }
 
     public int verifWin(int score){
-        if(score == objectif){
+        if (score == objectif){
             //gagné
             return 1;
         }
-        if(score < objectif){
+        if (score < objectif){
             //Pas assez
             return -1;
-        }else{
+        }
+        else {
             //trop
             return 0;
         }
