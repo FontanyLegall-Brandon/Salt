@@ -28,7 +28,7 @@ public class IdentificationListener implements DataListener<LoginInfos> {
 		Session session = database.connection(email, password);
 
 		if (session.getId() == 0) {     // Mauvais login, on récupère une session vide donc avec un id 0
-		    socket.sendEvent("badCredentials", null);
+		    socket.sendEvent("badCredentials", session);
         }
 
         else {  // Login fonctionnel, on renvoit la session

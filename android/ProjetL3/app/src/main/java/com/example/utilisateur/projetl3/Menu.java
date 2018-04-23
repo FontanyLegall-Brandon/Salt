@@ -143,12 +143,7 @@ public class Menu extends ActivityForIO {
     }
 
     @Override
-    public void resetLoginScreen() {
-        stopWaitingForLoginReply(); // On arrête d'attendre et réinitialise l'affichage des éléments
-        Menu.this.startActivity(new Intent(Menu.this, MenuPrincipal.class));    // Puis on passe au menu de jeu
-    }
-
-    private void stopWaitingForLoginReply() {
+    public void stopWaitingForLoginReply() {
         /*
         Méthode mettant un terme à l'état d'attente de réponse du serveur lorqu'on se connecte
          */
@@ -161,7 +156,7 @@ public class Menu extends ActivityForIO {
         loginButton.setText("Se connecter");
 
         // Réactivation du bouton de "Jouer"
-        playButton.setBackgroundColor(Color.WHITE);
+        //playButton.setBackgroundColor(Color.WHITE);
         playButton.setEnabled(true);
 
         // Fin de l'attente
