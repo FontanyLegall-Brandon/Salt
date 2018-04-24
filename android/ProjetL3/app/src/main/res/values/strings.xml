@@ -2,6 +2,9 @@
     <string name="app_name">Salt</string>
     <string name="identifiants">Identifiants</string>
     <string name="pseudo">Pseudo</string>
+    <string name="avancement">0 / 50</string>
+    <string name="bienvenue">Bienvenue!</string>
+    <string name="textView6">Tu n\'es toujours pas inscrit ?</string>
     <string name="title_activity_login">Sign in</string>
     <string name="swipeLeft">Glisser vers la gauche</string>
     <string name="swipeRight">Glisser vers la droite</string>
